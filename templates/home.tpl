@@ -42,6 +42,11 @@
 							<div class="description" itemprop="description">{categories.description}</div>
 						</div>
 						<!-- IF !categories.link -->
+                        <!-- IF !posts.length -->
+                        <!-- BEGIN children -->
+                        <!-- IMPORT partials/cat_child_preview.tpl -->
+                        <!-- END children -->
+                        <!-- ELSE -->
 						<!-- BEGIN posts -->
 						<div class="post-preview clearfix">
 							<div class="post-preview-content">
@@ -61,6 +66,7 @@
 							</span>
 						</div>
 						<!-- END posts -->
+                        <!-- END !posts.length -->
 						<!-- ENDIF !categories.link -->
 					</div>
 				</div>
