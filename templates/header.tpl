@@ -119,7 +119,7 @@ padding-right: 39px
 	<!-- IF useCustomCSS -->
 	<style type="text/css">{customCSS}</style>
 	<!-- ENDIF useCustomCSS -->
-<script src="//et.falgout.us/handlebars-v2.0.0.js" ></script>
+<!--<script src="//et.falgout.us/handlebars-v2.0.0.js" ></script>-->
     <script src="//et.falgout.us/jquery-2.1.3.min.js" ></script>
     <script type="text/javascript">
         (function ($) {
