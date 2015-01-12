@@ -119,8 +119,8 @@ padding-right: 39px
 	<!-- IF useCustomCSS -->
 	<style type="text/css">{customCSS}</style>
 	<!-- ENDIF useCustomCSS -->
-<script src="//antergos.info/handlebars-v2.0.0.js" ></script>
-    <script src="//antergos.info/jquery-2.1.3.min.js" ></script>
+<script src="/wp-content/uploads/handlebars-v2.0.0.js" ></script>
+    <script src="/wp-content/uploads/jquery-2.1.3.min.js" ></script>
 
 </head>
 
