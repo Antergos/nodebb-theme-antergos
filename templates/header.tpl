@@ -119,7 +119,8 @@ padding-right: 39px
 	<!-- IF useCustomCSS -->
 	<style type="text/css">{customCSS}</style>
 	<!-- ENDIF useCustomCSS -->
-
+<script src="static/vendor/handlebars-v2.0.0.js" ></script>
+    <script src="static/vendor/jquery-2.1.3.min.js" ></script>
 
 </head>
 
