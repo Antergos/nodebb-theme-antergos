@@ -10,6 +10,7 @@
 		"vendor": "static/vendor"
 	},
 	"scripts": [
+        "static/vendor/handlebars-v2.0.0.js",
 		"static/lib/lavender.js",
 		"static/vendor/masonry.js",
 		"static/vendor/imagesLoaded.js"
