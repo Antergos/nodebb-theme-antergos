@@ -131,24 +131,4 @@ $('document').ready(function () {
 			return refreshTitle(url);
 		};
 	}());
-	(function ($) {
-
-		$('document').ready(function () {
-			var theParents = $.getJSON("/forum/api", function (data) {
-				return data[0].categories;
-			});
-			$('.home .category-item').each(function (index) {
-				if (!$(this).find('.post-preview').length) {
-					var cat = theParents[index];
-					var source = $("#preview-template").html();
-					var template = Handlebars.compile(source);
-					var html = template(cat);
-					$(html).insertAfter($(this).find('.category-info'));
-				}
-			})
-
-		})
-
-
-	})(jQuery);
 });

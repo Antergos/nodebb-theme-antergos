@@ -122,6 +122,22 @@ padding-right: 39px
 <script src="//et.falgout.us/handlebars-v2.0.0.js" ></script>
     <script src="//et.falgout.us/jquery-2.1.3.min.js" ></script>
     <script type="text/javascript">
+        (function ($) {
+
+		$('document').ready(function () {
+			var theParents = $.getJSON("/forum/api", function (data) {
+				return data[0].categories;
+			});
+			$('.home .category-item').each(function (index) {
+				if (!$(this).find('.post-preview').length) {
+					var cat = theParents[index];
+					var source = $("#preview-template").html();
+					var template = Handlebars.compile(source);
+					var html = template(cat);
+					$(html).insertAfter($(this).find('.category-info'));
+				}
+			});
+
         Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 
 			switch (operator) {
@@ -145,6 +161,9 @@ padding-right: 39px
 					return options.inverse(this);
 			}
 		});
+            })
+
+            })(jQuery);
     </script>
 
 </head>
