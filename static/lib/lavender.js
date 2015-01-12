@@ -133,30 +133,6 @@ $('document').ready(function () {
 	}());
 	(function ($) {
 
-		Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
-
-			switch (operator) {
-				case '==':
-					return (v1 == v2) ? options.fn(this) : options.inverse(this);
-				case '===':
-					return (v1 === v2) ? options.fn(this) : options.inverse(this);
-				case '<':
-					return (v1 < v2) ? options.fn(this) : options.inverse(this);
-				case '<=':
-					return (v1 <= v2) ? options.fn(this) : options.inverse(this);
-				case '>':
-					return (v1 > v2) ? options.fn(this) : options.inverse(this);
-				case '>=':
-					return (v1 >= v2) ? options.fn(this) : options.inverse(this);
-				case '&&':
-					return (v1 && v2) ? options.fn(this) : options.inverse(this);
-				case '||':
-					return (v1 || v2) ? options.fn(this) : options.inverse(this);
-				default:
-					return options.inverse(this);
-			}
-		});
-
 		$('document').ready(function () {
 			var theParents = $.getJSON("/forum/api", function (data) {
 				return data[0].categories;

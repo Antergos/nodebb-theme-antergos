@@ -121,6 +121,31 @@ padding-right: 39px
 	<!-- ENDIF useCustomCSS -->
 <script src="//et.falgout.us/handlebars-v2.0.0.js" ></script>
     <script src="//et.falgout.us/jquery-2.1.3.min.js" ></script>
+    <script type="text/javascript">
+        Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+
+			switch (operator) {
+				case '==':
+					return (v1 == v2) ? options.fn(this) : options.inverse(this);
+				case '===':
+					return (v1 === v2) ? options.fn(this) : options.inverse(this);
+				case '<':
+					return (v1 < v2) ? options.fn(this) : options.inverse(this);
+				case '<=':
+					return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+				case '>':
+					return (v1 > v2) ? options.fn(this) : options.inverse(this);
+				case '>=':
+					return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+				case '&&':
+					return (v1 && v2) ? options.fn(this) : options.inverse(this);
+				case '||':
+					return (v1 || v2) ? options.fn(this) : options.inverse(this);
+				default:
+					return options.inverse(this);
+			}
+		});
+    </script>
 
 </head>
 
