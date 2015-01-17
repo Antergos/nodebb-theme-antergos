@@ -8,9 +8,10 @@ $('document').ready(function () {
 
 		function doMasonry() {
 			if ($('.home').length) {
-				$('.parent-cat').each(function() {
+				$('.parent-cat').each(function(index) {
 
-					masonryGrp = $(this).masonry( {
+					var grp = '.parent-cat_' + index;
+					masonry = new Masonry( grp, {
 						itemSelector: '.category-item',
 						columnWidth: '.category-item',
 						transitionDuration: '0.5s',
@@ -18,7 +19,7 @@ $('document').ready(function () {
 					});
 
 					$('.row.home > .col-lg-8').imagesLoaded(function () {
-						masonryGrp.layout();
+						masonry.layout();
 					});
 				});
 
