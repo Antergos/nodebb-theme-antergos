@@ -1,5 +1,4 @@
 <div class="row home" itemscope itemtype="http://www.schema.org/ItemList">
-    <div class="col-lg-8 col-sm-12" no-widget-class="col-lg-12 col-sm-12" no-widget-target="sidebar">
         <!-- BEGIN categories -->
         <div class="row">
             <div class="<!-- IF categories.class -->col-md-12 col-sm-12 col-xs-12<!-- ELSE -->col-md-12 col-sm-12 col-xs-12<!-- ENDIF categories.class -->"
@@ -105,8 +104,8 @@
             <!-- END children -->
         </div>
 
-    </div>
-    <!-- END categories -->
 
-<div widget-area="sidebar" class="col-lg-3 col-lg-offset-1 col-sm-12"></div>
+    <!-- END categories -->
 </div>
+<div widget-area="sidebar" class="col-lg-3 col-lg-offset-1 col-sm-12"></div>
+
