@@ -8,7 +8,7 @@ $('document').ready(function () {
 
 		function doMasonry() {
 			if ($('.home').length) {
-				$('.row.home > .col-lg-8 > .row').each(function() {
+				$('.parent-cat').each(function() {
 
 					masonry = new Masonry($(this), {
 						itemSelector: '.category-item',
@@ -17,7 +17,7 @@ $('document').ready(function () {
 						isInitLayout: false
 					});
 
-					$('.row.home > .row > .col-lg-8 p img').imagesLoaded(function () {
+					$(this).find('p img').imagesLoaded(function () {
 						masonry.layout();
 					});
 				});
