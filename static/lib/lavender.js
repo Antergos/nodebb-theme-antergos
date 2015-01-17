@@ -8,15 +8,18 @@ $('document').ready(function () {
 
 		function doMasonry() {
 			if ($('.home').length) {
-				masonry = new Masonry('.row.home > .row > .col-lg-8', {
-					itemSelector: '.category-item',
-					columnWidth: '.category-item',
-					transitionDuration: '0.5s',
-					isInitLayout: false
-				});
+				$('.row.home > .col-lg-8 > .row').each(function() {
 
-				$('.row.home > .row > .col-lg-8 p img').imagesLoaded(function () {
-					masonry.layout();
+					masonry = new Masonry($(this), {
+						itemSelector: '.category-item',
+						columnWidth: '.category-item',
+						transitionDuration: '0.5s',
+						isInitLayout: false
+					});
+
+					$('.row.home > .row > .col-lg-8 p img').imagesLoaded(function () {
+						masonry.layout();
+					});
 				});
 
 				var saved = JSON.parse(localStorage.getItem('masonry:layout'));
