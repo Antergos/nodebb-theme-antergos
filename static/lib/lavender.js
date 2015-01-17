@@ -15,7 +15,7 @@ $('document').ready(function () {
 					isInitLayout: false
 				});
 
-				$('.row.home > div p img').imagesLoaded(function () {
+				$('.row.home > .row > .col-lg-8 p img').imagesLoaded(function () {
 					masonry.layout();
 				});
 
