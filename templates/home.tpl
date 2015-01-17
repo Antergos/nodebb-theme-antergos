@@ -16,7 +16,7 @@
                 </div>
 
                 <!-- BEGIN children -->
-                <div class="<!-- IF categories.children.class -->col-md-4 col-sm-6 col-xs-12<!-- ELSE -->col-md-4 col-sm-6 col-xs-12<!-- ENDIF categories.children.class --> category-item"
+                <div class="<!-- IF categories.children.class -->{categories.children.class}<!-- ELSE -->col-md-4 col-sm-6 col-xs-12<!-- ENDIF categories.children.class --> category-item"
                      data-cid="{categories.children.cid}"
                      data-numRecentReplies="{categories.children.numRecentReplies}">
                     <meta itemprop="name" content="{categories.children.name}">
@@ -24,60 +24,58 @@
                     <div class="category-icon">
 
                         <!-- IF categories.children.link -->
-					<a style="color: {categories.children.color};" href="{categories.children.link}" itemprop="url" target="_blank">
-					<!-- ELSE -->
-					<a style="color: {categories.children.color};" href="{relative_path}/category/{categories.children.slug}" itemprop="url">
-					<!-- ENDIF categories.children.link -->
-						<div
-							id="category-{categories.children.cid}" class="category-header category-header-image-{categories.children.imageClass}"
-							style="
-								<!-- IF categories.children.backgroundImage -->background-image: url({categories.children.backgroundImage});<!-- ENDIF categories.children.backgroundImage -->
-								<!-- IF categories.children.bgColor -->background-color: {categories.children.bgColor};<!-- ENDIF categories.children.bgColor -->
-								color: {categories.children.color};
-							"
-						>
-							<!-- IF !categories.children.link -->
-							<span class="badge {categories.children.unread-class}"><i class="fa fa-book" data-toggle="tooltip" title="[[global:topics]]"></i> <span class="human-readable-number" title="{categories.children.topic_count}">{categories.children.topic_count}</span>&nbsp; <i class="fa fa-pencil" data-toggle="tooltip" title="[[global:posts]]"></i> <span class="human-readable-number" title="{categories.children.post_count}">{categories.children.post_count}</span></span>
-							<!-- ENDIF !categories.children.link -->
+                        <a style="color: {categories.children.color};" href="{categories.children.link}" itemprop="url"
+                           target="_blank">
+                            <!-- ELSE -->
+                            <a style="color: {categories.children.color};"
+                               href="{relative_path}/category/{categories.children.slug}" itemprop="url">
+                                <!-- ENDIF categories.children.link -->
+                                <div id="category-{categories.children.cid}" class="category-header">
+                                    <!-- IF !categories.children.link -->
+                                    <span class="category-stats"><i class="fa fa-book" data-toggle="tooltip"
+                                                                    title="[[global:topics]]"></i> <span
+                                            class="human-readable-number" title="{categories.children.topic_count}">{categories.children.topic_count}</span>&nbsp; <i
+                                            class="fa fa-comments" data-toggle="tooltip"
+                                            title="[[global:posts]]"></i> <span class="human-readable-number"
+                                                                                title="{categories.children.post_count}">{categories.children.post_count}</span></span>
+                                    <!-- ENDIF !categories.children.link -->
+                                    <div class="category-header-image-{categories.children.imageClass}"
+                                         style=" <!-- IF categories.children.backgroundImage -->background-image: url({categories.children.backgroundImage});<!-- ENDIF categories.children.backgroundImage --> <!-- IF categories.children.bgColor -->background-color: {categories.children.bgColor};<!-- ENDIF categories.children.bgColor --> ">
+                                    </div>
+                                    <h4 style="color: {categories.children.color};">{categories.children.name}</h4>
+                                </div>
+                            </a>
 
-							<!-- IF categories.children.icon -->
-							<div><i class="fa {categories.children.icon} fa-4x"></i></div>
-							<!-- ENDIF categories.children.icon -->
-						</div>
-					</a>
+                            <div class="category-box">
+                                <div class="category-info">
+                                    <div class="description" itemprop="description"><p>
+                                        {categories.children.description}</p></div>
+                                </div>
+                                <!-- IF !categories.children.link -->
+                                <div class="post-preview-content clearfix {categories.children.unread-class} col-md-12 col-sm-12 col-xs-12">
+                                    <!-- BEGIN posts -->
+                                    <a class="user-picture col-md-2 col-sm-2"
+                                       style="color: {categories.children.color};"
+                                       href="<!-- IF categories.children.posts.user.userslug -->{relative_path}/user/{categories.children.posts.user.userslug}<!-- ELSE -->#<!-- ENDIF categories.children.posts.user.userslug-->">
+                                        <span class="user-picture small pull-left"><img
+                                                src="{categories.children.posts.user.picture}"
+                                                title="{categories.children.posts.user.username}"
+                                                class="user-img"></span>
+                                    </a>
 
-					<div class="category-box">
-						<div class="category-info">
-							<!-- IF categories.children.link -->
-							<a href="{categories.children.link}" itemprop="url" target="_blank">
-							<!-- ELSE -->
-							<a href="{relative_path}/category/{categories.children.slug}" itemprop="url">
-							<!-- ENDIF categories.children.link-->
-								<h4><!-- IF categories.children.icon --><i class="fa {categories.children.icon} visible-xs-inline"></i> <!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
-							</a>
-							<div class="description" itemprop="description">{categories.children.description}</div>
-						</div>
-						<!-- IF !categories.children.link -->
-						<!-- BEGIN posts -->
-						<div class="post-preview clearfix">
-							<div class="post-preview-content">
-								<strong><a href="{relative_path}/topic/{categories.children.posts.topic.slug}">{categories.children.posts.topic.title}</a></strong>
-								<hr/>
-								<a style="color: {categories.children.color};" href="<!-- IF categories.children.posts.user.userslug -->{relative_path}/user/{categories.children.posts.user.userslug}<!-- ELSE -->#<!-- ENDIF categories.children.posts.user.userslug-->">
-									<img src="{categories.children.posts.user.picture}" title="{categories.children.posts.user.username}" class="pull-left user-img" />
-								</a>
-								<div class="content">
-								{categories.children.posts.content}
-								</div>
-								<p class="fade-out"></p>
-							</div>
-							<span class="pull-right footer">
-								<span class="timeago" title="{categories.children.posts.relativeTime}"></span> &bull;
-								<a href="{relative_path}/topic/{categories.children.posts.topic.slug}<!-- IF categories.children.posts.index -->/{categories.children.posts.index}<!-- ENDIF categories.children.posts.index -->">[[global:read_more]]</a>
-							</span>
-						</div>
-						<!-- END posts -->
-						<!-- ENDIF !categories.children.link -->
+                                    <div class="post-info pull-left col-md-10 col-sm-10 col-xs-10">
+                                        <h5><a href="{relative_path}/topic/{categories.children.posts.topic.slug}">{categories.children.posts.topic.title}</a>
+                                        </h5>
+                                        <a href="{relative_path}/user/{categories.children.posts.user.username}"
+                                           class="user">{categories.children.posts.user.username}</a>
+                                        <span class="timeago" title="{categories.children.posts.relativeTime}"></span>
+                                    </div>
+                                    <a class="readmore-link pull-right"
+                                       href="{relative_path}/topic/{categories.children.posts.topic.slug}<!-- IF categories.children.posts.index -->/{categories.children.posts.index}<!-- ENDIF categories.children.posts.index -->"
+                                       title="[[global:read_more]]"><i class="fa fa-fw fa-link fa-gradient"></i></a>
+                                    <!-- END posts -->
+                                </div>
+                                <!-- ENDIF !categories.children.link -->
                             </div>
                     </div>
                 </div>
