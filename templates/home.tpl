@@ -1,7 +1,7 @@
 <div class="row home" itemscope itemtype="http://www.schema.org/ItemList">
     <div class="col-lg-8 col-sm-12" no-widget-class="col-lg-12 col-sm-12" no-widget-target="sidebar">
+        <!-- BEGIN categories -->
         <div class="row">
-            <!-- BEGIN categories -->
             <div class="<!-- IF categories.class -->col-md-12 col-sm-12 col-xs-12<!-- ELSE -->col-md-12 col-sm-12 col-xs-12<!-- ENDIF categories.class -->"
                  data-cid="{categories.cid}" data-numRecentReplies="{categories.numRecentReplies}">
                 <div class="et_pb_column et_pb_column_4_4">
@@ -14,6 +14,7 @@
                     <!-- .et_pb_text -->
                     <hr class="et_pb_space et_pb_divider" style="border-color: #dddddd;">
                 </div>
+
                 <!-- BEGIN children -->
                 <div class="<!-- IF categories.children.class -->{categories.children.class}<!-- ELSE -->col-md-4 col-sm-6 col-xs-12<!-- ENDIF categories.children.class --> category-item"
                      data-cid="{categories.children.cid}"
@@ -80,8 +81,9 @@
                 </div>
                 <!-- END children -->
             </div>
-            <!-- END categories -->
+
         </div>
+        <!-- END categories -->
     </div>
 
     <div widget-area="sidebar" class="col-lg-3 col-lg-offset-1 col-sm-12"></div>
