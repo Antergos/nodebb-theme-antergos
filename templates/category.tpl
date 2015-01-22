@@ -20,6 +20,17 @@
 
 <div class="category row">
 	<div class="{topic_row_size}" no-widget-class="col-lg-12 col-sm-12" no-widget-target="sidebar">
+        <div class="row">
+            <div class="et_pb_column et_pb_column_4_4">
+                    <div class="et_pb_text et_pb_bg_layout_light et_pb_text_align_left">
+
+                        <h2 class="category-group">{name}</h2>
+
+                    </div>
+                    <!-- .et_pb_text -->
+                    <hr class="et_pb_space et_pb_divider" style="border-color: #dddddd;">
+                </div>
+        </div>
         <div class="subcategories row">
 	<!-- BEGIN children -->
 	<!-- IMPORT partials/category_child.tpl -->
