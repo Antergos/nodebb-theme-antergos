@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div class="row parent-cat_{categories.index}">
+        <div class="row parent-cat">
 
             <!-- BEGIN children -->
             <div class="<!-- IF categories.children.class -->col-md-4 col-sm-6 col-xs-12<!-- ELSE -->col-md-4 col-sm-6 col-xs-12<!-- ENDIF categories.children.class --> category-item"

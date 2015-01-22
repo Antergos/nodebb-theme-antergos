@@ -17,6 +17,7 @@ $('document').ready(function () {
 					});
 
 					var grp = '.parent-cat_' + index;
+					$(this).addClass(grp);
 					masonry = new Masonry( grp, {
 						itemSelector: '.category-item',
 						columnWidth: '.category-item',
@@ -24,10 +25,11 @@ $('document').ready(function () {
 						isInitLayout: false
 					});
 
-					$('.row.home > .col-lg-8').imagesLoaded(function () {
+
+				});
+				$('.row.home > .col-lg-8').imagesLoaded(function () {
 						masonry.layout();
 					});
-				});
 
 				/*var saved = JSON.parse(localStorage.getItem('masonry:layout'));
 				if (saved) {
