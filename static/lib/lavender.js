@@ -10,6 +10,12 @@ $('document').ready(function () {
 			if ($('.home').length) {
 				$('.parent-cat').each(function(index) {
 
+					$(this).find('.category-item').each(function(index) {
+						if (index % 3 == 0) {
+							$('<div class="clearfix visible-lg visible-md"></div>').insertAfter($(this));
+						}
+					});
+
 					var grp = '.parent-cat_' + index;
 					masonry = new Masonry( grp, {
 						itemSelector: '.category-item',
@@ -23,7 +29,7 @@ $('document').ready(function () {
 					});
 				});
 
-				var saved = JSON.parse(localStorage.getItem('masonry:layout'));
+				/*var saved = JSON.parse(localStorage.getItem('masonry:layout'));
 				if (saved) {
 					for (var cid in saved) {
 						if (saved.hasOwnProperty(cid)) {
@@ -51,7 +57,7 @@ $('document').ready(function () {
 					});
 
 					localStorage.setItem('masonry:layout', JSON.stringify(saved));
-				});
+				});*/
 			}
 		}
 
