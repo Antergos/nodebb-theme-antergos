@@ -11,7 +11,7 @@ $('document').ready(function () {
 				$('.parent-cat').each(function(index) {
 
 					$(this).find('.category-item').each(function(index) {
-						if (index % 3 == 0) {
+						if ((index + 1) % 3 == 0) {
 							$('<div class="clearfix visible-lg visible-md"></div>').insertAfter($(this));
 						}
 					});
@@ -24,12 +24,12 @@ $('document').ready(function () {
 						transitionDuration: '0.5s',
 						isInitLayout: false
 					});
-
-
-				});
-				$('.row.home > .col-lg-8').imagesLoaded(function () {
+					$('.row.home > .col-lg-8').imagesLoaded(function () {
 						masonry.layout();
 					});
+
+				});
+
 
 				/*var saved = JSON.parse(localStorage.getItem('masonry:layout'));
 				if (saved) {
