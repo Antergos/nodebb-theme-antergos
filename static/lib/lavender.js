@@ -29,7 +29,7 @@ $('document').ready(function () {
 					});
 					});
 
-				});
+
 
 
 				var saved = JSON.parse(localStorage.getItem('masonry:layout'));
@@ -60,6 +60,7 @@ $('document').ready(function () {
 					});
 
 					localStorage.setItem('masonry:layout', JSON.stringify(saved));
+				});
 				});
 			}
 		}
