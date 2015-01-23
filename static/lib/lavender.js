@@ -21,7 +21,7 @@ $('document').ready(function () {
 						isInitLayout: false
 					});
 
-					$pcat.imagesLoaded(function () {
+					$('.row.home > .col-lg-8').imagesLoaded(function () {
 						masonry.layout();
 					});
 					var lsName = 'masonry:layout:' + pcatId;
