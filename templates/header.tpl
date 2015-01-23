@@ -99,7 +99,7 @@
                     );
               }
                 }
-            setupMasonryManually();
+
 
 	</script>
 
