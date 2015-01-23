@@ -68,7 +68,7 @@
             setTimeout(addStickyMenuHandler, 500);
           }
           addStickyMenuHandler();
-          (function($) {
+
               if ($('.home').length) {
                   $('.parent-cat').each(function (index) {
 
@@ -96,7 +96,7 @@
 
                   });
               }
-          })(jQuery);
+
 	</script>
 
         <!-- Exo 2 font for tiny portion of header -->
