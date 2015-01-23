@@ -8,7 +8,7 @@ $('document').ready(function () {
 
 		function doMasonry() {
 			if ($('.home').length) {
-				$('.parent-cat').each(function(index) {
+				/*$('.parent-cat').each(function(index) {
 
 					$(this).find('.category-item').each(function(index) {
 						if ((index + 1) % 3 == 0) {
@@ -18,21 +18,20 @@ $('document').ready(function () {
 
 					var grp = 'parent-cat_' + index;
 					$(this).addClass(grp);
-
-					var $container = $(grp);
-
-					$container.imagesLoaded(function () {
-						masonry = new Masonry( $container[0], {
-							itemSelector: '.category-item',
-							columnWidth: '.category-item',
-							transitionDuration: '0.5s'
+					masonry = new Masonry( grp, {
+						itemSelector: '.category-item',
+						columnWidth: '.category-item',
+						transitionDuration: '0.5s',
+						isInitLayout: false
 					});
+					$('.row.home > .col-lg-8').imagesLoaded(function () {
+						masonry.layout();
 					});
 
+				});*/
 
 
-
-				var saved = JSON.parse(localStorage.getItem('masonry:layout'));
+				/*var saved = JSON.parse(localStorage.getItem('masonry:layout'));
 				if (saved) {
 					for (var cid in saved) {
 						if (saved.hasOwnProperty(cid)) {
@@ -60,8 +59,7 @@ $('document').ready(function () {
 					});
 
 					localStorage.setItem('masonry:layout', JSON.stringify(saved));
-				});
-				});
+				});*/
 			}
 		}
 

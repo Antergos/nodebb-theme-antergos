@@ -68,6 +68,35 @@
             setTimeout(addStickyMenuHandler, 500);
           }
           addStickyMenuHandler();
+          (function($) {
+              if ($('.home').length) {
+                  $('.parent-cat').each(function (index) {
+
+                      var $pcat = $(this);
+                      var $ccats = $pcat.find('.category-item');
+
+                      $ccats.each(function (index) {
+                          if ((index + 1) % 3 == 0) {
+                              $('<div class="clearfix visible-lg visible-md"></div>').insertAfter($(this));
+                          }
+                      });
+
+                      var grp = 'parent-cat_' + index;
+                      $pcat.addClass(grp);
+                      $pcat.imagesLoaded(function () {
+                          $pcat.masonry({
+                              itemSelector: '.category-item',
+                              columnWidth: '.category-item',
+                              transitionDuration: '0.5s'
+                          });
+                      });
+                      /*$('.row.home > .col-lg-8').imagesLoaded(function () {
+                          masonry.layout();
+                      });*/
+
+                  });
+              }
+          })(jQuery);
 	</script>
 
         <!-- Exo 2 font for tiny portion of header -->
