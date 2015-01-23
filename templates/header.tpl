@@ -37,7 +37,7 @@
 	</script>
 
 	<!-- Start segment from Po: auto-stick header after hero image -->
-        <script>
+        <script type="text/javascript">
           function stickyMenuHandler() {
               if ($("#header-menu-detector").length > 0) {
                   var pxBelow = $("#header-menu-detector").first().offset().top - $(window).scrollTop();
