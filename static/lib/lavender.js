@@ -11,9 +11,10 @@ $('document').ready(function () {
 				$('.parent-cat').each(function(index) {
 					var $pcat = $(this);
 					var pcatId = 'pcat_' + index;
+					var pcatClass = '.pcat_' + index;
 					$pcat.addClass(pcatId);
 
-					masonry = new Masonry($pcat[0], {
+					masonry = new Masonry(pcatClass, {
 						itemSelector: '.category-item',
 						columnWidth: '.category-item:not(.col-lg-12)',
 						transitionDuration: 0,
