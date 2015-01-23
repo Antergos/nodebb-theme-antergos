@@ -16,7 +16,7 @@ $('document').ready(function () {
 						}
 					});
 
-					var grp = '.parent-cat_' + index;
+					var grp = 'parent-cat_' + index;
 					$(this).addClass(grp);
 					masonry = new Masonry( grp, {
 						itemSelector: '.category-item',

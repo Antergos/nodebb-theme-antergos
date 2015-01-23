@@ -108,5 +108,5 @@
 
     <!-- END categories -->
 </div>
-<div widget-area="sidebar" class="col-lg-3 col-lg-offset-1 col-sm-12"></div>
+<div widget-area="sidebar" class="col-lg-3 col-lg-offset-1 col-sm-12 hm-sidebar"></div>
 </div>
