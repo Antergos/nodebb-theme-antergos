@@ -18,14 +18,15 @@ $('document').ready(function () {
 
 					var grp = 'parent-cat_' + index;
 					$(this).addClass(grp);
-					masonry = new Masonry( grp, {
-						itemSelector: '.category-item',
-						columnWidth: '.category-item',
-						transitionDuration: '0.5s',
-						isInitLayout: false
+
+					var $container = $(grp);
+
+					$container.imagesLoaded(function () {
+						masonry = new Masonry( $container[0], {
+							itemSelector: '.category-item',
+							columnWidth: '.category-item',
+							transitionDuration: '0.5s'
 					});
-					$('.row.home > .col-lg-8').imagesLoaded(function () {
-						masonry.layout();
 					});
 
 				});
