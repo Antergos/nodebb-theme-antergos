@@ -8,18 +8,23 @@ $('document').ready(function() {
 
 		function doMasonry() {
 			if($('.home').length) {
-				masonry = new Masonry('.row.home > div', {
+				$('.parent-cat').each(function(index) {
+					var $pcat = $(this);
+					var pcatId = 'pcat_' + index;
+					$pcat.addClass(pcatId);
+
+				masonry = new Masonry($pcat[0], {
 					itemSelector: '.category-item',
 					columnWidth: '.category-item:not(.col-lg-12)',
 					transitionDuration: 0,
 					isInitLayout: false
 				});
 
-				$('.row.home > div p img').imagesLoaded(function() {
+				$($pcat).imagesLoaded(function() {
 					masonry.layout();
 				});
-
-				var saved = JSON.parse(localStorage.getItem('masonry:layout'));
+				var lsName = 'masonry:layout:' + pcatId;
+				var saved = JSON.parse(localStorage.getItem(lsName));
 				if (saved) {
 					for (var cid in saved) {
 						if (saved.hasOwnProperty(cid)) {
@@ -36,8 +41,8 @@ $('document').ready(function() {
 
 				masonry.on('layoutComplete', function() {
 					var saved = {};
-
-					$('.category-item').each(function() {
+					var $ccats = $pcat.find('.category-item');
+					$($ccats).each(function() {
 						var $this = $(this);
 
 						saved[$this.attr('data-cid')] = {
@@ -46,8 +51,9 @@ $('document').ready(function() {
 						};
 					});
 
-					localStorage.setItem('masonry:layout', JSON.stringify(saved));
+					localStorage.setItem(lsName, JSON.stringify(saved));
 				});
+			});
 			}
 		}
 
