@@ -31,7 +31,7 @@ $('document').ready(function () {
 				});
 
 
-				/*var saved = JSON.parse(localStorage.getItem('masonry:layout'));
+				var saved = JSON.parse(localStorage.getItem('masonry:layout'));
 				if (saved) {
 					for (var cid in saved) {
 						if (saved.hasOwnProperty(cid)) {
@@ -59,7 +59,7 @@ $('document').ready(function () {
 					});
 
 					localStorage.setItem('masonry:layout', JSON.stringify(saved));
-				});*/
+				});
 			}
 		}
 
