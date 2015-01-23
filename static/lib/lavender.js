@@ -8,11 +8,20 @@ $('document').ready(function () {
 
 		function doMasonry() {
 			if ($('.home').length) {
-				$('.parent-cat').each(function(index) {
+				$('.parent-cat').each(function (index) {
 					var $pcat = $(this);
 					var pcatId = 'pcat_' + index;
 					var pcatClass = '.pcat_' + index;
 					$pcat.addClass(pcatId);
+					var $ccats = $pcat.find('.category-item');
+
+					if (!$('new-row').length) {
+						$ccats.each(function (index) {
+							if ((index + 1) % 3 == 0) {
+								$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
+							}
+						});
+					}
 
 					masonry = new Masonry(pcatClass, {
 						itemSelector: '.category-item',
@@ -21,7 +30,7 @@ $('document').ready(function () {
 						isInitLayout: false
 					});
 
-					$('.row.home > .col-lg-8').imagesLoaded(function () {
+					$('.left-side').imagesLoaded(function () {
 						masonry.layout();
 					});
 					var lsName = 'masonry:layout:' + pcatId;
@@ -42,7 +51,6 @@ $('document').ready(function () {
 
 					masonry.on('layoutComplete', function () {
 						var saved = {};
-						var $ccats = $pcat.find('.category-item');
 						$ccats.each(function () {
 							var $this = $(this);
 

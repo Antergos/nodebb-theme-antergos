@@ -1,5 +1,5 @@
 <div class="row home" itemscope itemtype="http://www.schema.org/ItemList">
-    <div class="col-lg-8 col-sm-12" no-widget-class="col-lg-12 col-sm-12" no-widget-target="sidebar">
+    <div class="col-lg-8 col-sm-12 left-side" no-widget-class="col-lg-12 col-sm-12" no-widget-target="sidebar">
         <!-- BEGIN categories -->
         <div class="row">
             <div class="<!-- IF categories.class -->col-md-12 col-sm-12 col-xs-12<!-- ELSE -->col-md-12 col-sm-12 col-xs-12<!-- ENDIF categories.class -->"
