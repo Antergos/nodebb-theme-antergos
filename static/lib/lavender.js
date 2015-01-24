@@ -30,7 +30,7 @@ $('document').ready(function () {
 						isInitLayout: false
 					});
 
-					$('.left-side').imagesLoaded(function () {
+					imagesLoaded('.left-side', function () {
 						setTimeout(function() {
 							masonry.layout();
 						}, 1000 + ((index + 1) * 100 ));
