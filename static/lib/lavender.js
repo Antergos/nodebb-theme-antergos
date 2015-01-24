@@ -8,6 +8,7 @@ $('document').ready(function () {
 
 		function doMasonry() {
 			if ($('.home').length) {
+
 				$('.parent-cat').each(function (index) {
 					var $pcat = $(this);
 					var pcatId = 'pcat_' + index;
@@ -15,7 +16,7 @@ $('document').ready(function () {
 					$pcat.addClass(pcatId);
 					var $ccats = $pcat.find('.category-item');
 
-					if (!$('new-row').length) {
+					if (!$pcat.find('.new-row').length) {
 						$ccats.each(function (index) {
 							if ((index + 1) % 3 == 0) {
 								$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
@@ -23,7 +24,7 @@ $('document').ready(function () {
 						});
 					}
 
-					masonry = new Masonry(pcatClass, {
+					/*masonry = new Masonry(pcatClass, {
 						itemSelector: '.category-item',
 						columnWidth: '.category-item:not(.col-lg-12)',
 						transitionDuration: '0.5s',
@@ -31,26 +32,26 @@ $('document').ready(function () {
 					});
 
 					imagesLoaded('.left-side', function () {
-						setTimeout(function() {
+						setTimeout(function () {
 							masonry.layout();
 						}, 1000 + ((index + 1) * 100 ));
 
-					});
+					});*/
 					var lsName = 'masonry:layout:' + pcatId;
 					var saved = JSON.parse(localStorage.getItem(lsName));
 					/*if (saved) {
-						for (var cid in saved) {
-							if (saved.hasOwnProperty(cid)) {
-								var category = saved[cid];
+					 for (var cid in saved) {
+					 if (saved.hasOwnProperty(cid)) {
+					 var category = saved[cid];
 
-								$('.category-item[data-cid="' + cid + '"]').css({
-									left: category.left,
-									top: category.top,
-									position: 'absolute'
-								});
-							}
-						}
-					}*/
+					 $('.category-item[data-cid="' + cid + '"]').css({
+					 left: category.left,
+					 top: category.top,
+					 position: 'absolute'
+					 });
+					 }
+					 }
+					 }
 
 					masonry.on('layoutComplete', function () {
 						var saved = {};
@@ -64,8 +65,25 @@ $('document').ready(function () {
 						});
 
 						localStorage.setItem(lsName, JSON.stringify(saved));
-					});
+					});*/
 				});
+				var containers = document.querySelectorAll('.parent-cat');
+
+				for (var i = 0, len = containers.length; i < len; i++) {
+					var container = containers[i];
+					initMasonry(container);
+				}
+
+				function initMasonry(container) {
+					imagesLoaded(container, function () {
+						new Masonry(container, {
+							itemSelector: '.category-item',
+							columnWidth: '.category-item:not(.col-lg-12)',
+							transitionDuration: '0.5s'
+						});
+					});
+				}
+
 			}
 		}
 
