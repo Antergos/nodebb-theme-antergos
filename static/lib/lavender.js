@@ -26,16 +26,19 @@ $('document').ready(function () {
 					masonry = new Masonry(pcatClass, {
 						itemSelector: '.category-item',
 						columnWidth: '.category-item:not(.col-lg-12)',
-						transitionDuration: 0,
+						transitionDuration: '0.5s',
 						isInitLayout: false
 					});
 
 					$('.left-side').imagesLoaded(function () {
-						masonry.layout();
+						setTimeout(function() {
+							masonry.layout();
+						}, 1000 + ((index + 1) * 100 ));
+
 					});
 					var lsName = 'masonry:layout:' + pcatId;
 					var saved = JSON.parse(localStorage.getItem(lsName));
-					if (saved) {
+					/*if (saved) {
 						for (var cid in saved) {
 							if (saved.hasOwnProperty(cid)) {
 								var category = saved[cid];
@@ -47,7 +50,7 @@ $('document').ready(function () {
 								});
 							}
 						}
-					}
+					}*/
 
 					masonry.on('layoutComplete', function () {
 						var saved = {};
