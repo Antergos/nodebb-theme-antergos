@@ -175,7 +175,7 @@ $('document').ready(function () {
 	jQuery('document').ready(function () {
 		requirejs([
 			'antergos/slick',
-		], function (slick) {
+		], function (Slick) {
 			$(document).ready(function () {
 				if ($('.category-page').length) {
 
