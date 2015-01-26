@@ -187,8 +187,8 @@ padding-right: 39px
 	</li>
 
 </ul>
-							</div><ul id="et-secondary-nav" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1343"><a href="//antergos.org">Main</a></li>
-<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1344"><a href="//et.falgout.us/antergos-wiki">Wiki</a></li>
+							</div><ul id="et-secondary-nav" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1343"><a href="/">Main</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1344"><a href="/wiki">Wiki</a></li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1345"><a href="//build.antergos.org">Packages</a></li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1346"><a href="//bugs.antergos.com">Bugs</a></li>
 </ul>				</div> <!-- #et-secondary-menu -->
