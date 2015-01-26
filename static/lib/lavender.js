@@ -25,18 +25,18 @@ $('document').ready(function () {
 					}
 
 					/*masonry = new Masonry(pcatClass, {
-						itemSelector: '.category-item',
-						columnWidth: '.category-item:not(.col-lg-12)',
-						transitionDuration: '0.5s',
-						isInitLayout: false
-					});
+					 itemSelector: '.category-item',
+					 columnWidth: '.category-item:not(.col-lg-12)',
+					 transitionDuration: '0.5s',
+					 isInitLayout: false
+					 });
 
-					imagesLoaded('.left-side', function () {
-						setTimeout(function () {
-							masonry.layout();
-						}, 1000 + ((index + 1) * 100 ));
+					 imagesLoaded('.left-side', function () {
+					 setTimeout(function () {
+					 masonry.layout();
+					 }, 1000 + ((index + 1) * 100 ));
 
-					});*/
+					 });*/
 					var lsName = 'masonry:layout:' + pcatId;
 					var saved = JSON.parse(localStorage.getItem(lsName));
 					/*if (saved) {
@@ -53,19 +53,19 @@ $('document').ready(function () {
 					 }
 					 }
 
-					masonry.on('layoutComplete', function () {
-						var saved = {};
-						$ccats.each(function () {
-							var $this = $(this);
+					 masonry.on('layoutComplete', function () {
+					 var saved = {};
+					 $ccats.each(function () {
+					 var $this = $(this);
 
-							saved[$this.attr('data-cid')] = {
-								left: $this.css('left'),
-								top: $this.css('top')
-							};
-						});
+					 saved[$this.attr('data-cid')] = {
+					 left: $this.css('left'),
+					 top: $this.css('top')
+					 };
+					 });
 
-						localStorage.setItem(lsName, JSON.stringify(saved));
-					});*/
+					 localStorage.setItem(lsName, JSON.stringify(saved));
+					 });*/
 				});
 				var containers = document.querySelectorAll('.parent-cat');
 
@@ -168,3 +168,51 @@ $('document').ready(function () {
 		};
 	}());
 });
+
+(function () {
+	"use strict";
+
+	jQuery('document').ready(function () {
+		requirejs([
+			'antergos/slick',
+		], function (slick) {
+			$(document).ready(function () {
+				if ($('.category-page').length) {
+
+					$('.subcategories').slick({
+						dots: true,
+						infinite: true,
+						speed: 300,
+						slidesToShow: 3,
+						slidesToScroll: 2/*,
+						responsive: [
+							{
+								breakpoint: 1024,
+								settings: {
+									slidesToShow: 3,
+									slidesToScroll: 3,
+									infinite: true,
+									dots: true
+								}
+							},
+							{
+								breakpoint: 600,
+								settings: {
+									slidesToShow: 2,
+									slidesToScroll: 2
+								}
+							},
+							{
+								breakpoint: 480,
+								settings: {
+									slidesToShow: 1,
+									slidesToScroll: 1
+								}
+							}
+						]*/
+					});
+				}
+			});
+		});
+	});
+}());

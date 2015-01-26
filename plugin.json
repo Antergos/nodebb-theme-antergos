@@ -12,6 +12,7 @@
 	"scripts": [
 		"static/lib/lavender.js",
 		"static/vendor/masonry.js",
-		"static/vendor/imagesLoaded.js"
+		"static/vendor/imagesLoaded.js",
+		"static/vendor/slick.min.js"
 	]
 }
