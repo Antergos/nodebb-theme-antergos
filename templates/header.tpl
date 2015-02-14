@@ -123,8 +123,11 @@ padding-right: 39px
 	<!-- ENDIF useCustomCSS -->
 
 </head>
-
+<!-- IF template.login.length -->
+<body class="login">
+<!-- ELSE -->
 <body>
+<!-- ENDIF template.login.length -->
   <!-- Start segment from Po: Hero image above header -->
 <div id="wrap" class="container">
 <div id="top-header" class="et_nav_text_color_dark">
@@ -187,10 +190,10 @@ padding-right: 39px
 	</li>
 
 </ul>
-							</div><ul id="et-secondary-nav" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1343"><a href="/">Main</a></li>
-<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1344"><a href="/wiki">Wiki</a></li>
-<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1345"><a href="//build.antergos.org">Packages</a></li>
-<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1346"><a href="//bugs.antergos.com">Bugs</a></li>
+							</div><ul id="et-secondary-nav" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1343"><a href="//antergos.com">Main</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1344"><a href="//antergos.com/wiki">Wiki</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1345"><a href="//build.antergos.com">Packages</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1346"><a href="//github.com/antergos">Bugs</a></li>
 </ul>				</div> <!-- #et-secondary-menu -->
 
 			</div> <!-- .container -->
