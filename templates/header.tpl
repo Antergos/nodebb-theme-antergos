@@ -208,7 +208,7 @@
                             </a>
                         </li>
                         <li class="et-social-icon et-social-rss">
-                            <a href="/feed" class="icon">
+                            <a href="/recent.rss" class="icon">
                                 <span>RSS</span>
                             </a>
                         </li>
@@ -217,13 +217,13 @@
                 </div>
                 <ul id="et-secondary-nav" class="menu">
                     <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1343"><a
-                            href="/">Main</a></li>
-                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1344"><a href="/wiki">Wiki</a>
+                            href="//antergos.com">Main</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1344"><a href="//antergos.com/wiki">Wiki</a>
                     </li>
                     <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1345"><a
-                            href="//build.antergos.org">Packages</a></li>
+                            href="//build.antergos.com">Packages</a></li>
                     <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1346"><a
-                            href="//bugs.antergos.com">Bugs</a></li>
+                            href="//github.com/antergos">Bugs</a></li>
                 </ul>
             </div>
             <!-- #et-secondary-menu -->
