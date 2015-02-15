@@ -50,7 +50,7 @@ $('document').ready(function () {
 		function resize(fixed) {
 			fixed = parseInt(fixed, 10);
 
-			var container = fixed ? $('.container-fluid') : $('.container');
+			var container = fixed ? $('.container-fluid') : $('.container-fluid');
 			container.toggleClass('container-fluid', fixed !== 1).toggleClass('container', fixed === 1);
 			localStorage.setItem('fixed', fixed);
 		}
