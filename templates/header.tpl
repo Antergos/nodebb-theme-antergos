@@ -233,6 +233,8 @@
         </div>
         <!-- .container -->
     </div>
+    <!-- this detects when the masthead should fix -->
+    <div id="header-menu-detector"></div>
 
     <!-- Here's their old navbar -->
     <!--
