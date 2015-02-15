@@ -143,9 +143,7 @@
     <!-- ENDIF useCustomJS -->
     <!-- IF useCustomCSS -->
     <style type="text/css">
-        {
-            customCSS
-        }
+        {customCSS}
     </style>
     <!-- ENDIF useCustomCSS -->
 
