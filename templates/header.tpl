@@ -239,7 +239,7 @@
 <div class="navbar navbar-default navbar-fixed-top header" role="navigation" id="header-menu">
     -->
     <!-- Here's Po's new navbar styling -->
-    <div class="navbar navbar-inverse navbar-fixed-top header" role="navigation" id="header-menu">
+    <div class="navbar navbar-inverse header" role="navigation" id="header-menu">
 
         <div class="container">
             <!-- IMPORT partials/menu.tpl -->
