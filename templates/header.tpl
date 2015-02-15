@@ -241,7 +241,7 @@
     <!-- Here's Po's new navbar styling -->
     <div class="navbar navbar-inverse header" role="navigation" id="header-menu">
 
-        <div class="container">
+        <div class="container-fluid">
             <!-- IMPORT partials/menu.tpl -->
         </div>
         <div class="loading-bar"></div>

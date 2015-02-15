@@ -3,7 +3,7 @@ $('document').ready(function () {
 		'lavender/masonry',
 		'lavender/imagesLoaded'
 	], function (Masonry, imagesLoaded) {
-		var fixed = localStorage.getItem('fixed') || 0,
+		var fixed = localStorage.getItem('fixed') || 1,
 			masonry;
 
 		function doMasonry() {
@@ -50,7 +50,7 @@ $('document').ready(function () {
 		function resize(fixed) {
 			fixed = parseInt(fixed, 10);
 
-			var container = fixed ? $('.container') : $('.container');
+			var container = fixed ? $('.container-fluid') : $('.container');
 			container.toggleClass('container-fluid', fixed !== 1).toggleClass('container', fixed === 1);
 			localStorage.setItem('fixed', fixed);
 		}
