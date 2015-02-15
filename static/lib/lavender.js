@@ -55,7 +55,7 @@ $('document').ready(function () {
 			localStorage.setItem('fixed', fixed);
 		}
 
-		resize(fixed);
+		//resize(fixed);
 
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			var url = data.url;
