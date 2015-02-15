@@ -95,7 +95,7 @@ $('document').ready(function () {
 
 			div.find('.resizer').on('click', function () {
 				fixed = parseInt(fixed, 10) === 1 ? 0 : 1;
-				resize(fixed);
+				//resize(fixed);
 				doMasonry();
 			});
 		}
