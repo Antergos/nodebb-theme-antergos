@@ -42,7 +42,7 @@ $('document').ready(function () {
 						});
 					});
 				}
-				var lsName = 'masonry:layout:' + pcatId;
+				var lsName = 'masonry:layout';
 					var saved = JSON.parse(localStorage.getItem(lsName));
 					if (saved) {
 						for (var cid in saved) {
