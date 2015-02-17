@@ -23,6 +23,6 @@
     "url": "https://github.com/lots0logs/nodebb-theme-antergos/issues"
   },
   "peerDependencies": {
-    "nodebb-theme-vanilla": "^1.0.0"
+    "nodebb-theme-vanilla": "^0.2.0"
   }
 }
