@@ -26,7 +26,8 @@ $('document').ready(function () {
 
 
 				});
-				var containers = document.querySelectorAll('.parent-cat');
+				var containers = document.querySelectorAll('.parent-cat'),
+					categories = document.querySelectorAll('.categories');
 
 				for (var i = 0, len = containers.length; i < len; i++) {
 					var container = containers[i];
@@ -37,8 +38,8 @@ $('document').ready(function () {
 				}
 
 				function initMasonry(container) {
-					imagesLoaded(container, function () {
-						new Masonry(container, {
+					imagesLoaded(categories, function () {
+						masonry = new Masonry(container, {
 							itemSelector: '.category-item',
 							columnWidth: '.category-item:not(.col-lg-12)',
 							transitionDuration: '0'
