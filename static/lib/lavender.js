@@ -105,9 +105,10 @@ $('document').ready(function () {
 		}
 
 		function checkMasonry(checks) {
-			var $allCats = $('.category-item').last().offset(),
+			var $allCats = $('.category-item').last(),
 				$footer = $('footer').offset();
 			if ($allCats.length) {
+				$allCats = $allCats.offset();
 				if ($allCats['top'] > $footer['top']) {
 					if (checks <= 10) {
 						console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
