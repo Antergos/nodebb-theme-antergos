@@ -30,20 +30,22 @@ $('document').ready(function () {
 
 				for (var i = 0, len = containers.length; i < len; i++) {
 					var container = containers[i];
-					setTimeout(function() {
-						initMasonry(container);
-					}, 300);
+
+					initMasonry(container);
+
 
 				}
 
 				function initMasonry(container) {
-					imagesLoaded(container, function () {
-						new Masonry(container, {
-							itemSelector: '.category-item',
-							columnWidth: '.category-item:not(.col-lg-12)',
-							transitionDuration: '0'
+					setTimeout(function () {
+						imagesLoaded(container, function () {
+							new Masonry(container, {
+								itemSelector: '.category-item',
+								columnWidth: '.category-item:not(.col-lg-12)',
+								transitionDuration: '0'
+							});
 						});
-					});
+					}, 300);
 				}
 
 
