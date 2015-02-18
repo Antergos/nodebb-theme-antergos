@@ -59,17 +59,14 @@ $('document').ready(function () {
 
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-				prepareParents();
 				if ($('.categories').length) {
+					prepareParents();
 					doMasonry();
-
 					$('.category-header .badge i').tooltip();
-
 					setTimeout(delayedCheck, 1000);
-
-					showPasswdNotice();
 				}
 				doSlick();
+				showPasswdNotice();
 			}
 		});
 
@@ -78,9 +75,11 @@ $('document').ready(function () {
 		}
 
 		$(window).on('action:posts.loaded', function () {
-			prepareParents();
-			doMasonry();
-			setTimeout(delayedCheck, 1000);
+			if ($('.categories').length) {
+				prepareParents();
+				doMasonry();
+				setTimeout(delayedCheck, 1000);
+			}
 			doSlick();
 			showPasswdNotice();
 		});
@@ -124,6 +123,7 @@ $('document').ready(function () {
 				if ($allCats.length) {
 					$allCats = $allCats.offset();
 					$isLoggedIn.addClass('running');
+					if (checks === 0) doMasonry();
 					if ($allCats['top'] > $footer['top']) {
 						if (checks <= 10) {
 							console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
