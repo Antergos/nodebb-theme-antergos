@@ -1,9 +1,10 @@
-<input type="hidden" template-variable="category_id" value="{cid}"/>
-<input type="hidden" template-variable="category_name" value="{name}"/>
-<input type="hidden" template-variable="category_slug" value="{slug}"/>
-<input type="hidden" template-variable="topic_count" value="{topic_count}"/>
-<input type="hidden" template-variable="currentPage" value="{currentPage}"/>
-<input type="hidden" template-variable="pageCount" value="{pageCount}"/>
+<input type="hidden" template-variable="category_id" value="{cid}" />
+<input type="hidden" template-variable="category_name" value="{name}" />
+<input type="hidden" template-variable="category_slug" value="{slug}" />
+<input type="hidden" template-variable="topic_count" value="{topic_count}" />
+<input type="hidden" template-variable="currentPage" value="{currentPage}" />
+<input type="hidden" template-variable="pageCount" value="{pageCount}" />
+
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.15/slick.css"/>
 <div class="category-page" style="position:absolute;left:-9999px;"></div>
 

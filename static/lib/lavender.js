@@ -1,13 +1,13 @@
 $('document').ready(function () {
 	requirejs([
 		'lavender/masonry',
-		'lavender/imagesLoaded'
+		'lavender/imagesLoaded',
 	], function (Masonry, imagesLoaded) {
 		var fixed = localStorage.getItem('fixed') || 0,
 			masonry;
 
 		function doMasonry() {
-			if ($('.home').length) {
+			if ($('.categories').length) {
 
 				$('.parent-cat').each(function (index) {
 					var $pcat = $(this);
@@ -31,6 +31,7 @@ $('document').ready(function () {
 				for (var i = 0, len = containers.length; i < len; i++) {
 					var container = containers[i];
 					initMasonry(container);
+					sleep 0.2;
 				}
 
 				function initMasonry(container) {
@@ -62,7 +63,7 @@ $('document').ready(function () {
 
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 				doMasonry();
-				if ($('.home').length) {
+				if ($('.categories').length) {
 					$('.category-header .badge i').tooltip();
 				}
 			}
