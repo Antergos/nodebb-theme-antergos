@@ -38,7 +38,7 @@ $('document').ready(function () {
 
 		function reallyDoMansonry(container) {
 			setTimeout(function () {
-				masonry = new Masonry(container, {
+				new Masonry(container, {
 					itemSelector: '.category-item',
 					columnWidth: '.category-item:not(.col-lg-12)',
 					transitionDuration: '0'
