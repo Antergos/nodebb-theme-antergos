@@ -108,6 +108,8 @@ $('document').ready(function () {
 			if ($allCats.prop('scrollHeight') > $allCats.height()) {
 				console.log('Masonry grid items are outside of the container. Resetting the layout now...');
 				doMasonry();
+				checks++;
+				setTimeout(checkMasonry(checks), 1000);
 			} else {
 				console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
 				if (checks <= 10) {
@@ -121,7 +123,9 @@ $('document').ready(function () {
 			}
 		}
 		$(window).load(function() {
-			checkMasonry();
+			setTimeout(function() {
+				checkMasonry();
+			}, 1000);
 		});
 	});
 
