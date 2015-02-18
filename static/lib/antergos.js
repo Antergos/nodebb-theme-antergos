@@ -38,13 +38,15 @@ $('document').ready(function () {
 				}
 
 				function initMasonry(container) {
-					imagesLoaded(categories, function () {
-						masonry = new Masonry(container, {
-							itemSelector: '.category-item',
-							columnWidth: '.category-item:not(.col-lg-12)',
-							transitionDuration: '0'
+					setTimeout(function() {
+						imagesLoaded(categories, function () {
+							masonry = new Masonry(container, {
+								itemSelector: '.category-item',
+								columnWidth: '.category-item:not(.col-lg-12)',
+								transitionDuration: '0'
+							});
 						});
-					});
+					}, 400);
 
 				}
 
