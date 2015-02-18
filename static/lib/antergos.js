@@ -26,21 +26,18 @@ $('document').ready(function () {
 
 
 				});
-				var containers = document.querySelectorAll('.parent-cat'),
-					categories = document.querySelectorAll('.categories');
+
+				categories = document.querySelectorAll('#content');
 
 				imagesLoaded(categories, function () {
+					var containers = document.querySelectorAll('.parent-cat');
 					for (var i = 0, len = containers.length; i < len; i++) {
 						var container = containers[i];
-						setTimeout(function () {
 							masonry = new Masonry(container, {
 								itemSelector: '.category-item',
 								columnWidth: '.category-item:not(.col-lg-12)',
 								transitionDuration: '0'
 							});
-						}, 300);
-
-
 					}
 				});
 
