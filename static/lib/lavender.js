@@ -103,13 +103,16 @@ $('document').ready(function () {
 				doMasonry();
 			});
 		}
+
 		function checkMasonry(checks) {
 			var $allCats = $('.categories');
 			if ($allCats.prop('scrollHeight') > $allCats.height()) {
-				console.log('Masonry grid items are outside of the container. Resetting the layout now...');
-				doMasonry();
-				checks++;
-				setTimeout(checkMasonry(checks), 1000);
+				if (checks <= 10) {
+					console.log('Check ' + check + ': Grid items are outside of the container. Resetting the layout..');
+					doMasonry();
+					checks++;
+					setTimeout(checkMasonry(checks), 1000);
+				}
 			} else {
 				console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
 				if (checks <= 10) {
@@ -122,8 +125,9 @@ $('document').ready(function () {
 
 			}
 		}
-		$(window).load(function() {
-			setTimeout(function() {
+
+		$(window).load(function () {
+			setTimeout(function () {
 				checkMasonry();
 			}, 1000);
 		});
