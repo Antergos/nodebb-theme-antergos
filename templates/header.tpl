@@ -147,7 +147,7 @@
 </head>
 
 <body>
-<input type="hidden" template-variable="loggedIn" value="{loggedIn}" />
+<input id="isLoggedIn" type="hidden" template-variable="loggedIn" value="{loggedIn}" />
 
 <div id="wrap" class="container">
     <div id="top-header" class="et_nav_text_color_dark">

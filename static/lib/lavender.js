@@ -149,7 +149,7 @@ $('document').ready(function () {
 		$(document).ready(function () {
 			doSlick();
 			var passwdNotice = localStorage.getItem('passwdNotice'),
-				isLoggedIn = ajaxify.variables.get('loggedIn');
+				isLoggedIn = $('#isLoggedIn').val();
 
 
 			if (passwdNotice !== 'True' && isLoggedIn !== 'true' && isLoggedIn !== true) {
