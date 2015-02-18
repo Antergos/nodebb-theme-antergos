@@ -45,7 +45,7 @@ $('document').ready(function () {
 								transitionDuration: '0'
 							});
 						});
-					}, 300);
+					}, 500);
 				}
 
 			}
@@ -69,6 +69,9 @@ $('document').ready(function () {
 				if ($('.categories').length) {
 					$('.category-header .badge i').tooltip();
 				}
+				setTimeout(function () {
+					checkMasonry(0);
+				}, 1000);
 			}
 		});
 
@@ -78,6 +81,9 @@ $('document').ready(function () {
 
 		$(window).on('action:posts.loaded', function () {
 			doMasonry();
+			setTimeout(function () {
+				checkMasonry(0);
+			}, 1000);
 		});
 
 		function setupResizer() {
@@ -106,40 +112,31 @@ $('document').ready(function () {
 
 		function checkMasonry(checks) {
 			var $allCats = $('.category-item').last(),
-				$footer = $('footer').offset();
-			if ($allCats.length) {
+				$footer = $('footer').offset(),
+				$isLoggedIn = $('#isLoggedIn');
+			if ($allCats.length && !$isLoggedIn.hasClass('running')) {
 				$allCats = $allCats.offset();
+				$isLoggedIn.addClass('running');
 				if ($allCats['top'] > $footer['top']) {
 					if (checks <= 10) {
-						//console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
+						console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
 						doMasonry();
 						checks++;
 						setTimeout(checkMasonry(checks), 1000);
 					}
 				} else {
-					//console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
+					console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
 					if (checks <= 10) {
-						//console.log('Check will run again in 1 second.');
+						console.log('Check will run again in 1 second.');
 						checks++;
 						setTimeout(checkMasonry(checks), 1000);
 					} else {
-						//console.log('All checks passed! The grid is displayed properly!');
+						console.log('All checks passed! The grid is displayed properly!');
 					}
 
 				}
 			}
 		}
-
-		$(window).load(function () {
-			setTimeout(function () {
-				checkMasonry(0);
-			}, 1000);
-		});
-		$(window).on('action:ajaxify.end', function (ev, data) {
-			setTimeout(function () {
-				checkMasonry(0);
-			}, 1000);
-		});
 
 	});
 
