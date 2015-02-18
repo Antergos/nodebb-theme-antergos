@@ -6,45 +6,46 @@ $('document').ready(function () {
 		var fixed = localStorage.getItem('fixed') || 0,
 			masonry;
 
-	function prepareParents() {
-		$('.parent-cat').each(function (index) {
-			var $pcat = $(this);
-			var pcatId = 'pcat_' + index,
-				$ccats = $pcat.children('.category-item');
+		function prepareParents() {
+			$('.parent-cat').each(function (index) {
+				var $pcat = $(this);
+				var pcatId = 'pcat_' + index,
+					$ccats = $pcat.children('.category-item');
 
-			$pcat.addClass(pcatId);
+				$pcat.addClass(pcatId);
 
-			if (!$pcat.children('.new-row').length) {
-				$ccats.each(function (index) {
-					if ((index + 1) % 3 == 0) {
-						$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
-					}
-				});
-			}
+				if (!$pcat.children('.new-row').length) {
+					$ccats.each(function (index) {
+						if ((index + 1) % 3 == 0) {
+							$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
+						}
+					});
+				}
 
 
-		});
-	}
+			});
+		}
 
 		function doMasonry() {
-			if ($('.categories').length) {
 
-				categories = document.querySelectorAll('#content');
-
-				imagesLoaded(categories, function () {
-					var containers = document.querySelectorAll('.parent-cat');
-					for (var i = 0, len = containers.length; i < len; i++) {
-						var container = containers[i];
-						masonry = new Masonry(container, {
-							itemSelector: '.category-item',
-							columnWidth: '.category-item:not(.col-lg-12)',
-							transitionDuration: '0'
-						});
-					}
-				});
-
+			var containers = document.querySelectorAll('.parent-cat');
+			for (var i = 0, len = containers.length; i < len; i++) {
+				var container = containers[i];
+				reallyDoMansonry(container)
 			}
+
 		}
+
+		function reallyDoMansonry(container) {
+			setTimeout(function () {
+				masonry = new Masonry(container, {
+					itemSelector: '.category-item',
+					columnWidth: '.category-item:not(.col-lg-12)',
+					transitionDuration: '0'
+				});
+			}, 400);
+		}
+
 
 		function resize(fixed) {
 			fixed = parseInt(fixed, 10);
@@ -59,15 +60,16 @@ $('document').ready(function () {
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 				prepareParents();
-				doMasonry();
 				if ($('.categories').length) {
+					doMasonry();
+
 					$('.category-header .badge i').tooltip();
+
+					setTimeout(delayedCheck, 1000);
+
+					showPasswdNotice();
 				}
-				setTimeout(delayedCheck, 1000);
-
 				doSlick();
-
-				showPasswdNotice();
 			}
 		});
 
