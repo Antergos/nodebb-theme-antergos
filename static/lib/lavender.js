@@ -144,18 +144,15 @@ $('document').ready(function () {
 					slidesToScroll: 4
 				});
 			}
+		}
+
+		$(document).ready(function () {
+			doSlick();
 			var passwdNotice = localStorage.getItem('passwdNotice'),
 				isLoggedIn = ajaxify.variables.get('loggedIn');
 
-			function passwdNoticeClosed() {
-				localStorage.setItem('passwdNotice', 'True');
-			}
-			function passwdNoticeClicked() {
-				localStorage.setItem('passwdNotice', 'True');
-				window.location = '/reset';
-			}
 
-			if (passwdNotice !== 'True' && isLoggedIn !== 'true' && !isLoggedIn) {
+			if (passwdNotice !== 'True' && isLoggedIn !== 'true' && isLoggedIn !== true) {
 				app.alert({
 					title: 'Attention Existing Users:',
 					message: 'All user accounts were imported from the old forum. For security reasons, passwords were' +
@@ -164,14 +161,15 @@ $('document').ready(function () {
 					location: 'right-top',
 					type: 'info',
 					image: '//antergos.org/info.png',
-					closefn: 'passwdNoticeClosed',
-					clickfn: 'passwdNoticeClicked'
+					closefn: function passwdNoticeClosed() {
+						localStorage.setItem('passwdNotice', 'True');
+					},
+					clickfn: function passwdNoticeClicked() {
+						localStorage.setItem('passwdNotice', 'True');
+						window.location = '/reset';
+					}
 				});
 			}
-		}
-
-		$(document).ready(function () {
-			doSlick();
 		});
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			doSlick();
