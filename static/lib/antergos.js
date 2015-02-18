@@ -14,9 +14,9 @@ $('document').ready(function () {
 					var pcatId = 'pcat_' + index;
 
 					$pcat.addClass(pcatId);
-					var $ccats = $pcat.find('.category-item');
+					var $ccats = $pcat.children('.category-item');
 
-					if (!$pcat.find('.new-row').length) {
+					if (!$pcat.children('.new-row').length) {
 						$ccats.each(function (index) {
 							if ((index + 1) % 3 == 0) {
 								$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
@@ -37,15 +37,14 @@ $('document').ready(function () {
 				}
 
 				function initMasonry(container) {
-					setTimeout(function () {
-						imagesLoaded(container, function () {
-							new Masonry(container, {
-								itemSelector: '.category-item',
-								columnWidth: '.category-item:not(.col-lg-12)',
-								transitionDuration: '0'
-							});
+					imagesLoaded(container, function () {
+						new Masonry(container, {
+							itemSelector: '.category-item',
+							columnWidth: '.category-item:not(.col-lg-12)',
+							transitionDuration: '0'
 						});
-					}, 500);
+					});
+
 				}
 
 			}
