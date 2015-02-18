@@ -67,11 +67,7 @@ $('document').ready(function () {
 				if ($('.categories').length) {
 					$('.category-header .badge i').tooltip();
 				}
-				setTimeout(function () {
-					var $isLoggedIn = $('#isLoggedIn'),
-					notRunning = $isLoggedIn.hasClass('running') ? false : true;
-				if (notRunning === true) checkMasonry(0);
-				}, 1000);
+				setTimeout(delayedCheck, 1000);
 
 				doSlick();
 
@@ -85,14 +81,16 @@ $('document').ready(function () {
 
 		$(window).on('action:posts.loaded', function () {
 			doMasonry();
-			setTimeout(function () {
-				var $isLoggedIn = $('#isLoggedIn'),
-					notRunning = $isLoggedIn.hasClass('running') ? false : true;
-				if (notRunning === true) checkMasonry(0);
-			}, 1000);
+			setTimeout(delayedCheck, 1000);
 			doSlick();
 			showPasswdNotice();
 		});
+
+		function delayedCheck() {
+			var $isLoggedIn = $('#isLoggedIn'),
+				notRunning = $isLoggedIn.hasClass('running') ? false : true;
+			if (notRunning === true) checkMasonry(0);
+		}
 
 		function setupResizer() {
 			var div = $('<div class="overlay-container"><div class="panel resizer pointer"><div class="panel-body"><i class="fa fa-arrows-h fa-2x"></i></div></div></div>');

@@ -7,8 +7,7 @@
 		}
 	],
 	"staticDirs": {
-		"vendor": "static/vendor",
-		"lib" : "static/lib"
+		"vendor": "static/vendor"
 	},
 	"scripts": [
 		"static/lib/antergos.js",
