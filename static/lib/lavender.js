@@ -132,6 +132,12 @@ $('document').ready(function () {
 				checkMasonry(0);
 			}, 1000);
 		});
+		$(window).on('action:ajaxify.end', function (ev, data) {
+			setTimeout(function () {
+				checkMasonry(0);
+			}, 1000);
+		});
+
 	});
 
 	(function () {
