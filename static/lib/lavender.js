@@ -144,6 +144,30 @@ $('document').ready(function () {
 					slidesToScroll: 4
 				});
 			}
+			var passwdNotice = localStorage.getItem('passwdNotice'),
+				isLoggedIn = ajaxify.variables.get('loggedIn');
+
+			function passwdNoticeClosed() {
+				localStorage.setItem('passwdNotice', 'True');
+			}
+			function passwdNoticeClicked() {
+				localStorage.setItem('passwdNotice', 'True');
+				window.location = '/reset';
+			}
+
+			if (passwdNotice !== 'True' && isLoggedIn !== 'true' && !isLoggedIn) {
+				app.alert({
+					title: 'Attention Existing Users:',
+					message: 'All user accounts were imported from the old forum. For security reasons, passwords were' +
+					' not imported. In order to activate your account on the new forum, you must reset your password' +
+					' Click this message to <strong>reset your password now</strong>.',
+					location: 'right-top',
+					type: 'info',
+					image: '//antergos.org/info.png',
+					closefn: 'passwdNoticeClosed',
+					clickfn: 'passwdNoticeClicked'
+				});
+			}
 		}
 
 		$(document).ready(function () {
