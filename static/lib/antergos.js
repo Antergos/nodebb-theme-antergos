@@ -6,16 +6,17 @@ $('document').ready(function () {
 		var fixed = localStorage.getItem('fixed') || 0,
 			masonry;
 
-		function initLayout() {
-			function prepareParents() {
+		function doMasonry() {
+			if ($('.categories').length) {
+
 				$('.parent-cat').each(function (index) {
 					var $pcat = $(this);
-					var pcatId = 'pcat_' + index,
-						$ccats = $pcat.children('.category-item');
-
+					var pcatId = 'pcat_' + index;
+					var pcatClass = '.pcat_' + index;
 					$pcat.addClass(pcatId);
+					var $ccats = $pcat.find('.category-item');
 
-					if (!$pcat.children('.new-row').length) {
+					if (!$pcat.find('.new-row').length) {
 						$ccats.each(function (index) {
 							if ((index + 1) % 3 == 0) {
 								$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
@@ -25,93 +26,49 @@ $('document').ready(function () {
 
 
 				});
-			}
-
-			function doMasonry() {
-
 				var containers = document.querySelectorAll('.parent-cat');
+
 				for (var i = 0, len = containers.length; i < len; i++) {
 					var container = containers[i];
-					reallyDoMansonry(container)
+
+					initMasonry(container);
+
+
 				}
 
-			}
+				function initMasonry(container) {
+					setTimeout(function () {
+						imagesLoaded(container, function () {
+							new Masonry(container, {
+								itemSelector: '.category-item',
+								columnWidth: '.category-item:not(.col-lg-12)',
+								transitionDuration: '0'
+							});
+						});
+					}, 300);
+				}
 
-			function reallyDoMansonry(container) {
-				setTimeout(function () {
-					new Masonry(container, {
-						itemSelector: '.category-item',
-						columnWidth: '.category-item:not(.col-lg-12)',
-						transitionDuration: '0'
-					});
-				}, 400);
-			}
-
-
-			function resize(fixed) {
-				fixed = parseInt(fixed, 10);
-
-				var container = fixed ? $('.container-fluid') : $('.container');
-				container.toggleClass('container-fluid', fixed !== 1).toggleClass('container', fixed === 1);
-				localStorage.setItem('fixed', fixed);
-			}
-
-			function delayedCheck() {
-				var $isLoggedIn = $('#isLoggedIn'),
-					running = $isLoggedIn.hasClass('running');
-				if (running === false) checkMasonry(0);
-			}
-
-			if ($('.categories').length) {
-				var content = document.querySelectorAll('#content');
-				prepareParents();
-				imagesLoaded(content, doMasonry());
-				setTimeout(delayedCheck, 1000);
 			}
 		}
 
-		function checkMasonry(checks) {
-			if ($('.categories').length) {
-				var $allCats = $('.category-item').last(),
-					$footer = $('footer').offset(),
-					$isLoggedIn = $('#isLoggedIn');
+		function resize(fixed) {
+			fixed = parseInt(fixed, 10);
 
-				if ($allCats.length) {
-					$allCats = $allCats.offset();
-					$isLoggedIn.addClass('running');
-					//if (checks === 0) doMasonry();
-					if ($allCats['top'] > $footer['top']) {
-						if (checks <= 10) {
-							console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
-							initLayout();
-							checks++;
-							setTimeout(checkMasonry(checks), 1000);
-						}
-					} else {
-						console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
-						if (checks <= 10) {
-							console.log('Check will run again in 1 second.');
-							checks++;
-							setTimeout(checkMasonry(checks), 1000);
-						} else {
-							console.log('All checks passed! The grid is displayed properly!');
-						}
-
-					}
-				}
-			}
+			var container = fixed ? $('.container-fluid') : $('.container');
+			container.toggleClass('container-fluid', fixed !== 1).toggleClass('container', fixed === 1);
+			localStorage.setItem('fixed', fixed);
 		}
 
 		//resize(fixed);
 
 		$(window).on('action:ajaxify.end', function (ev, data) {
+			var url = data.url;
+
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+				doMasonry();
 				if ($('.categories').length) {
 					$('.category-header .badge i').tooltip();
 				}
-				initLayout();
-				doSlick();
-				showPasswdNotice();
 			}
 		});
 
@@ -120,9 +77,7 @@ $('document').ready(function () {
 		}
 
 		$(window).on('action:posts.loaded', function () {
-			initLayout();
-			doSlick();
-			showPasswdNotice();
+			doMasonry();
 		});
 
 		function setupResizer() {
@@ -149,6 +104,72 @@ $('document').ready(function () {
 			});
 		}
 
+		function checkMasonry(checks) {
+			var $allCats = $('.category-item').last(),
+				$footer = $('footer').offset();
+			if ($allCats.length) {
+				$allCats = $allCats.offset();
+				if ($allCats['top'] > $footer['top']) {
+					if (checks <= 10) {
+						//console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
+						doMasonry();
+						checks++;
+						setTimeout(checkMasonry(checks), 1000);
+					}
+				} else {
+					//console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
+					if (checks <= 10) {
+						//console.log('Check will run again in 1 second.');
+						checks++;
+						setTimeout(checkMasonry(checks), 1000);
+					} else {
+						//console.log('All checks passed! The grid is displayed properly!');
+					}
+
+				}
+			}
+		}
+
+		$(window).load(function () {
+			setTimeout(function () {
+				checkMasonry(0);
+			}, 1000);
+		});
+		$(window).on('action:ajaxify.end', function (ev, data) {
+			setTimeout(function () {
+				checkMasonry(0);
+			}, 1000);
+		});
+
+	});
+
+	(function () {
+		// loading animation
+		var refreshTitle = app.refreshTitle,
+			loadingBar = $('.loading-bar');
+
+		$(window).on('action:ajaxify.start', function (data) {
+			loadingBar.fadeIn(0).removeClass('reset');
+		});
+
+		$(window).on('action:ajaxify.loadingTemplates', function () {
+			loadingBar.css('width', '90%');
+		});
+
+		app.refreshTitle = function (url) {
+			loadingBar.css('width', '100%');
+			setTimeout(function () {
+				loadingBar.fadeOut(250);
+
+				setTimeout(function () {
+					loadingBar.addClass('reset').css('width', '0%');
+				}, 250);
+			}, 750);
+
+			return refreshTitle(url);
+		};
+	}());
+	(function () {
 		function doSlick() {
 			if ($('.subcategories').length && !$('.slick-initialized').length) {
 
@@ -162,8 +183,9 @@ $('document').ready(function () {
 			}
 		}
 
-		function showPasswdNotice() {
 
+		$(document).ready(function () {
+			doSlick();
 			var passwdNotice = localStorage.getItem('passwdNotice'),
 				isLoggedIn = $('#isLoggedIn').val();
 
@@ -186,34 +208,10 @@ $('document').ready(function () {
 					}
 				});
 			}
-		}
-
-	});
-
-	(function () {
-		// loading animation
-		var refreshTitle = app.refreshTitle,
-			$loadingBar = $('.loading-bar');
-
-		$(window).on('action:ajaxify.start', function (data) {
-			$loadingBar.fadeIn(0).removeClass('reset');
+		});
+		$(window).on('action:ajaxify.end', function (ev, data) {
+			doSlick();
 		});
 
-		$(window).on('action:ajaxify.loadingTemplates', function () {
-			$loadingBar.css('width', '90%');
-		});
-
-		app.refreshTitle = function (url) {
-			$loadingBar.css('width', '100%');
-			setTimeout(function () {
-				$loadingBar.fadeOut(250);
-
-				setTimeout(function () {
-					$loadingBar.addClass('reset').css('width', '0%');
-				}, 250);
-			}, 750);
-
-			return refreshTitle(url);
-		};
 	}());
 });
