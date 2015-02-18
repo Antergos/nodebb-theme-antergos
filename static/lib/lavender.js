@@ -48,7 +48,6 @@ $('document').ready(function () {
 					}, 300);
 				}
 
-
 			}
 		}
 
@@ -146,8 +145,28 @@ $('document').ready(function () {
 			}
 		}
 
+		function checkMasonry(checks) {
+			var $allCats = $('.categories');
+			if ($allCats.prop('scrollHeight') > $allCats.height()) {
+				console.log('Masonry grid items are outside of the container. Resetting the layout now...');
+				doMasonry();
+			} else {
+				console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
+				if (checks <= 10) {
+					console.log('Check will run again in 1 second.');
+					checks++;
+					setTimeout(checkMasonry(checks), 1000);
+				} else {
+					console.log('All checks passed! The grid is displayed properly!');
+				}
+
+			}
+		}
+
+
 		$(document).ready(function () {
 			doSlick();
+			checkMasonry();
 			var passwdNotice = localStorage.getItem('passwdNotice'),
 				isLoggedIn = $('#isLoggedIn').val();
 
@@ -173,6 +192,7 @@ $('document').ready(function () {
 		});
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			doSlick();
+			checkMasonry();
 		});
 
 	}());
