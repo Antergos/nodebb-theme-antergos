@@ -30,8 +30,10 @@ $('document').ready(function () {
 
 				for (var i = 0, len = containers.length; i < len; i++) {
 					var container = containers[i];
-					initMasonry(container);
-					sleep 0.2;
+					setTimeout(function() {
+						initMasonry(container);
+					}, 300);
+
 				}
 
 				function initMasonry(container) {
