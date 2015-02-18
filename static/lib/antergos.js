@@ -1,7 +1,7 @@
 $('document').ready(function () {
 	requirejs([
 		'antergos/masonry',
-		'antergos/imagesLoaded',
+		'antergos/imagesLoaded'
 	], function (Masonry, imagesLoaded) {
 		var fixed = localStorage.getItem('fixed') || 0,
 			masonry;
@@ -12,7 +12,7 @@ $('document').ready(function () {
 				$('.parent-cat').each(function (index) {
 					var $pcat = $(this);
 					var pcatId = 'pcat_' + index;
-					var pcatClass = '.pcat_' + index;
+
 					$pcat.addClass(pcatId);
 					var $ccats = $pcat.find('.category-item');
 
@@ -62,8 +62,6 @@ $('document').ready(function () {
 		//resize(fixed);
 
 		$(window).on('action:ajaxify.end', function (ev, data) {
-			var url = data.url;
-
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 				doMasonry();
 				if ($('.categories').length) {
@@ -72,6 +70,10 @@ $('document').ready(function () {
 				setTimeout(function () {
 					checkMasonry(0);
 				}, 1000);
+
+				doSlick();
+
+				showPasswdNotice();
 			}
 		});
 
@@ -84,6 +86,8 @@ $('document').ready(function () {
 			setTimeout(function () {
 				checkMasonry(0);
 			}, 1000);
+			doSlick();
+			showPasswdNotice();
 		});
 
 		function setupResizer() {
@@ -138,35 +142,6 @@ $('document').ready(function () {
 			}
 		}
 
-	});
-
-	(function () {
-		// loading animation
-		var refreshTitle = app.refreshTitle,
-			loadingBar = $('.loading-bar');
-
-		$(window).on('action:ajaxify.start', function (data) {
-			loadingBar.fadeIn(0).removeClass('reset');
-		});
-
-		$(window).on('action:ajaxify.loadingTemplates', function () {
-			loadingBar.css('width', '90%');
-		});
-
-		app.refreshTitle = function (url) {
-			loadingBar.css('width', '100%');
-			setTimeout(function () {
-				loadingBar.fadeOut(250);
-
-				setTimeout(function () {
-					loadingBar.addClass('reset').css('width', '0%');
-				}, 250);
-			}, 750);
-
-			return refreshTitle(url);
-		};
-	}());
-	(function () {
 		function doSlick() {
 			if ($('.subcategories').length && !$('.slick-initialized').length) {
 
@@ -180,9 +155,8 @@ $('document').ready(function () {
 			}
 		}
 
+		function showPasswdNotice() {
 
-		$(document).ready(function () {
-			doSlick();
 			var passwdNotice = localStorage.getItem('passwdNotice'),
 				isLoggedIn = $('#isLoggedIn').val();
 
@@ -205,10 +179,34 @@ $('document').ready(function () {
 					}
 				});
 			}
-		});
-		$(window).on('action:ajaxify.end', function (ev, data) {
-			doSlick();
+		}
+
+	});
+
+	(function () {
+		// loading animation
+		var refreshTitle = app.refreshTitle,
+			$loadingBar = $('.loading-bar');
+
+		$(window).on('action:ajaxify.start', function (data) {
+			$loadingBar.fadeIn(0).removeClass('reset');
 		});
 
+		$(window).on('action:ajaxify.loadingTemplates', function () {
+			$loadingBar.css('width', '90%');
+		});
+
+		app.refreshTitle = function (url) {
+			$loadingBar.css('width', '100%');
+			setTimeout(function () {
+				$loadingBar.fadeOut(250);
+
+				setTimeout(function () {
+					$loadingBar.addClass('reset').css('width', '0%');
+				}, 250);
+			}, 750);
+
+			return refreshTitle(url);
+		};
 	}());
 });

@@ -615,7 +615,7 @@
             event.preventDefault();
         }
 
-    }
+    };
 
     Slick.prototype.destroy = function() {
 
@@ -1004,7 +1004,7 @@
             }
         });
 
-        $('*[draggable!=true]', _.$slideTrack).on('dragstart', function(e){ e.preventDefault(); })
+        $('*[draggable!=true]', _.$slideTrack).on('dragstart', function(e){ e.preventDefault(); });
 
         $(window).on('load.slick.slick-' + _.instanceUid, _.setPosition);
         $(document).on('ready.slick.slick-' + _.instanceUid, _.setPosition);
@@ -1096,7 +1096,7 @@
         loadImages(loadRange);
 
           if (_.slideCount <= _.options.slidesToShow){
-              cloneRange = _.$slider.find('.slick-slide')
+              cloneRange = _.$slider.find('.slick-slide');
               loadImages(cloneRange)
           }else
         if (_.currentSlide >= _.slideCount - _.options.slidesToShow) {
@@ -1923,7 +1923,7 @@
 
         var _ = this, centerOffset;
 
-        centerOffset = Math.floor(_.options.slidesToShow / 2)
+        centerOffset = Math.floor(_.options.slidesToShow / 2);
 
         if (_.options.arrows === true && _.options.infinite !==
             true && _.slideCount > _.options.slidesToShow) {
