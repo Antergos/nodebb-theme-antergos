@@ -1,31 +1,33 @@
 $('document').ready(function () {
 	requirejs([
 		'antergos/masonry',
-		'antergos/imagesLoaded'
+		'antergos/imagesLoaded',
 	], function (Masonry, imagesLoaded) {
 		var fixed = localStorage.getItem('fixed') || 0,
 			masonry;
 
+	function prepareParents() {
+		$('.parent-cat').each(function (index) {
+			var $pcat = $(this);
+			var pcatId = 'pcat_' + index,
+				$ccats = $pcat.children('.category-item');
+
+			$pcat.addClass(pcatId);
+
+			if (!$pcat.children('.new-row').length) {
+				$ccats.each(function (index) {
+					if ((index + 1) % 3 == 0) {
+						$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
+					}
+				});
+			}
+
+
+		});
+	}
+
 		function doMasonry() {
 			if ($('.categories').length) {
-
-				$('.parent-cat').each(function (index) {
-					var $pcat = $(this);
-					var pcatId = 'pcat_' + index,
-						$ccats = $pcat.children('.category-item');
-
-					$pcat.addClass(pcatId);
-
-					if (!$pcat.children('.new-row').length) {
-						$ccats.each(function (index) {
-							if ((index + 1) % 3 == 0) {
-								$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
-							}
-						});
-					}
-
-
-				});
 
 				categories = document.querySelectorAll('#content');
 
@@ -33,11 +35,11 @@ $('document').ready(function () {
 					var containers = document.querySelectorAll('.parent-cat');
 					for (var i = 0, len = containers.length; i < len; i++) {
 						var container = containers[i];
-							masonry = new Masonry(container, {
-								itemSelector: '.category-item',
-								columnWidth: '.category-item:not(.col-lg-12)',
-								transitionDuration: '0'
-							});
+						masonry = new Masonry(container, {
+							itemSelector: '.category-item',
+							columnWidth: '.category-item:not(.col-lg-12)',
+							transitionDuration: '0'
+						});
 					}
 				});
 
@@ -56,6 +58,7 @@ $('document').ready(function () {
 
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+				prepareParents();
 				doMasonry();
 				if ($('.categories').length) {
 					$('.category-header .badge i').tooltip();
@@ -73,6 +76,7 @@ $('document').ready(function () {
 		}
 
 		$(window).on('action:posts.loaded', function () {
+			prepareParents();
 			doMasonry();
 			setTimeout(delayedCheck, 1000);
 			doSlick();
