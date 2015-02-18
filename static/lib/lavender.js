@@ -108,7 +108,7 @@ $('document').ready(function () {
 			var $allCats = $('.categories');
 			if ($allCats.prop('scrollHeight') > $allCats.height()) {
 				if (checks <= 10) {
-					console.log('Check ' + check + ': Grid items are outside of the container. Resetting the layout..');
+					console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
 					doMasonry();
 					checks++;
 					setTimeout(checkMasonry(checks), 1000);
