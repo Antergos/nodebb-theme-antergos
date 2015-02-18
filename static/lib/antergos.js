@@ -29,26 +29,20 @@ $('document').ready(function () {
 				var containers = document.querySelectorAll('.parent-cat'),
 					categories = document.querySelectorAll('.categories');
 
-				for (var i = 0, len = containers.length; i < len; i++) {
-					var container = containers[i];
-
-					initMasonry(container);
-
-
-				}
-
-				function initMasonry(container) {
-					setTimeout(function() {
-						imagesLoaded(categories, function () {
+				imagesLoaded(categories, function () {
+					for (var i = 0, len = containers.length; i < len; i++) {
+						var container = containers[i];
+						setTimeout(function () {
 							masonry = new Masonry(container, {
 								itemSelector: '.category-item',
 								columnWidth: '.category-item:not(.col-lg-12)',
 								transitionDuration: '0'
 							});
-						});
-					}, 400);
+						}, 300);
 
-				}
+
+					}
+				});
 
 			}
 		}
