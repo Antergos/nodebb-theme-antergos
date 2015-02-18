@@ -11,10 +11,10 @@ $('document').ready(function () {
 
 				$('.parent-cat').each(function (index) {
 					var $pcat = $(this);
-					var pcatId = 'pcat_' + index;
+					var pcatId = 'pcat_' + index,
+						$ccats = $pcat.children('.category-item');
 
 					$pcat.addClass(pcatId);
-					var $ccats = $pcat.children('.category-item');
 
 					if (!$pcat.children('.new-row').length) {
 						$ccats.each(function (index) {
@@ -88,8 +88,8 @@ $('document').ready(function () {
 
 		function delayedCheck() {
 			var $isLoggedIn = $('#isLoggedIn'),
-				notRunning = $isLoggedIn.hasClass('running') ? false : true;
-			if (notRunning === true) checkMasonry(0);
+				running = $isLoggedIn.hasClass('running');
+			if (running === false) checkMasonry(0);
 		}
 
 		function setupResizer() {
