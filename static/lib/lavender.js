@@ -128,7 +128,7 @@ $('document').ready(function () {
 
 		$(window).load(function () {
 			setTimeout(function () {
-				checkMasonry();
+				checkMasonry(0);
 			}, 1000);
 		});
 	});
