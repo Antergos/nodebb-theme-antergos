@@ -7,7 +7,7 @@
 <div class="alert alert-info" id="login-info-notify" style="display:block">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                                 <strong>Attn Existing Users:</strong>
-                                <p>All user accounts were imported from the old forum. In order to activate your account on the new forum, you must reset your password by selecting the <strong>Forgot Password</strong> link below.</p>
+                                <p>All user accounts were imported from the old forum. For security reasons, passwords were not imported. In order to activate your account on the new forum, you must reset your password by selecting the <strong>Forgot Password</strong> link below.</p>
                         </div>
 			<div class="alert alert-danger" id="login-error-notify" <!-- IF error -->style="display:block"<!-- ELSE -->style="display: none;"<!-- ENDIF error -->>
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
