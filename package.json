@@ -24,5 +24,13 @@
   },
   "peerDependencies": {
     "nodebb-theme-vanilla": "^1.0.0"
-  }
+  },
+  "gitHead": "ee6fb17fbb0d16d0e4a33a0fec848331942c367b",
+  "readme": "Antergos Theme for NodeBB\n=========================\n\nBased on Lavender NodeBB theme:\n\nhttps://github.com/NodeBB/nodebb-theme-lavender\n",
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/lots0logs/nodebb-theme-antergos",
+  "_id": "nodebb-theme-antergos@0.2.0",
+  "_shasum": "9edee9e74f79a1ba57c3ff617704dd0fcf5be896",
+  "_from": "../../tmp/npm-995-612d0187/1424274624695-0.7010757827665657/ee6fb17fbb0d16d0e4a33a0fec848331942c367b",
+  "_resolved": "git://github.com:lots0logs/nodebb-theme-antergos.git#ee6fb17fbb0d16d0e4a33a0fec848331942c367b"
 }

@@ -10,9 +10,8 @@
 		"vendor": "static/vendor"
 	},
 	"scripts": [
-		"static/lib/antergos.js",
 		"static/vendor/masonry.js",
 		"static/vendor/imagesLoaded.js",
-		"static/vendor/slick.js"
+                "static/lib/antergos.js"
 	]
 }

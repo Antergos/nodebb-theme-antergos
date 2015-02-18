@@ -7,7 +7,7 @@ $('document').ready(function () {
 			masonry;
 
 		function doMasonry() {
-			if ($('.categories').length && navigator.userAgent.indexOf("Firefox") == -1) {
+			if ($('.categories').length) {
 
 				$('.parent-cat').each(function (index) {
 					var $pcat = $(this);
