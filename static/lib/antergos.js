@@ -6,53 +6,100 @@ $('document').ready(function () {
 		var fixed = localStorage.getItem('fixed') || 0,
 			masonry;
 
-		function prepareParents() {
-			$('.parent-cat').each(function (index) {
-				var $pcat = $(this);
-				var pcatId = 'pcat_' + index,
-					$ccats = $pcat.children('.category-item');
+		function initLayout() {
+			function prepareParents() {
+				$('.parent-cat').each(function (index) {
+					var $pcat = $(this);
+					var pcatId = 'pcat_' + index,
+						$ccats = $pcat.children('.category-item');
 
-				$pcat.addClass(pcatId);
+					$pcat.addClass(pcatId);
 
-				if (!$pcat.children('.new-row').length) {
-					$ccats.each(function (index) {
-						if ((index + 1) % 3 == 0) {
-							$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
-						}
-					});
-				}
+					if (!$pcat.children('.new-row').length) {
+						$ccats.each(function (index) {
+							if ((index + 1) % 3 == 0) {
+								$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
+							}
+						});
+					}
 
 
-			});
-		}
-
-		function doMasonry() {
-
-			var containers = document.querySelectorAll('.parent-cat');
-			for (var i = 0, len = containers.length; i < len; i++) {
-				var container = containers[i];
-				reallyDoMansonry(container)
+				});
 			}
 
+			function doMasonry() {
+
+				var containers = document.querySelectorAll('.parent-cat');
+				for (var i = 0, len = containers.length; i < len; i++) {
+					var container = containers[i];
+					reallyDoMansonry(container)
+				}
+
+			}
+
+			function reallyDoMansonry(container) {
+				setTimeout(function () {
+					new Masonry(container, {
+						itemSelector: '.category-item',
+						columnWidth: '.category-item:not(.col-lg-12)',
+						transitionDuration: '0'
+					});
+				}, 400);
+			}
+
+
+			function resize(fixed) {
+				fixed = parseInt(fixed, 10);
+
+				var container = fixed ? $('.container-fluid') : $('.container');
+				container.toggleClass('container-fluid', fixed !== 1).toggleClass('container', fixed === 1);
+				localStorage.setItem('fixed', fixed);
+			}
+
+			function delayedCheck() {
+				var $isLoggedIn = $('#isLoggedIn'),
+					running = $isLoggedIn.hasClass('running');
+				if (running === false) checkMasonry(0);
+			}
+
+			if ($('.categories').length) {
+				var content = document.querySelectorAll('#content');
+				prepareParents();
+				imagesLoaded(content, doMasonry());
+				setTimeout(delayedCheck, 1000);
+			}
 		}
 
-		function reallyDoMansonry(container) {
-			setTimeout(function () {
-				new Masonry(container, {
-					itemSelector: '.category-item',
-					columnWidth: '.category-item:not(.col-lg-12)',
-					transitionDuration: '0'
-				});
-			}, 400);
-		}
+		function checkMasonry(checks) {
+			if ($('.categories').length) {
+				var $allCats = $('.category-item').last(),
+					$footer = $('footer').offset(),
+					$isLoggedIn = $('#isLoggedIn');
 
+				if ($allCats.length) {
+					$allCats = $allCats.offset();
+					$isLoggedIn.addClass('running');
+					//if (checks === 0) doMasonry();
+					if ($allCats['top'] > $footer['top']) {
+						if (checks <= 10) {
+							console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
+							initLayout();
+							checks++;
+							setTimeout(checkMasonry(checks), 1000);
+						}
+					} else {
+						console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
+						if (checks <= 10) {
+							console.log('Check will run again in 1 second.');
+							checks++;
+							setTimeout(checkMasonry(checks), 1000);
+						} else {
+							console.log('All checks passed! The grid is displayed properly!');
+						}
 
-		function resize(fixed) {
-			fixed = parseInt(fixed, 10);
-
-			var container = fixed ? $('.container-fluid') : $('.container');
-			container.toggleClass('container-fluid', fixed !== 1).toggleClass('container', fixed === 1);
-			localStorage.setItem('fixed', fixed);
+					}
+				}
+			}
 		}
 
 		//resize(fixed);
@@ -60,12 +107,9 @@ $('document').ready(function () {
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 				if ($('.categories').length) {
-					var content = document.querySelectorAll('#content');
-					prepareParents();
-					imagesLoaded(content, doMasonry());
 					$('.category-header .badge i').tooltip();
-					setTimeout(delayedCheck, 1000);
 				}
+				initLayout();
 				doSlick();
 				showPasswdNotice();
 			}
@@ -76,21 +120,10 @@ $('document').ready(function () {
 		}
 
 		$(window).on('action:posts.loaded', function () {
-			if ($('.categories').length) {
-				var content = document.querySelectorAll('#content');
-				prepareParents();
-				imagesLoaded(content, doMasonry());
-				setTimeout(delayedCheck, 1000);
-			}
+			initLayout();
 			doSlick();
 			showPasswdNotice();
 		});
-
-		function delayedCheck() {
-			var $isLoggedIn = $('#isLoggedIn'),
-				running = $isLoggedIn.hasClass('running');
-			if (running === false) checkMasonry(0);
-		}
 
 		function setupResizer() {
 			var div = $('<div class="overlay-container"><div class="panel resizer pointer"><div class="panel-body"><i class="fa fa-arrows-h fa-2x"></i></div></div></div>');
@@ -114,38 +147,6 @@ $('document').ready(function () {
 				//resize(fixed);
 				doMasonry();
 			});
-		}
-
-		function checkMasonry(checks) {
-			if ($('.categories').length) {
-				var $allCats = $('.category-item').last(),
-					$footer = $('footer').offset(),
-					$isLoggedIn = $('#isLoggedIn');
-
-				if ($allCats.length) {
-					$allCats = $allCats.offset();
-					$isLoggedIn.addClass('running');
-					//if (checks === 0) doMasonry();
-					if ($allCats['top'] > $footer['top']) {
-						if (checks <= 10) {
-							console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
-							doMasonry();
-							checks++;
-							setTimeout(checkMasonry(checks), 1000);
-						}
-					} else {
-						console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
-						if (checks <= 10) {
-							console.log('Check will run again in 1 second.');
-							checks++;
-							setTimeout(checkMasonry(checks), 1000);
-						} else {
-							console.log('All checks passed! The grid is displayed properly!');
-						}
-
-					}
-				}
-			}
 		}
 
 		function doSlick() {
