@@ -107,23 +107,25 @@ $('document').ready(function () {
 		function checkMasonry(checks) {
 			var $allCats = $('.category-item').last().offset(),
 				$footer = $('footer').offset();
-			if ($allCats['top'] > $footer['top']) {
-				if (checks <= 10) {
-					console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
-					doMasonry();
-					checks++;
-					setTimeout(checkMasonry(checks), 1000);
-				}
-			} else {
-				console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
-				if (checks <= 10) {
-					console.log('Check will run again in 1 second.');
-					checks++;
-					setTimeout(checkMasonry(checks), 1000);
+			if ($allCats.length) {
+				if ($allCats['top'] > $footer['top']) {
+					if (checks <= 10) {
+						console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
+						doMasonry();
+						checks++;
+						setTimeout(checkMasonry(checks), 1000);
+					}
 				} else {
-					console.log('All checks passed! The grid is displayed properly!');
-				}
+					console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
+					if (checks <= 10) {
+						console.log('Check will run again in 1 second.');
+						checks++;
+						setTimeout(checkMasonry(checks), 1000);
+					} else {
+						console.log('All checks passed! The grid is displayed properly!');
+					}
 
+				}
 			}
 		}
 
