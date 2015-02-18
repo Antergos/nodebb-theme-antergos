@@ -68,7 +68,9 @@ $('document').ready(function () {
 					$('.category-header .badge i').tooltip();
 				}
 				setTimeout(function () {
-					checkMasonry(0);
+					var $isLoggedIn = $('#isLoggedIn'),
+					notRunning = $isLoggedIn.hasClass('running') ? false : true;
+				if (notRunning === true) checkMasonry(0);
 				}, 1000);
 
 				doSlick();
@@ -84,7 +86,9 @@ $('document').ready(function () {
 		$(window).on('action:posts.loaded', function () {
 			doMasonry();
 			setTimeout(function () {
-				checkMasonry(0);
+				var $isLoggedIn = $('#isLoggedIn'),
+					notRunning = $isLoggedIn.hasClass('running') ? false : true;
+				if (notRunning === true) checkMasonry(0);
 			}, 1000);
 			doSlick();
 			showPasswdNotice();
@@ -115,29 +119,32 @@ $('document').ready(function () {
 		}
 
 		function checkMasonry(checks) {
-			var $allCats = $('.category-item').last(),
-				$footer = $('footer').offset(),
-				$isLoggedIn = $('#isLoggedIn');
-			if ($allCats.length && !$isLoggedIn.hasClass('running')) {
-				$allCats = $allCats.offset();
-				$isLoggedIn.addClass('running');
-				if ($allCats['top'] > $footer['top']) {
-					if (checks <= 10) {
-						console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
-						doMasonry();
-						checks++;
-						setTimeout(checkMasonry(checks), 1000);
-					}
-				} else {
-					console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
-					if (checks <= 10) {
-						console.log('Check will run again in 1 second.');
-						checks++;
-						setTimeout(checkMasonry(checks), 1000);
-					} else {
-						console.log('All checks passed! The grid is displayed properly!');
-					}
+			if ($('.categories').length) {
+				var $allCats = $('.category-item').last(),
+					$footer = $('footer').offset(),
+					$isLoggedIn = $('#isLoggedIn');
 
+				if ($allCats.length) {
+					$allCats = $allCats.offset();
+					$isLoggedIn.addClass('running');
+					if ($allCats['top'] > $footer['top']) {
+						if (checks <= 10) {
+							console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
+							doMasonry();
+							checks++;
+							setTimeout(checkMasonry(checks), 1000);
+						}
+					} else {
+						console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
+						if (checks <= 10) {
+							console.log('Check will run again in 1 second.');
+							checks++;
+							setTimeout(checkMasonry(checks), 1000);
+						} else {
+							console.log('All checks passed! The grid is displayed properly!');
+						}
+
+					}
 				}
 			}
 		}
