@@ -5,18 +5,18 @@ $('document').ready(function () {
 
 		$pcat.addClass(pcatId);
 
-		if (!$pcat.find('.child_row').length) {
-			var $ccats,
-				$childRow = $('<div class="row child_row"></div>'),
+		if (!$pcat.find('.child_row.row').length) {
+			
 				childRows = Math.ceil($pcat.children().length / 3);
 				console.log('childRows: ' + childRows);
 				for (var i = 0, len = childRows; i < len; i++) {
-				$ccats = $pcat.find('.category-item:nth-child(-n+3)');
-				var $childRowClone = $childRow.clone();
+				var $ccats = $pcat.children('.category-item:lt(3)');
+				var ccatsLen = $ccats.length;
 				$ccats.each(function (index) {
-					var $childRow = $(this).siblings('.child_row_' + index);
+					var childRowClass = '.child_row_' + i;
+					var $childRow = $(this).siblings(childRowClass);
 					$(this).appendTo($childRow);
-						if (index == len - 1) {
+						if (index == ccatsLen - 1) {
 						$childRow.addClass('row').css('display', 'block');
 						}
 			
