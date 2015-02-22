@@ -99,7 +99,7 @@
 				</div>
 			</div>
 			<!-- END children -->
-			<div class="clearfix visible-lg visible-md new-row"></div>
+			<div class="clearfix visible-xs-block"></div>
 		</div>
 
 
