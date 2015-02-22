@@ -28,13 +28,15 @@ $('document').ready(function () {
 				});
 				var containers = document.querySelectorAll('.parent-cat');
 
-				for (var i = 0, len = containers.length; i < len; i++) {
+				/*for (var i = 0, len = containers.length; i < len; i++) {
 					var container = containers[i];
 
 					initMasonry(container);
 
 
-				}
+				}*/
+
+				initMasonry(containers);
 
 				function initMasonry(container) {
 
