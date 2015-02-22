@@ -7,7 +7,7 @@ $('document').ready(function () {
 			masonry;
 
 		function doMasonry() {
-			if ($('.categories').length && navigator.userAgent.indexOf("Firefox") == -1) {
+			if ($('.categories').length && navigator.userAgent.indexOf("Firefox") === -1) {
 
 				$('.parent-cat').each(function (index) {
 					var $pcat = $(this);
@@ -187,7 +187,9 @@ $('document').ready(function () {
 		$(document).ready(function () {
 			doSlick();
 			var passwdNotice = localStorage.getItem('passwdNotice'),
-				isLoggedIn = $('#isLoggedIn').val();
+				isLoggedIn = $('#isLoggedIn').val(),
+				isFirefox = navigator.userAgent.indexOf("Firefox") !== -1,
+      				firefoxNotice = localStorage.getItem('firefoxNotice');
 
 
 			if (passwdNotice !== 'True' && isLoggedIn !== 'true' && isLoggedIn !== true) {
@@ -208,6 +210,28 @@ $('document').ready(function () {
 					}
 				});
 			}
+
+			 if (firefoxNotice !== 'True' && isFirefox) {
+                                app.alert({
+                                        title: 'NOTICE:',
+                                        message: 'It appears you are currently using Firefox to access the forum. We are working to resolve a bug' +
+                                        ' that is causing the layouts of the home page and a few other areas to break. The issue does not occur with' +
+                                        ' other browsers. We apoloigze for the inconvience. This issue will be fixed as soon as possible. If you would' +
+					' like to permanently dismiss this notification, please click the close button located in the top right corner.',
+                                        location: 'right-top',
+                                        type: 'warning',
+                                        image: '//antergos.org/warning.png',
+                                        closefn: function passwdNoticeClosed() {
+                                                localStorage.setItem('firefoxNotice', 'True');
+                                        },
+                                        clickfn: function passwdNoticeClicked() {
+                                                //localStorage.setItem('firefoxNotice', 'True');
+                                                //window.location = '/reset';
+						return true;
+                                        }
+                                });
+                        }
+
 		});
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			doSlick();

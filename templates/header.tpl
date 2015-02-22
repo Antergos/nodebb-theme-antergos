@@ -176,7 +176,7 @@
                         </a>
                     </li>
                     <li class="et-social-icon et-social-rss">
-                        <a href="/feed" class="icon">
+                        <a href="/recent.rss" class="icon">
                             <span>RSS</span>
                         </a>
                     </li>
