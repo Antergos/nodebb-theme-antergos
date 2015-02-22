@@ -149,7 +149,7 @@
 
 <div id="wrap" class="container">
 	<div id="top-header" class="et_nav_text_color_dark">
-		<div class="et-container container-fluid clearfix">
+		<div class="et-container container clearfix">
 
 
 			<div id="et-info">
@@ -236,7 +236,7 @@
 	-->
 	<!-- Here's Po's new navbar styling -->
 	<div class="navbar navbar-inverse header" role="navigation" id="header-menu">
-		<div class="container-fluid">
+		<div class="container">
 			<!-- IMPORT partials/menu.tpl -->
 		</div>
 		<div class="loading-bar"></div>
