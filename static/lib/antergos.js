@@ -36,17 +36,20 @@ $('document').ready(function () {
 
 				}*/
 
-				initMasonry(containers);
+			
+				initMasonry();
 
-				function initMasonry(container) {
+				function initMasonry() {
 
-						imagesLoaded(container, function () {
+						imagesLoaded('.categories', function () {
 							setTimeout(function () {
-							new Masonry(container, {
+							
+							new Masonry('.parent-cat', {
 								itemSelector: '.category-item',
 								columnWidth: '.category-item:not(.col-lg-12)',
 								transitionDuration: '0'
 							});
+							
 							}, 300);
 						});
 
