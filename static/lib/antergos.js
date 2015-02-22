@@ -3,8 +3,8 @@ $('document').ready(function () {
 		'require',
 		'jquery',
 		'lavender/imagesLoaded',
-		'lavender/masonry',
-	], function (require, $, Masonry, imagesLoaded) {
+		'antergos/masonry',
+	], function (require, Masonry, imagesLoaded) {
 		require([
 			'jquery-bridget/jquery.bridget'
 		], function () {
