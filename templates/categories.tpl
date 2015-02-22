@@ -16,6 +16,11 @@
 			</div>
 		</div>
 		<div class="row parent-cat">
+<div class="child_row child_row_0" style="display: none;"></div>
+<div class="child_row child_row_1" style="display: none;"></div>
+<div class="child_row child_row_2" style="display: none;"></div>
+<div class="child_row child_row_3" style="display: none;"></div>
+
 
 			<!-- BEGIN children -->
 			<div class="<!-- IF categories.children.class -->col-md-4 col-sm-6 col-xs-12<!-- ELSE -->col-md-4 col-sm-6 col-xs-12<!-- ENDIF categories.children.class --> category-item" data-cid="{categories.children.cid}" data-numRecentReplies="{categories.children.numRecentReplies}">
