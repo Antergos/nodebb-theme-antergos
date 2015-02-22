@@ -1,7 +1,6 @@
 <ul id="topics-container" data-nextstart="{nextStart}">
     <!-- BEGIN topics -->
-    <li class="category-item<!-- IF topics.deleted --> deleted<!-- ENDIF topics.deleted --><!-- IF topics.unread --> unread<!-- ENDIF topics.unread -->"
-        itemprop="itemListElement" data-tid="{topics.tid}" data-cid="{topics.cid}">
+			<li class="category-item<!-- IF topics.deleted --> deleted<!-- ENDIF topics.deleted --><!-- IF topics.unread --> unread<!-- ENDIF topics.unread -->" itemprop="itemListElement" data-tid="{topics.tid}" data-cid="{topics.cid}">
         <meta itemprop="name" content="{topics.title}">
 
         <div class="category-body">
@@ -15,24 +14,19 @@
 
                     <div class="category-profile-pic">
                         <a href="<!-- IF topics.user.userslug -->{relative_path}/user/{topics.user.userslug}<!-- ELSE -->#<!-- ENDIF topics.user.userslug -->">
-                            <img src="{topics.user.picture}" alt="{topics.user.username}" class="profile-image user-img"
-                                 title="{topics.user.username}">
+									<img src="{topics.user.picture}" alt="{topics.user.username}" class="profile-image user-img" title="{topics.user.username}">
                         </a>
                     </div>
                     <div class="category-text">
-                        <p><strong><!-- IF topics.pinned --><i class="fa fa-thumb-tack"></i><!-- ENDIF topics.pinned -->
-                            <!-- IF topics.locked --><i class="fa fa-lock"></i><!-- ENDIF topics.locked --></strong>
+								<p><strong><!-- IF topics.pinned --><i class="fa fa-thumb-tack"></i><!-- ENDIF topics.pinned --> <!-- IF topics.locked --><i class="fa fa-lock"></i><!-- ENDIF topics.locked --></strong>
                             <a href="{relative_path}/topic/{topics.slug}" itemprop="url" class="topic-title">{topics.title}</a><br/>
 
                             <small>
-                                [[global:posted_in_ago, <a href="{relative_path}/category/{topics.category.slug}"><i
-                                    class="fa {topics.category.icon}"></i> {topics.category.name}</a>, <span
-                                    class="timeago" title="{topics.relativeTime}"></span>]]
+									[[global:posted_in_ago, <a href="{relative_path}/category/{topics.category.slug}"><i class="fa {topics.category.icon}"></i> {topics.category.name}</a>, <span class="timeago" title="{topics.relativeTime}"></span>]]
                                 <!-- IF !topics.unreplied -->
 									<span class="hidden-md hidden-lg">
 									<br/>
-									<a href="{relative_path}/topic/{topics.slug}/{topics.teaser.index}">[[global:replied_ago,
-                                        <span class="timeago" title="{topics.teaser.timestamp}"></span>]]</a>
+									<a href="{relative_path}/topic/{topics.slug}/{topics.teaser.index}">[[global:replied_ago, <span class="timeago" title="{topics.teaser.timestamp}"></span>]]</a>
 									</span>
                                 <!-- ENDIF !topics.unreplied -->
                                 <br/>
@@ -52,13 +46,10 @@
 
                 <div class="col-xs-2 category-stat replies hidden-sm hidden-xs">
                     <!-- IF topics.unreplied -->
-                    <p class="no-replies"><a href="{relative_path}/topic/{topics.slug}" itemprop="url">[[category:no_replies]]</a>
-                    </p>
+							<p class="no-replies"><a href="{relative_path}/topic/{topics.slug}" itemprop="url">[[category:no_replies]]</a></p>
                     <!-- ELSE -->
 
-                    <a href="<!-- IF topics.teaser.user.userslug -->{relative_path}/user/{topics.teaser.user.userslug}<!-- ELSE -->#<!-- ENDIF topics.teaser.user.userslug -->"><img
-                            class="profile-image small user-img" src="{topics.teaser.user.picture}"
-                            title="{topics.teaser.user.username}"/></a>
+							<a href="<!-- IF topics.teaser.user.userslug -->{relative_path}/user/{topics.teaser.user.userslug}<!-- ELSE -->#<!-- ENDIF topics.teaser.user.userslug -->"><img class="profile-image small user-img" src="{topics.teaser.user.picture}" title="{topics.teaser.user.username}" /></a>
                     <a href="{relative_path}/topic/{topics.slug}/{topics.teaser.index}">
                         [[global:replied_ago, <span class="timeago" title="{topics.teaser.timestamp}"></span>]]
                     </a>
