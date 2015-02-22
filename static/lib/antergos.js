@@ -1,161 +1,158 @@
 $('document').ready(function () {
 	requirejs([
-		'require',
-		'jquery',
 		'lavender/imagesLoaded',
 		'antergos/masonry',
-	], function (require, Masonry, imagesLoaded) {
-		require([
-			'jquery-bridget/jquery.bridget'
-		], function () {
-			$.bridget('masonry', Masonry);
+		'jquery-bridget/jquery.bridget',
+	], function (Masonry, bridget, imagesLoaded) {
 
-			var fixed = localStorage.getItem('fixed') || 0,
-				masonry;
+		bridget('masonry', Masonry);
 
-			function doMasonry() {
-				if ($('.categories').length && navigator.userAgent.indexOf("Firefox") === -1) {
+		var fixed = localStorage.getItem('fixed') || 0,
+			masonry;
 
-					$('.parent-cat').each(function (index) {
-						var $pcat = $(this);
-						var pcatId = 'pcat_' + index;
-						var pcatClass = '.pcat_' + index;
-						$pcat.addClass(pcatId);
-						var $ccats = $pcat.find('.category-item');
+		function doMasonry() {
+			if ($('.categories').length && navigator.userAgent.indexOf("Firefox") === -1) {
 
-						if (!$pcat.find('.new-row').length) {
-							$ccats.each(function (index) {
-								if ((index + 1) % 3 == 0) {
-									$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
-								}
-							});
-						}
+				$('.parent-cat').each(function (index) {
+					var $pcat = $(this);
+					var pcatId = 'pcat_' + index;
+					var pcatClass = '.pcat_' + index;
+					$pcat.addClass(pcatId);
+					var $ccats = $pcat.find('.category-item');
 
-
-					});
-					var containers = document.querySelectorAll('.parent-cat');
-
-					/*for (var i = 0, len = containers.length; i < len; i++) {
-					 var container = containers[i];
-
-					 initMasonry(container);
-
-
-					 }*/
-
-
-					initMasonry();
-
-					function initMasonry() {
-
-						imagesLoaded('.categories', function () {
-							setTimeout(function () {
-
-								$('.parent-cat').masonry({
-									itemSelector: '.category-item',
-									columnWidth: '.category-item:not(.col-lg-12)',
-									transitionDuration: '0'
-								});
-
-							}, 300);
+					if (!$pcat.find('.new-row').length) {
+						$ccats.each(function (index) {
+							if ((index + 1) % 3 == 0) {
+								$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
+							}
 						});
-
 					}
+
+
+				});
+				var containers = document.querySelectorAll('.parent-cat');
+
+				/*for (var i = 0, len = containers.length; i < len; i++) {
+				 var container = containers[i];
+
+				 initMasonry(container);
+
+
+				 }*/
+
+
+				initMasonry();
+
+				function initMasonry() {
+
+					imagesLoaded('.categories', function () {
+						setTimeout(function () {
+
+							$('.parent-cat').masonry({
+								itemSelector: '.category-item',
+								columnWidth: '.category-item:not(.col-lg-12)',
+								transitionDuration: '0'
+							});
+
+						}, 300);
+					});
 
 				}
+
 			}
+		}
 
-			function resize(fixed) {
-				fixed = parseInt(fixed, 10);
+		function resize(fixed) {
+			fixed = parseInt(fixed, 10);
 
-				var container = fixed ? $('.container-fluid') : $('.container');
-				container.toggleClass('container-fluid', fixed !== 1).toggleClass('container', fixed === 1);
-				localStorage.setItem('fixed', fixed);
+			var container = fixed ? $('.container-fluid') : $('.container');
+			container.toggleClass('container-fluid', fixed !== 1).toggleClass('container', fixed === 1);
+			localStorage.setItem('fixed', fixed);
+		}
+
+		//resize(fixed);
+
+		$(window).on('action:ajaxify.end', function (ev, data) {
+			var url = data.url;
+
+			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+				doMasonry();
+				if ($('.categories').length) {
+					$('.category-header .badge i').tooltip();
+				}
 			}
+		});
 
-			//resize(fixed);
+		if (!$('.admin').length) {
+			setupResizer();
+		}
 
-			$(window).on('action:ajaxify.end', function (ev, data) {
-				var url = data.url;
+		$(window).on('action:posts.loaded', function () {
+			doMasonry();
+		});
 
-				if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-					doMasonry();
-					if ($('.categories').length) {
-						$('.category-header .badge i').tooltip();
-					}
+		function setupResizer() {
+			var div = $('<div class="overlay-container"><div class="panel resizer pointer"><div class="panel-body"><i class="fa fa-arrows-h fa-2x"></i></div></div></div>');
+
+			div.css({
+				position: 'fixed',
+				bottom: '20px',
+				right: '20px'
+			}).hide().appendTo(document.body);
+
+			$(window).on('mousemove', function (ev) {
+				if (ev.clientX > $(window).width() - 150 && ev.clientY > $(window).height() - 150) {
+					div.fadeIn();
+				} else {
+					div.stop(true, true).fadeOut();
 				}
 			});
 
-			if (!$('.admin').length) {
-				setupResizer();
-			}
-
-			$(window).on('action:posts.loaded', function () {
+			div.find('.resizer').on('click', function () {
+				fixed = parseInt(fixed, 10) === 1 ? 0 : 1;
+				//resize(fixed);
 				doMasonry();
 			});
+		}
 
-			function setupResizer() {
-				var div = $('<div class="overlay-container"><div class="panel resizer pointer"><div class="panel-body"><i class="fa fa-arrows-h fa-2x"></i></div></div></div>');
-
-				div.css({
-					position: 'fixed',
-					bottom: '20px',
-					right: '20px'
-				}).hide().appendTo(document.body);
-
-				$(window).on('mousemove', function (ev) {
-					if (ev.clientX > $(window).width() - 150 && ev.clientY > $(window).height() - 150) {
-						div.fadeIn();
-					} else {
-						div.stop(true, true).fadeOut();
+		function checkMasonry(checks) {
+			var $allCats = $('.category-item').last(),
+				$footer = $('footer').offset();
+			if ($allCats.length) {
+				$allCats = $allCats.offset();
+				if ($allCats['top'] > $footer['top']) {
+					if (checks <= 10) {
+						//console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
+						doMasonry();
+						checks++;
+						setTimeout(checkMasonry(checks), 1000);
 					}
-				});
-
-				div.find('.resizer').on('click', function () {
-					fixed = parseInt(fixed, 10) === 1 ? 0 : 1;
-					//resize(fixed);
-					doMasonry();
-				});
-			}
-
-			function checkMasonry(checks) {
-				var $allCats = $('.category-item').last(),
-					$footer = $('footer').offset();
-				if ($allCats.length) {
-					$allCats = $allCats.offset();
-					if ($allCats['top'] > $footer['top']) {
-						if (checks <= 10) {
-							//console.log('Check ' + checks + ': Grid items are outside of the container. Resetting the layout..');
-							doMasonry();
-							checks++;
-							setTimeout(checkMasonry(checks), 1000);
-						}
+				} else {
+					//console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
+					if (checks <= 10) {
+						//console.log('Check will run again in 1 second.');
+						checks++;
+						setTimeout(checkMasonry(checks), 1000);
 					} else {
-						//console.log('No grid items were found outside of the container. Check ' + checks + ' passed!');
-						if (checks <= 10) {
-							//console.log('Check will run again in 1 second.');
-							checks++;
-							setTimeout(checkMasonry(checks), 1000);
-						} else {
-							//console.log('All checks passed! The grid is displayed properly!');
-						}
-
+						//console.log('All checks passed! The grid is displayed properly!');
 					}
+
 				}
 			}
+		}
 
-			$(window).load(function () {
-				setTimeout(function () {
-					checkMasonry(0);
-				}, 1000);
-			});
-			$(window).on('action:ajaxify.end', function (ev, data) {
-				setTimeout(function () {
-					checkMasonry(0);
-				}, 1000);
-			});
-
+		$(window).load(function () {
+			setTimeout(function () {
+				checkMasonry(0);
+			}, 1000);
 		});
+		$(window).on('action:ajaxify.end', function (ev, data) {
+			setTimeout(function () {
+				checkMasonry(0);
+			}, 1000);
+		});
+
+
 	});
 
 	(function () {
