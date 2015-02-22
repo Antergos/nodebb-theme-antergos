@@ -37,15 +37,17 @@ $('document').ready(function () {
 				}
 
 				function initMasonry(container) {
-					setTimeout(function () {
+
 						imagesLoaded(container, function () {
+							setTimeout(function () {
 							new Masonry(container, {
 								itemSelector: '.category-item',
 								columnWidth: '.category-item:not(.col-lg-12)',
 								transitionDuration: '0'
 							});
+							}, 300);
 						});
-					}, 300);
+
 				}
 
 			}
