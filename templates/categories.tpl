@@ -103,7 +103,9 @@
 				</div>
 			</div>
 			<!-- END children -->
+            <div class="clearfix visible-lg visible-md new-row"></div>
 		</div>
+
 
 
 		<!-- END categories -->

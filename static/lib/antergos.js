@@ -10,13 +10,13 @@ $('document').ready(function () {
 		$pcat.addClass(pcatId);
 		var $ccats = $pcat.find('.category-item');
 
-		if (!$pcat.find('.new-row').length) {
+		/*if (!$pcat.find('.new-row').length) {
 			$ccats.each(function (index) {
 				if ((index + 1) % 3 == 0) {
 					$('<div class="clearfix visible-lg visible-md new-row"></div>').insertAfter($(this));
 				}
 			});
-		}
+		}*/
 
 	});
 
