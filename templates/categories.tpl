@@ -2,8 +2,7 @@
 	<div class="col-lg-8 col-sm-12 left-side" no-widget-class="col-lg-12 col-sm-12" no-widget-target="sidebar">
 		<!-- BEGIN categories -->
 		<div class="row">
-			<div class="<!-- IF categories.class -->col-md-12 col-sm-12 col-xs-12<!-- ELSE -->col-md-12 col-sm-12 col-xs-12<!-- ENDIF categories.class -->"
-				 data-cid="{categories.cid}" data-numRecentReplies="{categories.numRecentReplies}">
+			<div class="<!-- IF categories.class -->col-md-12 col-sm-12 col-xs-12<!-- ELSE -->col-md-12 col-sm-12 col-xs-12<!-- ENDIF categories.class -->" data-cid="{categories.cid}" data-numRecentReplies="{categories.numRecentReplies}">
 				<div class="et_pb_column et_pb_column_4_4">
 					<div class="et_pb_text et_pb_bg_layout_light et_pb_text_align_left">
 
@@ -19,16 +18,13 @@
 		<div class="row parent-cat">
 
 			<!-- BEGIN children -->
-			<div class="<!-- IF categories.children.class -->col-md-4 col-sm-6 col-xs-12<!-- ELSE -->col-md-4 col-sm-6 col-xs-12<!-- ENDIF categories.children.class --> category-item"
-				 data-cid="{categories.children.cid}"
-				 data-numRecentReplies="{categories.children.numRecentReplies}">
+			<div class="<!-- IF categories.children.class -->col-md-4 col-sm-6 col-xs-12<!-- ELSE -->col-md-4 col-sm-6 col-xs-12<!-- ENDIF categories.children.class --> category-item" data-cid="{categories.children.cid}" data-numRecentReplies="{categories.children.numRecentReplies}">
 				<meta itemprop="name" content="{categories.children.name}">
 
 				<div class="category-icon">
 
 					<!-- IF categories.children.link -->
-					<a style="color: {categories.children.color};" href="{categories.children.link}" itemprop="url"
-					   target="_blank">
+					<a style="color: {categories.children.color};" href="{categories.children.link}" itemprop="url" target="_blank">
 						<!-- ELSE -->
 						<a style="color: {categories.children.color};"
 						   href="{relative_path}/category/{categories.children.slug}" itemprop="url">
@@ -44,12 +40,12 @@
 									>
 								<!-- IF !categories.children.link -->
 									<span class="badge {categories.children.unread-class}"><i class="fa fa-book"
-																							  data-toggle="tooltip"
-																							  title="[[global:topics]]"></i> <span
+									                                                          data-toggle="tooltip"
+									                                                          title="[[global:topics]]"></i> <span
 											class="human-readable-number" title="{categories.children.topic_count}">{categories.children.topic_count}</span>&nbsp; <i
 											class="fa fa-pencil" data-toggle="tooltip"
 											title="[[global:posts]]"></i> <span class="human-readable-number"
-																				title="{categories.children.post_count}">{categories.children.post_count}</span></span>
+									                                            title="{categories.children.post_count}">{categories.children.post_count}</span></span>
 								<!-- ENDIF !categories.children.link -->
 
 								<!-- IF categories.children.icon -->
@@ -67,7 +63,7 @@
 										<!-- ENDIF categories.children.link-->
 										<h4><!-- IF categories.children.icon --><i
 												class="fa {categories.children.icon} visible-xs-inline"></i>
-											<!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
+										    <!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
 									</a>
 
 									<div class="description" itemprop="description">
@@ -83,8 +79,8 @@
 									<a style="color: {categories.children.color};"
 									   href="<!-- IF categories.children.posts.user.userslug -->{relative_path}/user/{categories.children.posts.user.userslug}<!-- ELSE -->#<!-- ENDIF categories.children.posts.user.userslug-->">
 										<img src="{categories.children.posts.user.picture}"
-											 title="{categories.children.posts.user.username}"
-											 class="pull-left user-img"/>
+										     title="{categories.children.posts.user.username}"
+										     class="pull-left user-img"/>
 									</a>
 
 									<div class="content">
@@ -103,9 +99,8 @@
 				</div>
 			</div>
 			<!-- END children -->
-            <div class="clearfix visible-lg visible-md new-row"></div>
+			<div class="clearfix visible-lg visible-md new-row"></div>
 		</div>
-
 
 
 		<!-- END categories -->
