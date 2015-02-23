@@ -30,13 +30,24 @@ function fixHomeGrid() {
 	fixHomeGrid();
 
 	$(window).on('action:ajaxify.end', function (ev, data) {
-		var url = data.url;
-		fixHomeGrid();
+		var url = data.url,
+			tpl = data['tpl_url'];
+		if (tpl === 'categories') {
+			fixHomeGrid();
+		}
+
 		if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-			//doMasonry();
 			if ($('.categories').length) {
 				$('.category-header .badge i').tooltip();
 			}
+		}
+		if (tpl === 'topic') {
+			$('.etban-topic').css('display', 'block');
+		} else {
+			$('.etban-topic').css('display', 'none');
+		}
+		if (tpl === 'category') {
+			doSlick();
 		}
 	});
 	$(window).load(function () {
@@ -107,7 +118,4 @@ function fixHomeGrid() {
 			}
 		});
 	}
-	$(window).on('action:ajaxify.end', function (ev, data) {
-		doSlick();
-	});
 });
