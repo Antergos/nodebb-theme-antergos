@@ -1,9 +1,9 @@
-<input type="hidden" template-variable="category_id" value="{cid}" />
-<input type="hidden" template-variable="category_name" value="{name}" />
-<input type="hidden" template-variable="category_slug" value="{slug}" />
-<input type="hidden" template-variable="topic_count" value="{topic_count}" />
-<input type="hidden" template-variable="currentPage" value="{currentPage}" />
-<input type="hidden" template-variable="pageCount" value="{pageCount}" />
+<input type="hidden" template-variable="category_id" value="{cid}"/>
+<input type="hidden" template-variable="category_name" value="{name}"/>
+<input type="hidden" template-variable="category_slug" value="{slug}"/>
+<input type="hidden" template-variable="topic_count" value="{topic_count}"/>
+<input type="hidden" template-variable="currentPage" value="{currentPage}"/>
+<input type="hidden" template-variable="pageCount" value="{pageCount}"/>
 <script src="/plugins/nodebb-theme-antergos/vendor/slick.js"></script>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.15/slick.css"/>
 <div class="category-page" style="position:absolute;left:-9999px;"></div>
@@ -31,16 +31,20 @@
 		<div class="header category-tools clearfix">
 			<!-- IF privileges.topics:create -->
 			<button id="new_post" class="btn btn-primary">[[category:new_topic_button]]</button>
-            <!-- ELSE -->
-            <!-- IF !loggedIn -->
-				<a href="/login?next=category/{slug}" class="btn btn-primary">[[category:guest-login-post]]</a>
-				<!-- ENDIF !loggedIn -->
+			<!-- ELSE -->
+			<!-- IF !loggedIn -->
+			<a href="/login?next=category/{slug}" class="btn btn-primary">[[category:guest-login-post]]</a>
+			<!-- ENDIF !loggedIn -->
 			<!-- ENDIF privileges.topics:create -->
 
 			<span class="pull-right">
 				<!-- IF loggedIn -->
-				<button type="button" class="btn btn-default btn-success watch <!-- IF !isIgnored -->hidden<!-- ENDIF !isIgnored -->"><i class="fa fa-eye"></i> [[topic:watch]]</button>
-				<button type="button" class="btn btn-default btn-warning ignore <!-- IF isIgnored -->hidden<!-- ENDIF isIgnored -->"><i class="fa fa-eye-slash"></i> [[category:ignore]]</button>
+				<button type="button" class="btn btn-default btn-success watch <!-- IF !isIgnored -->hidden<!-- ENDIF !isIgnored -->">
+					<i class="fa fa-eye"></i> [[topic:watch]]
+				</button>
+				<button type="button" class="btn btn-default btn-warning ignore <!-- IF isIgnored -->hidden<!-- ENDIF isIgnored -->">
+					<i class="fa fa-eye-slash"></i> [[category:ignore]]
+				</button>
 				<!-- ENDIF loggedIn -->
 
 				<!-- IMPORT partials/category_tools.tpl -->
@@ -86,14 +90,17 @@
 								</a>
 							</div>
 							<div class="category-text">
-								<p><strong><i class="fa fa-thumb-tack<!-- IF !topics.pinned --> hide<!-- ENDIF !topics.pinned -->"></i> <i class="fa fa-lock<!-- IF !topics.locked --> hide<!-- ENDIF !topics.locked -->"></i></strong>
+								<p>
+									<strong><i class="fa fa-thumb-tack<!-- IF !topics.pinned --> hide<!-- ENDIF !topics.pinned -->"></i>
+										<i class="fa fa-lock<!-- IF !topics.locked --> hide<!-- ENDIF !topics.locked -->"></i></strong>
 									<a href="{relative_path}/topic/{topics.slug}" itemprop="url" class="topic-title">{topics.title}</a><br/>
 									<small>
 										[[global:posted_ago, <span class="timeago" title="{topics.relativeTime}"></span>]]
 										<!-- IF !topics.unreplied -->
 									<span class="hidden-md hidden-lg">
 									<br/>
-									<a href="{relative_path}/topic/{topics.slug}/{topics.teaser.index}">[[global:replied_ago, <span class="timeago" title="{topics.teaser.timestamp}"></span>]]</a>
+									<a href="{relative_path}/topic/{topics.slug}/{topics.teaser.index}">[[global:replied_ago,
+										<span class="timeago" title="{topics.teaser.timestamp}"></span>]]</a>
 									</span>
 										<!-- ENDIF !topics.unreplied -->
 										<br/>
@@ -114,7 +121,7 @@
 							<!-- IF topics.unreplied -->
 							<p class="no-replies">[[category:no_replies]]</p>
 							<!-- ELSE -->
-							<a href="<!-- IF topics.teaser.user.userslug -->{relative_path}/user/{topics.teaser.user.userslug}<!-- ELSE -->#<!-- ENDIF topics.teaser.user.userslug -->"><img class="profile-image small user-img" src="{topics.teaser.user.picture}" title="{topics.teaser.user.username}" /></a>
+							<a href="<!-- IF topics.teaser.user.userslug -->{relative_path}/user/{topics.teaser.user.userslug}<!-- ELSE -->#<!-- ENDIF topics.teaser.user.userslug -->"><img class="profile-image small user-img" src="{topics.teaser.user.picture}" title="{topics.teaser.user.username}"/></a>
 							<a href="{relative_path}/topic/{topics.slug}/{topics.teaser.index}">
 								[[global:replied_ago, <span class="timeago" title="{topics.teaser.timestamp}"></span>]]
 							</a>
@@ -131,7 +138,7 @@
 		<!-- ENDIF config.usePagination -->
 	</div>
 
-	<div widget-area="sidebar" class="col-md-3 col-xs-12 category-sidebar"></div>
+	<div widget-area="sidebar" class="col-md-3 col-xs-12 category-sidebar sidebar"></div>
 </div>
 
 <!-- IMPORT partials/move_thread_modal.tpl -->
