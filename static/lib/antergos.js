@@ -70,10 +70,10 @@ $('document').ready(function () {
 		if (tpl === 'category') {
 			doSlick();
 		}
-		doAffix();
+		//doAffix();
 	});
 	$(window).load(function () {
-		doAffix();
+		//doAffix();
 		doSlick();
 	});
 
