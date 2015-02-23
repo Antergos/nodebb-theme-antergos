@@ -39,51 +39,54 @@
 
 	<!-- Start segment from Po: auto-stick header after hero image -->
 	<script type="text/javascript">
-		function stickyMenuHandler(event) {
-			if ($("#header-menu-detector").length > 0) {
-				var pxBelow = $("#header-menu-detector").first().offset().top - $(window).scrollTop();
-				if (pxBelow < 0) {
-					$("#header-menu-spacer").addClass('header-menu-space');
-					$("#header-menu").addClass('navbar-fixed-top');
-					$(".expii-masthead-logo").addClass('expii-masthead-logo-visible');
+		$(window).load(function() {
+			function stickyMenuHandler() {
+				if ($("#header-menu-detector").length > 0) {
+					var pxBelow = $("#header-menu-detector").first().offset().top - $(window).scrollTop();
+					if (pxBelow < 0) {
+						$("#header-menu-spacer").addClass('header-menu-space');
+						$("#header-menu").addClass('navbar-fixed-top');
+						$(".expii-masthead-logo").addClass('expii-masthead-logo-visible');
+					}
+					else {
+						$("#header-menu-spacer").removeClass('header-menu-space');
+						$("#header-menu").removeClass('navbar-fixed-top');
+						$(".expii-masthead-logo").removeClass('expii-masthead-logo-visible');
+					}
 				}
-				else {
-					$("#header-menu-spacer").removeClass('header-menu-space');
-					$("#header-menu").removeClass('navbar-fixed-top');
-					$(".expii-masthead-logo").removeClass('expii-masthead-logo-visible');
+				var y = $(this).scrollTop();
+				if ($secLastPanel !== null && y >= ($secLastPanel + 75)) {
+					$('.panel:nth-last-child(2)').addClass('fixed');
+				} else {
+					$('.panel:nth-last-child(2)').removeClass('fixed');
+				}
+				if ($lastPanel !== null && y >= ($lastPanel + 90 + $('.panel:nth-last-child(2)').height() )) {
+					$('.panel:nth-last-child(1)').addClass('fixed');
+				} else {
+					$('.panel:nth-last-child(1)').removeClass('fixed');
 				}
 			}
-			var y = $(this).scrollTop();
-			if ($secLastPanel !== null && y >= ($secLastPanel + 75)) {
-				$('.panel:nth-last-child(2)').addClass('fixed');
-			} else {
-				$('.panel:nth-last-child(2)').removeClass('fixed');
-			}
-			if ($lastPanel !== null && y >= ($lastPanel + 90 + $('.panel:nth-last-child(2)').height() )) {
-				$('.panel:nth-last-child(1)').addClass('fixed');
-			} else {
-				$('.panel:nth-last-child(1)').removeClass('fixed');
-			}
-		}
 
-		// hack: if there are too few scroll handlers, push us on
-		// (it seems like the scroll handlers are constantly reset during navigation)
-		function addStickyMenuHandler() {
+			// hack: if there are too few scroll handlers, push us on
+			// (it seems like the scroll handlers are constantly reset during navigation)
+			function addStickyMenuHandler() {
 
-			if ($._data(window).events.scroll === undefined ||
-					$._data(window).events.scroll.length <= 4) {
-				$(window).on('scroll', stickyMenuHandler(e));
+				if ($._data(window).events.scroll === undefined ||
+						$._data(window).events.scroll.length <= 4) {
+					$(window).on('scroll', stickyMenuHandler());
+				}
+				// also run it now anyway. Otherwise, sometimes when you go
+				// into a page which has no scrolling, the navbar can be stuck
+				// to the top.
+				stickyMenuHandler();
+				setTimeout(addStickyMenuHandler, 500);
 			}
-			// also run it now anyway. Otherwise, sometimes when you go
-			// into a page which has no scrolling, the navbar can be stuck
-			// to the top.
-			stickyMenuHandler();
-			setTimeout(addStickyMenuHandler, 500);
-		}
-		var $panels = $('.panel:nth-child(-n+2)'),
-				$lastPanel = $('.panel:nth-last-child(1)').length ? $('.panel:nth-last-child(1)').offset().top : null,
-				$secLastPanel = $('.panel:nth-last-child(2)').length ? $('.panel:nth-last-child(2)').top : null;
-		addStickyMenuHandler();
+
+			var $panels = $('.panel:nth-child(-n+2)'),
+					$lastPanel = $('.panel:nth-last-child(1)').length ? $('.panel:nth-last-child(1)').offset().top : null,
+					$secLastPanel = $('.panel:nth-last-child(2)').length ? $('.panel:nth-last-child(2)').top : null;
+			addStickyMenuHandler();
+		});
 
 
 	</script>
