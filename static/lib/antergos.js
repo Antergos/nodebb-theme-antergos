@@ -29,13 +29,14 @@ $('document').ready(function () {
 	}
 
 	function doAffix() {
-		var $sidebar = $(':[widget-area=sidebar]');
+		var $sidebar = $("[widget-area='sidebar']");
 		if ($sidebar.length) {
 			$sidebar.children('.panel').slice(-2).each(function () {
-				$(this).affix({
+				var $widget = $(this);
+				var widgetOffset = $widget.offset().top;
+				$widget.affix({
 					offset: {
-						top: function () {
-							return (this.top = $(this).offset().top)
+						top: widgetOffset
 						}
 					}
 				});
