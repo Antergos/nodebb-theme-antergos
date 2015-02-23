@@ -28,7 +28,22 @@ $('document').ready(function () {
 		});
 	}
 
+	function doAffix() {
+		if ($('.sidebar'.length)) {
+			$('.sidebar .panel').slice(-2).each(function () {
+				$(this).affix({
+					offset: {
+						top: function () {
+							return (this.top = $(this).offset().top)
+						}
+					}
+				});
+				console.log('set affix');
+			});
+		}
+	}
 	fixHomeGrid();
+	doAffix();
 
 	$(window).on('action:ajaxify.end', function (ev, data) {
 		var url = data.url,
@@ -51,18 +66,7 @@ $('document').ready(function () {
 		if (tpl === 'category') {
 			doSlick();
 		}
-		if ($('.sidebar'.length)) {
-			$('.sidebar .panel').slice(-2).each(function () {
-				$(this).affix({
-					offset: {
-						top: function () {
-							return (this.top = $(this).offset().top)
-						}
-					}
-				});
-				console.log('set affix');
-			});
-		}
+		doAffix();
 	});
 	$(window).load(function () {
 		doSlick();
