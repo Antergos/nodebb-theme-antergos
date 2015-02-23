@@ -81,8 +81,8 @@
 			setTimeout(addStickyMenuHandler, 500);
 		}
 		var $panels = $('.panel:nth-child(-n+2)'),
-				$lastPanel = $panels[1].length ? $panels[1].offset().top : null,
-				$secLastPanel = $panels[0].length ? $panels[0].offset().top : null;
+				$lastPanel = $('.panel:nth-last-child(1)').length ? $('.panel:nth-last-child(1)').offset().top : null,
+				$secLastPanel = $('.panel:nth-last-child(2)').length ? $('.panel:nth-last-child(2)').top : null;
 		addStickyMenuHandler();
 
 
