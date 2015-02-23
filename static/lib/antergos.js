@@ -32,6 +32,7 @@ function fixHomeGrid() {
 	$(window).on('action:ajaxify.end', function (ev, data) {
 		var url = data.url,
 			tpl = data['tpl_url'];
+		console.log(tpl);
 		if (tpl === 'categories') {
 			fixHomeGrid();
 		}
@@ -41,7 +42,7 @@ function fixHomeGrid() {
 				$('.category-header .badge i').tooltip();
 			}
 		}
-		if (tpl === 'topic') {
+		if (tpl !== 'categories' && tpl !== 'category') {
 			$('.etban-topic').css('display', 'block');
 		} else {
 			$('.etban-topic').css('display', 'none');
