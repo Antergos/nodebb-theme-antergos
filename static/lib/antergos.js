@@ -29,8 +29,9 @@ $('document').ready(function () {
 	}
 
 	function doAffix() {
-		if ($('.sidebar'.length)) {
-			$('.sidebar .panel').slice(-2).each(function () {
+		var $sidebar = $(':[widget-area=sidebar]');
+		if ($sidebar.length) {
+			$sidebar.children('.panel').slice(-2).each(function () {
 				$(this).affix({
 					offset: {
 						top: function () {
@@ -43,7 +44,7 @@ $('document').ready(function () {
 		}
 	}
 	fixHomeGrid();
-	doAffix();
+
 
 	$(window).on('action:ajaxify.end', function (ev, data) {
 		var url = data.url,
@@ -69,6 +70,7 @@ $('document').ready(function () {
 		doAffix();
 	});
 	$(window).load(function () {
+		doAffix();
 		doSlick();
 	});
 
