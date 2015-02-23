@@ -5,16 +5,17 @@
 	<!-- BEGIN metaTags -->
 	{function.buildMetaTag}
 	<!-- END metaTags -->
-	<link rel="stylesheet" type="text/css" href="{relative_path}/stylesheet.css?{css-buster}" />
+	<link rel="stylesheet" type="text/css" href="{relative_path}/stylesheet.css?{css-buster}"/>
 	<!-- BEGIN linkTags -->
-	<link<!-- IF linkTags.link --> link="{linkTags.link}"<!-- ENDIF linkTags.link --><!-- IF linkTags.rel --> rel="{linkTags.rel}"<!-- ENDIF linkTags.rel --><!-- IF linkTags.type --> type="{linkTags.type}"<!-- ENDIF linkTags.type --><!-- IF linkTags.href --> href="{linkTags.href}"<!-- ENDIF linkTags.href --> />
+	<link
+	<!-- IF linkTags.link --> link="{linkTags.link}"<!-- ENDIF linkTags.link --><!-- IF linkTags.rel --> rel="{linkTags.rel}"<!-- ENDIF linkTags.rel --><!-- IF linkTags.type --> type="{linkTags.type}"<!-- ENDIF linkTags.type --><!-- IF linkTags.href --> href="{linkTags.href}"<!-- ENDIF linkTags.href --> />
 	<!-- END linkTags -->
 
 	<!--[if lt IE 9]>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-		<script>__lt_ie_9__ = 1;</script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+	<script>__lt_ie_9__ = 1;</script>
 	<![endif]-->
 
 	<script>
@@ -38,7 +39,7 @@
 
 	<!-- Start segment from Po: auto-stick header after hero image -->
 	<script type="text/javascript">
-		function stickyMenuHandler() {
+		function stickyMenuHandler(event) {
 			if ($("#header-menu-detector").length > 0) {
 				var pxBelow = $("#header-menu-detector").first().offset().top - $(window).scrollTop();
 				if (pxBelow < 0) {
@@ -52,14 +53,26 @@
 					$(".expii-masthead-logo").removeClass('expii-masthead-logo-visible');
 				}
 			}
+			var y = $(this).scrollTop();
+			if ($secLastPanel !== null && y >= ($secLastPanel + 75)) {
+				$('.panel:nth-last-child(2)').addClass('fixed');
+			} else {
+				$('.panel:nth-last-child(2)').removeClass('fixed');
+			}
+			if ($lastPanel !== null && y >= ($lastPanel + 90 + $('.panel:nth-last-child(2)').height() )) {
+				$('.panel:nth-last-child(1)').addClass('fixed');
+			} else {
+				$('.panel:nth-last-child(1)').removeClass('fixed');
+			}
 		}
 
 		// hack: if there are too few scroll handlers, push us on
 		// (it seems like the scroll handlers are constantly reset during navigation)
 		function addStickyMenuHandler() {
+
 			if ($._data(window).events.scroll === undefined ||
 					$._data(window).events.scroll.length <= 4) {
-				$(window).on('scroll', stickyMenuHandler);
+				$(window).on('scroll', stickyMenuHandler(e));
 			}
 			// also run it now anyway. Otherwise, sometimes when you go
 			// into a page which has no scrolling, the navbar can be stuck
@@ -67,6 +80,9 @@
 			stickyMenuHandler();
 			setTimeout(addStickyMenuHandler, 500);
 		}
+		var $panels = $('.panel:nth-child(-n+2)'),
+				$lastPanel = $panels[1].length ? $panels[1].offset().top : null,
+				$secLastPanel = $panels[0].length ? $panels[0].offset().top : null;
 		addStickyMenuHandler();
 
 
@@ -74,14 +90,14 @@
 
 
 	<link rel="stylesheet" id="et-gf-raleway-css"
-		  href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900&amp;subset=latin"
-		  type="text/css" media="all">
+	      href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900&amp;subset=latin"
+	      type="text/css" media="all">
 	<link rel="stylesheet" id="et-gf-lato-css"
-		  href="http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic&amp;subset=latin"
-		  type="text/css" media="all">
+	      href="http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic&amp;subset=latin"
+	      type="text/css" media="all">
 
 	<link rel="stylesheet" id="divi-style-css"
-		  href="http://antergos.org/wp-content/themes/Divi-Antergos/style.css?ver=2.2" type="text/css" media="all">
+	      href="http://antergos.org/wp-content/themes/Divi-Antergos/style.css?ver=2.2" type="text/css" media="all">
 
 	<style>
 		a {
@@ -145,7 +161,7 @@
 </head>
 
 <body>
-<input id="isLoggedIn" type="hidden" template-variable="loggedIn" value="{loggedIn}" />
+<input id="isLoggedIn" type="hidden" template-variable="loggedIn" value="{loggedIn}"/>
 
 <div id="wrap" class="container">
 	<div id="top-header" class="et_nav_text_color_dark">
@@ -214,7 +230,8 @@
 				<ul id="et-secondary-nav" class="menu">
 					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1343"><a
 							href="//antergos.com">Main</a></li>
-					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1344"><a href="//antergos.com/wiki">Wiki</a>
+					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1344">
+						<a href="//antergos.com/wiki">Wiki</a>
 					</li>
 					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1345"><a
 							href="//build.antergos.com">Packages</a></li>
