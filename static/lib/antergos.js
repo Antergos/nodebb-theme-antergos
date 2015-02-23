@@ -29,9 +29,10 @@ $('document').ready(function () {
 	}
 
 	function doAffix() {
-		var $sidebar = $("[widget-area='sidebar']");
-		if ($sidebar.length && !$('.categories.length')) {
-			$sidebar = ($sidebar.length > 2) ? $sidebar.children('.panel').slice(-2) : $sidebar.children('.panel');
+		var $theSidebar = $("[widget-area='sidebar']"),
+			$sidebar;
+		if ($theSidebar.length && !$('.categories.length')) {
+			$sidebar = ($theSidebar.length > 2) ? $theSidebar.children('.panel').slice(-2) : $theSidebar.children('.panel');
 			$sidebar.each(function () {
 				var $widget = $(this);
 				var widgetOffset = $widget.offset().top;
