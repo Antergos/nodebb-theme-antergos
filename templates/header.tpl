@@ -55,6 +55,9 @@
 					}
 				}
 				var y = $(this).scrollTop();
+				console.log(y);
+				console.log($secLastPanel);
+			console.log($lastPanel);
 				if ($secLastPanel !== null && y >= ($secLastPanel + 75)) {
 					$('.panel:nth-last-child(2)').addClass('fixed');
 				} else {
@@ -85,6 +88,8 @@
 			var $panels = $('.panel:nth-child(-n+2)'),
 					$lastPanel = $('.panel:nth-last-child(1)').length ? $('.panel:nth-last-child(1)').offset().top : null,
 					$secLastPanel = $('.panel:nth-last-child(2)').length ? $('.panel:nth-last-child(2)').top : null;
+			console.log($secLastPanel);
+			console.log($lastPanel);
 			addStickyMenuHandler();
 		});
 
