@@ -31,15 +31,20 @@ $('document').ready(function () {
 	function doAffix() {
 		var $sidebar = $("[widget-area='sidebar']");
 		if ($sidebar.length && !$('.categories.length')) {
-			$sidebar = ($sidebar.length > 2) ? $sidebar.children('.panel').slice(-2) : $sidebar.children('.panel'); 
+			$sidebar = ($sidebar.length > 2) ? $sidebar.children('.panel').slice(-2) : $sidebar.children('.panel');
 			$sidebar.each(function () {
 				var $widget = $(this);
 				var widgetOffset = $widget.offset().top;
-				$widget.affix({ offset : widgetOffset });
+				$widget.affix({
+					offset: {
+						top: widgetOffset
+					}
+				});
 				console.log('set affix');
 			});
 		}
 	}
+
 	fixHomeGrid();
 
 
