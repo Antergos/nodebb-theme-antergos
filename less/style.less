@@ -929,14 +929,14 @@ code {
 }
 #top-header {
   width: 100%;
-  position: static;
-  top: initial;
-  transition: all 0.4s linear;
+   position: fixed;
+  top: 0;
+  transition: all 0.2s linear;
+  display:none;
 }
 #top-header.ant-fixed-header {
-  position: fixed;
-  top: 0;
-  transition: all 0.4s linear;
+ display: block;
+  transition: all 0.2s linear;
 }
 #header-menu {
   top: 25px;
@@ -947,7 +947,7 @@ code {
   top: 0;
   transition: all 0.2s linear;
 }
-#header-menu .et-container {
+#top-header .et-container {
   width: 100%;
 }
 
