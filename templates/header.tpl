@@ -36,17 +36,25 @@
 			}
 		});
 	</script>
-
-	<!-- Start segment from Po: auto-stick header after hero image -->
+	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
 	<script type="text/javascript">
 		$(window).load(function() {
+			$('#content').waypoint({
+				handler: function(direction) {
+					if (direction === "down") {
+						$('#header-menu').addClass('ant-fixed-header');
+						$('#top-header').removeClass('ant-fixed-header');
+					} else {
+						$('#header-menu').removeClass('ant-fixed-header');
+						$('#top-header').addClass('ant-fixed-header');
+					}
+				}
+			});
 			function stickyMenuHandler() {
 				if ($("#header-menu-detector").length > 0) {
 					var pxBelow = $("#header-menu-detector").first().offset().top - $(window).scrollTop();
 					if (pxBelow < 0) {
-						$("#header-menu-spacer").addClass('header-menu-space');
-						$("#header-menu").addClass('navbar-fixed-top');
-						$(".expii-masthead-logo").addClass('expii-masthead-logo-visible');
+						$("#header-menu").addClass('header-menu-space');
 					}
 					else {
 						$("#header-menu-spacer").removeClass('header-menu-space');
@@ -57,7 +65,7 @@
 				var y = $(this).scrollTop();
 				console.log(y);
 				console.log($secLastPanel);
-			console.log($lastPanel);
+				console.log($lastPanel);
 				if ($secLastPanel !== null && y >= ($secLastPanel + 75)) {
 					$('.panel:nth-last-child(2)').addClass('fixed');
 				} else {
@@ -90,7 +98,7 @@
 					$secLastPanel = $('.panel:nth-last-child(2)').length ? $('.panel:nth-last-child(2)').top : null;
 			console.log($secLastPanel);
 			console.log($lastPanel);
-			addStickyMenuHandler();
+			//addStickyMenuHandler();
 		});
 
 
@@ -260,12 +268,11 @@
 <div class="navbar navbar-default navbar-fixed-top header" role="navigation" id="header-menu">
 	-->
 	<!-- Here's Po's new navbar styling -->
-	<div class="navbar navbar-inverse header" role="navigation" id="header-menu">
+	<div class="navbar navbar-inverse navbar-fixed-top header" role="navigation" id="header-menu">
 		<div class="container">
 			<!-- IMPORT partials/menu.tpl -->
 		</div>
 		<div class="loading-bar"></div>
 	</div>
-	<div id="header-menu-spacer" class="header-menu-spacer"></div>
 	<div class="container" id="content">
 		<!-- IMPORT partials/noscript/warning.tpl -->
