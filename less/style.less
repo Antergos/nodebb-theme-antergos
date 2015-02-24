@@ -597,7 +597,7 @@ body {
 }
 
 #top-header .et-container {
-  padding-top: 6px;
+  padding-top: 6px !important;
 }
 
 #et-info {
@@ -850,7 +850,7 @@ p, body {
     min-width: 1600px;
   }
   #content {
-padding-top: 155px;
+padding-top: 140px;
 }
 
   .ant-fixed-header, .navbar-fixed-bottom {
@@ -930,19 +930,21 @@ code {
 #top-header {
   position: inherit;
   top: inherit;
-  transition: all 0.5s linear;
+  transition: all 0.3s linear;
 }
 #top-header.ant-fixed-header {
+  width: 100%;
   position: fixed;
   top: 0;
-  margin: 0 auto;
+  transition: all 0.3s linear;
 }
 #header-menu {
   top: 25px;
   margin: 0 auto;
+  transition: all 0.3s linear;
 }
 #header-menu.ant-fixed-header {
   top: 0;
-  transition: all 0.5s linear;
+  transition: all 0.3s linear;
 }
 
