@@ -87,12 +87,12 @@
 				}
 			});
 		}
-		$(window).load(function() {
+		/*$(window).load(function() {
 			doWaypoints();
 		});
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			doWaypoints();
-		});
+		});*/
 
 
 	</script>
