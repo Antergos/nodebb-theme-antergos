@@ -39,7 +39,7 @@
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
 	<script type="text/javascript">
 		$(window).load(function() {
-			$('#content').waypoint({
+			$('[widget-area=sidebar]').waypoint({
 				handler: function(direction) {
 					if (direction === "down") {
 						$('#header-menu').addClass('ant-fixed-header');
