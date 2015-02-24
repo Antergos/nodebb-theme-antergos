@@ -60,10 +60,10 @@
 				handler: function(direction) {
 					if (direction === "down") {
 						console.log('waypoint fired down - 2last');
-						$('.panel:nth-last-child(2)').addClass('fixed');
+						$('.panel:nth-last-child(2)').css('top', '80px').addClass('fixed');
 					} else {
 						console.log('waypoint fired up - 2last');
-						$('.panel:nth-last-child(2)').removeClass('fixed');
+						$('.panel:nth-last-child(2)').removeClass('fixed').css('top', 'inherit');
 					}
 				},
 				offset: 80
@@ -71,12 +71,13 @@
 
 			$('.panel:nth-last-child(1)').waypoint({
 				handler: function(direction) {
+					var theHeight = $('.panel:nth-last-child(2)').height();
 					if (direction === "down") {
 						console.log('waypoint fired down - last');
-						$('.panel:nth-last-child(1)').addClass('fixed');
+						$('.panel:nth-last-child(1)').css('top', theHeight + 80 + 'px').addClass('fixed');
 					} else {
 						console.log('waypoint fired up - last');
-						$('.panel:nth-last-child(1)').removeClass('fixed');
+						$('.panel:nth-last-child(1)').removeClass('fixed').css('top', 'inherit');
 					}
 				},
 				offset: function() {
