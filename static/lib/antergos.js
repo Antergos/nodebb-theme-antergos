@@ -48,12 +48,23 @@ $('document').ready(function () {
 
 	fixHomeGrid();
 
-	var checkWidget = true;
-		var secLastHeight;
+	var checkWidget = true,
+		checkWidgetTwo = true;
+		var secLastHeight,
+			$wpWidget,
+			wpWidgetHeight,
+			$secLast,
+			secLastHeight,
+			$lastWidget,
+			lastWidgetHeight ;
 		function doWaypoints() {
 			function checkWidgetHeight() {
-				secLastHeight = $('.panel:nth-last-child(2)').height();
-				checkWidget = false;
+				$wpWidget = $('.panel:nth-last-child(3)');
+				wpWidgetHeight = $wpWidget.height();
+				$secLast = $('.panel:nth-last-child(2)');
+				secLastHeight = $secLast.height();
+				$lastWidget = $('.panel:last-child');
+				lastWidgetHeight = $lastWidget.height();
 			}
 			$('[widget-area=sidebar]').waypoint({
 				handler: function(direction) {
@@ -66,41 +77,53 @@ $('document').ready(function () {
 					}
 				}
 			});
-			$('.panel:nth-last-child(2)').waypoint({
+			$('.panel:nth-last-child(3)').waypoint({
 				handler: function(direction) {
+					checkWidgetHeight();
 					if (direction === "down") {
 						console.log('waypoint fired down - 2last');
 						$('.panel:nth-last-child(2)').css('top', '80px').addClass('fixed');
+						$('.panel:nth-last-child(1)').css('top', secLastHeight + 100 + 'px').addClass('fixed');
 					} else {
 						console.log('waypoint fired up - 2last');
+						$('.panel:nth-last-child(1)').removeClass('fixed').css('top', 'inherit');
 						$('.panel:nth-last-child(2)').removeClass('fixed').css('top', 'inherit');
 					}
 				},
-				offset: 80
+				offset: function() {
+					if (checkWidget === true) checkWidgetHeight();
+					console.log('2lastHeight is ' + secLastHeight);
+					checkWidget = false;
+					return -wpWidgetHeight + 80;
+				}
 			});
 
-			$('.panel:nth-last-child(1)').waypoint({
+
+			/*$('.panel:nth-last-child(3)').waypoint({
 				handler: function(direction) {
-					var theHeight = $('.panel:nth-last-child(2)').height();
+					checkWidgetHeight();
 					if (direction === "down") {
-						console.log('waypoint fired down - last');
-						$('.panel:nth-last-child(1)').css('top', theHeight + 100 + 'px').addClass('fixed');
+						console.log('waypoint fired down');
+
+						$('.panel:nth-last-child(1)').css('top', secLastHeight + 100 + 'px').addClass('fixed');
 					} else {
 						console.log('waypoint fired up - last');
 						$('.panel:nth-last-child(1)').removeClass('fixed').css('top', 'inherit');
 					}
 				},
 				offset: function() {
-					if (checkWidget === true) checkWidgetHeight();
+					if (checkWidgetTwo === true) checkWidgetHeight();
 					console.log('2lastHeight is ' + secLastHeight);
-					return secLastHeight + 80;
+					checkWidgetTwo = false;
+					return (secLastHeight + 80) - wpWidgetHeight;
 				}
-			});
+			});*/
 		}
 
 	$(window).on('action:ajaxify.end', function (ev, data) {
 		var url = data.url,
 			tpl = data['tpl_url'];
+		doWaypoints();
 		console.log(tpl);
 		if (tpl === 'categories') {
 			fixHomeGrid();
@@ -119,13 +142,11 @@ $('document').ready(function () {
 		if (tpl === 'category') {
 			doSlick();
 		}
-		doWaypoints();
 	});
 	$(window).load(function () {
+		doWaypoints();
 		doSlick();
-		setTimeout(function() {
-			doWaypoints();
-		}, 500);
+
 	});
 
 	(function () {
