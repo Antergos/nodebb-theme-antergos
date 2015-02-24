@@ -74,7 +74,7 @@
 					var theHeight = $('.panel:nth-last-child(2)').height();
 					if (direction === "down") {
 						console.log('waypoint fired down - last');
-						$('.panel:nth-last-child(1)').css('top', theHeight + 80 + 'px').addClass('fixed');
+						$('.panel:nth-last-child(1)').css('top', theHeight + 100 + 'px').addClass('fixed');
 					} else {
 						console.log('waypoint fired up - last');
 						$('.panel:nth-last-child(1)').removeClass('fixed').css('top', 'inherit');
