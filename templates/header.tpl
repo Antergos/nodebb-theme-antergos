@@ -60,10 +60,10 @@
 				handler: function(direction) {
 					if (direction === "down") {
 						console.log('waypoint fired down - 2last');
-						this.addClass('fixed');
+						$('.panel:nth-last-child(2)').addClass('fixed');
 					} else {
 						console.log('waypoint fired up - 2last');
-						this.removeClass('fixed');
+						$('.panel:nth-last-child(2)').removeClass('fixed');
 					}
 				},
 				offset: 80
@@ -73,10 +73,10 @@
 				handler: function(direction) {
 					if (direction === "down") {
 						console.log('waypoint fired down - last');
-						this.addClass('fixed');
+						$('.panel:nth-last-child(1)').addClass('fixed');
 					} else {
 						console.log('waypoint fired up - last');
-						this.removeClass('fixed');
+						$('.panel:nth-last-child(1)').removeClass('fixed');
 					}
 				},
 				offset: function() {
