@@ -38,7 +38,8 @@
 	</script>
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
 	<script type="text/javascript">
-		$(window).load(function() {
+
+		function doWaypoints() {
 			var checkWidget = true;
 			var $secLastHeight;
 			function checkWidgetHeight() {
@@ -80,6 +81,12 @@
 					return $secLastHeight + 155;
 				}
 			});
+		}
+		$(window).load(function() {
+			doWaypoints();
+		});
+		$(window).on('action:ajaxify.end', function (ev, data) {
+			doWaypoints();
 		});
 
 
