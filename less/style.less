@@ -928,23 +928,26 @@ code {
   position: fixed;
 }
 #top-header {
-  position: inherit;
-  top: inherit;
-  transition: all 0.3s linear;
+  width: 100%;
+  position: static;
+  top: initial;
+  transition: all 0.4s linear;
 }
 #top-header.ant-fixed-header {
-  width: 100%;
   position: fixed;
   top: 0;
-  transition: all 0.3s linear;
+  transition: all 0.4s linear;
 }
 #header-menu {
   top: 25px;
   margin: 0 auto;
-  transition: all 0.3s linear;
+  transition: all 0.2s linear;
 }
 #header-menu.ant-fixed-header {
   top: 0;
-  transition: all 0.3s linear;
+  transition: all 0.2s linear;
+}
+#header-menu .et-container {
+  width: 100%;
 }
 
