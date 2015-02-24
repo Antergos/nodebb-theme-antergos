@@ -144,7 +144,9 @@ $('document').ready(function () {
 		}
 	});
 	$(window).load(function () {
-		doWaypoints();
+		setTimeout(function() {
+			doWaypoints();
+		}, 300);
 		doSlick();
 
 	});
