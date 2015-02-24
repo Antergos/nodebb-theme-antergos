@@ -60,29 +60,29 @@
 				handler: function(direction) {
 					if (direction === "down") {
 						console.log('waypoint fired down - 2last');
-						$(this).addClass('fixed');
+						this.addClass('fixed');
 					} else {
 						console.log('waypoint fired up - 2last');
-						$(this).removeClass('fixed');
+						this.removeClass('fixed');
 					}
 				},
-				offset: 140
+				offset: 80
 			});
 
 			$('.panel:nth-last-child(1)').waypoint({
 				handler: function(direction) {
 					if (direction === "down") {
 						console.log('waypoint fired down - last');
-						$(this).addClass('fixed');
+						this.addClass('fixed');
 					} else {
 						console.log('waypoint fired up - last');
-						$(this).removeClass('fixed');
+						this.removeClass('fixed');
 					}
 				},
 				offset: function() {
 					if (checkWidget === true) checkWidgetHeight();
 					console.log('2lastHeight is ' + secLastHeight);
-					return secLastHeight + 155;
+					return secLastHeight + 80;
 				}
 			});
 		}
