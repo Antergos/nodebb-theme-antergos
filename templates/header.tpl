@@ -180,7 +180,7 @@
 <input id="isLoggedIn" type="hidden" template-variable="loggedIn" value="{loggedIn}"/>
 
 <div id="wrap" class="container">
-	<div id="top-header" class="et_nav_text_color_dark">
+	<div id="top-header" class="et_nav_text_color_dark ant-fixed-header">
 		<div class="et-container container clearfix">
 
 
