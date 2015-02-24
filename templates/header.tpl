@@ -89,10 +89,10 @@
 		}
 		/*$(window).load(function() {
 			doWaypoints();
-		});
-		$(window).on('action:ajaxify.end', function (ev, data) {
-			doWaypoints();
 		});*/
+		$(window).on('action:ajaxify.end', function (ev, data) {
+			Waypoint.refreshAll();
+		});
 
 
 	</script>
