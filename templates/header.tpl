@@ -38,12 +38,11 @@
 	</script>
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
 	<script type="text/javascript">
-
+		var checkWidget = true;
+		var secLastHeight;
 		function doWaypoints() {
-			var checkWidget = true;
-			var $secLastHeight;
 			function checkWidgetHeight() {
-				$secLastHeight = $('.panel:nth-last-child(2)').height();
+				secLastHeight = $('.panel:nth-last-child(2)').height();
 				checkWidget = false;
 			}
 			$('[widget-area=sidebar]').waypoint({
@@ -60,8 +59,10 @@
 			$('.panel:nth-last-child(2)').waypoint({
 				handler: function(direction) {
 					if (direction === "down") {
+						console.log('waypoint fired down - 2last');
 						$(this).addClass('fixed');
 					} else {
+						console.log('waypoint fired up - 2last');
 						$(this).removeClass('fixed');
 					}
 				},
@@ -71,14 +72,17 @@
 			$('.panel:nth-last-child(1)').waypoint({
 				handler: function(direction) {
 					if (direction === "down") {
+						console.log('waypoint fired down - last');
 						$(this).addClass('fixed');
 					} else {
+						console.log('waypoint fired up - last');
 						$(this).removeClass('fixed');
 					}
 				},
 				offset: function() {
 					if (checkWidget === true) checkWidgetHeight();
-					return $secLastHeight + 155;
+					console.log('2lastHeight is ' + secLastHeight);
+					return secLastHeight + 155;
 				}
 			});
 		}
