@@ -39,6 +39,12 @@
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
 	<script type="text/javascript">
 		$(window).load(function() {
+			var checkWidget = true;
+			var $secLastHeight;
+			function checkWidgetHeight() {
+				$secLastHeight = $('.panel:nth-last-child(2)').height();
+				checkWidget = false;
+			}
 			$('[widget-area=sidebar]').waypoint({
 				handler: function(direction) {
 					if (direction === "down") {
@@ -50,55 +56,30 @@
 					}
 				}
 			});
-			function stickyMenuHandler() {
-				if ($("#header-menu-detector").length > 0) {
-					var pxBelow = $("#header-menu-detector").first().offset().top - $(window).scrollTop();
-					if (pxBelow < 0) {
-						$("#header-menu").addClass('header-menu-space');
+			$('.panel:nth-last-child(2)').waypoint({
+				handler: function(direction) {
+					if (direction === "down") {
+						$(this).addClass('fixed');
+					} else {
+						$(this).removeClass('fixed');
 					}
-					else {
-						$("#header-menu-spacer").removeClass('header-menu-space');
-						$("#header-menu").removeClass('navbar-fixed-top');
-						$(".expii-masthead-logo").removeClass('expii-masthead-logo-visible');
+				},
+				offset: 140
+			});
+
+			$('.panel:nth-last-child(1)').waypoint({
+				handler: function(direction) {
+					if (direction === "down") {
+						$(this).addClass('fixed');
+					} else {
+						$(this).removeClass('fixed');
 					}
+				},
+				offset: function() {
+					if (checkWidget === true) checkWidgetHeight();
+					return $secLastHeight + 155;
 				}
-				var y = $(this).scrollTop();
-				console.log(y);
-				console.log($secLastPanel);
-				console.log($lastPanel);
-				if ($secLastPanel !== null && y >= ($secLastPanel + 75)) {
-					$('.panel:nth-last-child(2)').addClass('fixed');
-				} else {
-					$('.panel:nth-last-child(2)').removeClass('fixed');
-				}
-				if ($lastPanel !== null && y >= ($lastPanel + 90 + $('.panel:nth-last-child(2)').height() )) {
-					$('.panel:nth-last-child(1)').addClass('fixed');
-				} else {
-					$('.panel:nth-last-child(1)').removeClass('fixed');
-				}
-			}
-
-			// hack: if there are too few scroll handlers, push us on
-			// (it seems like the scroll handlers are constantly reset during navigation)
-			function addStickyMenuHandler() {
-
-				if ($._data(window).events.scroll === undefined ||
-						$._data(window).events.scroll.length <= 4) {
-					$(window).on('scroll', stickyMenuHandler());
-				}
-				// also run it now anyway. Otherwise, sometimes when you go
-				// into a page which has no scrolling, the navbar can be stuck
-				// to the top.
-				stickyMenuHandler();
-				setTimeout(addStickyMenuHandler, 500);
-			}
-
-			var $panels = $('.panel:nth-child(-n+2)'),
-					$lastPanel = $('.panel:nth-last-child(1)').length ? $('.panel:nth-last-child(1)').offset().top : null,
-					$secLastPanel = $('.panel:nth-last-child(2)').length ? $('.panel:nth-last-child(2)').top : null;
-			console.log($secLastPanel);
-			console.log($lastPanel);
-			//addStickyMenuHandler();
+			});
 		});
 
 
@@ -113,7 +94,7 @@
 	      type="text/css" media="all">
 
 	<link rel="stylesheet" id="divi-style-css"
-	      href="http://antergos.org/wp-content/themes/Divi-Antergos/style.css?ver=2.2" type="text/css" media="all">
+	      href="/plugins/nodebb-theme-antergos/vendor/style.css" type="text/css" media="all">
 
 	<style>
 		a {
