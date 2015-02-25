@@ -125,7 +125,7 @@ $('document').ready(function () {
 			tpl = data['tpl_url'];
 		setTimeout(function() {
 			doWaypoints();
-		},300);
+		},500);
 		console.log(tpl);
 		if (tpl === 'categories') {
 			fixHomeGrid();
