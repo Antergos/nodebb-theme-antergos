@@ -91,7 +91,7 @@ $('document').ready(function () {
 					}
 				},
 				offset: function() {
-					if (checkWidget === true) checkWidgetHeight();
+					checkWidgetHeight();
 					console.log('2lastHeight is ' + secLastHeight);
 					checkWidget = false;
 					return -wpWidgetHeight + 80;
