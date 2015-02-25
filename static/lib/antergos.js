@@ -123,7 +123,9 @@ $('document').ready(function () {
 	$(window).on('action:ajaxify.end', function (ev, data) {
 		var url = data.url,
 			tpl = data['tpl_url'];
-		doWaypoints();
+		setTimeout(function() {
+			doWaypoints();
+		},300);
 		console.log(tpl);
 		if (tpl === 'categories') {
 			fixHomeGrid();
