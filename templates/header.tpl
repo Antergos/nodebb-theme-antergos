@@ -37,65 +37,7 @@
 		});
 	</script>
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
-	<script type="text/javascript">
-		/*var checkWidget = true;
-		var secLastHeight;
-		function doWaypoints() {
-			function checkWidgetHeight() {
-				secLastHeight = $('.panel:nth-last-child(2)').height();
-				checkWidget = false;
-			}
-			$('[widget-area=sidebar]').waypoint({
-				handler: function(direction) {
-					if (direction === "down") {
-						$('#header-menu').addClass('ant-fixed-header');
-						$('#top-header').removeClass('ant-fixed-header');
-					} else {
-						$('#header-menu').removeClass('ant-fixed-header');
-						$('#top-header').addClass('ant-fixed-header');
-					}
-				}
-			});
-			$('.panel:nth-last-child(2)').waypoint({
-				handler: function(direction) {
-					if (direction === "down") {
-						console.log('waypoint fired down - 2last');
-						$('.panel:nth-last-child(2)').css('top', '80px').addClass('fixed');
-					} else {
-						console.log('waypoint fired up - 2last');
-						$('.panel:nth-last-child(2)').removeClass('fixed').css('top', 'inherit');
-					}
-				},
-				offset: 80
-			});
 
-			$('.panel:nth-last-child(1)').waypoint({
-				handler: function(direction) {
-					var theHeight = $('.panel:nth-last-child(2)').height();
-					if (direction === "down") {
-						console.log('waypoint fired down - last');
-						$('.panel:nth-last-child(1)').css('top', theHeight + 100 + 'px').addClass('fixed');
-					} else {
-						console.log('waypoint fired up - last');
-						$('.panel:nth-last-child(1)').removeClass('fixed').css('top', 'inherit');
-					}
-				},
-				offset: function() {
-					if (checkWidget === true) checkWidgetHeight();
-					console.log('2lastHeight is ' + secLastHeight);
-					return secLastHeight + 80;
-				}
-			});
-		}
-		/*$(window).load(function() {
-			doWaypoints();
-		});
-		$(window).on('action:ajaxify.end', function (ev, data) {
-			Waypoint.refreshAll();
-		});*/
-
-
-	</script>
 
 
 	<link rel="stylesheet" id="et-gf-raleway-css"
@@ -171,6 +113,8 @@
 
 <body>
 <input id="isLoggedIn" type="hidden" template-variable="loggedIn" value="{loggedIn}"/>
+<input id="currentTpl" type="hidden" template-variable="currentTpl" value="{template}"/>
+
 
 <div id="wrap" class="container">
 	<div id="top-header" class="et_nav_text_color_dark ant-fixed-header">
