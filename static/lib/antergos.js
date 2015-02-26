@@ -130,7 +130,6 @@ $('document').ready(function () {
 });
 
 $(window).load(function () {
-	reload_js('/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js');
 	setTimeout(function () {
 		doWaypoints();
 	}, 500);
@@ -144,6 +143,7 @@ $(window).load(function () {
 $(window).on('action:ajaxify.end', function (ev, data) {
 	var url = data.url,
 		tpl = data['tpl_url'];
+	reload_js('/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js');
 	setTimeout(function () {
 		doWaypoints();
 	}, 500);
