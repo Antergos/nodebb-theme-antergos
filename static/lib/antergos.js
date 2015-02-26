@@ -51,7 +51,7 @@ function fixHomeGrid() {
 }
 
 function doWaypoints() {
-	$('[widget-area=sidebar]').waypoint({
+	$('[widget-area="sidebar"]').waypoint({
 		handler: function (direction) {
 			if (direction === "down") {
 				$('#header-menu').addClass('ant-fixed-header');
@@ -99,7 +99,6 @@ function doSlick() {
 	}
 }
 
-
 $('document').ready(function () {
 
 	fixHomeGrid();
@@ -136,17 +135,19 @@ $(window).load(function () {
 
 });
 
+$(window).on('action:ajaxify.contentLoaded', function (ev, data) {
+	setTimeout(function () {
+		doWaypoints();
+	}, 500);
+});
+
 $(window).on('action:ajaxify.end', function (ev, data) {
 	var url = data.url,
 		tpl = data['tpl_url'];
-	setTimeout(function () {
-		doWaypoints();
-	}, 800);
 	console.log(tpl);
 	if (tpl === 'categories') {
 		fixHomeGrid();
 	}
-
 	if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 		if ($('.categories').length) {
 			$('.category-header .badge i').tooltip();
