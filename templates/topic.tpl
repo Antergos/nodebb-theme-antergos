@@ -9,6 +9,7 @@
 <input type="hidden" template-variable="topic_name" value="{title}" />
 <input type="hidden" template-variable="postcount" value="{postcount}" />
 <input type="hidden" template-variable="viewcount" value="{viewcount}" />
+<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
 
 <div class="topic">
 	<!-- IMPORT partials/breadcrumbs.tpl -->
