@@ -99,6 +99,11 @@ function doSlick() {
 	}
 }
 
+function reload_js(src) {
+        $('script[src="' + src + '"]').remove();
+        $('<script>').attr('src', src).appendTo('head');
+    }
+
 $('document').ready(function () {
 
 	fixHomeGrid();
@@ -125,6 +130,7 @@ $('document').ready(function () {
 });
 
 $(window).load(function () {
+	reload_js('/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js');
 	setTimeout(function () {
 		doWaypoints();
 	}, 500);
@@ -135,19 +141,17 @@ $(window).load(function () {
 
 });
 
-$(window).on('action:ajaxify.contentLoaded', function (ev, data) {
-	setTimeout(function () {
-		doWaypoints();
-	}, 500);
-});
-
 $(window).on('action:ajaxify.end', function (ev, data) {
 	var url = data.url,
 		tpl = data['tpl_url'];
+	setTimeout(function () {
+		doWaypoints();
+	}, 500);
 	console.log(tpl);
 	if (tpl === 'categories') {
 		fixHomeGrid();
 	}
+
 	if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 		if ($('.categories').length) {
 			$('.category-header .badge i').tooltip();
