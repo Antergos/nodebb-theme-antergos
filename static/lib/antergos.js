@@ -18,10 +18,6 @@ function checkWidgetHeight() {
 	$lastWidget = $('.panel:last-child');
 	lastWidgetHeight = $lastWidget.height();
 	allWidgets = $('[widget-area="sidebar"]').children().length;
-	if ((allWidgets >= 3) && (secLastHeight + lastWidgetHeight) > $(window).height()) {
-		$('.trending').insertBefore($('.trending').parent().children().last());
-		Waypoint.refreshAll();
-	}
 	enoughWidgets = !!((allWidgets >= 3) && (secLastHeight + lastWidgetHeight) < $(window).height());
 }
 
