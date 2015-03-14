@@ -41,7 +41,11 @@
 								<!-- IF posts.user.groups.length -->
 								<div class="text-center">
 									<!-- BEGIN groups -->
+									<!-- IF groups.selected -->
+									<!-- IF groups.userTitleEnabled -->
 									<a href="{relative_path}/groups/{posts.user.groups.slug}"><span class="label group-label inline-block" style="background-color: {posts.user.groups.labelColor};"><!-- IF posts.user.groups.icon --><i class="fa {posts.user.groups.icon}"></i> <!-- ENDIF posts.user.groups.icon -->{posts.user.groups.userTitle}</span></a><br/>
+									<!-- ENDIF groups.userTitleEnabled -->
+									<!-- ENDIF groups.selected -->
 									<!-- END groups -->
 								</div>
 								<!-- ENDIF posts.user.groups.length -->
@@ -179,9 +183,9 @@
 		</li>
 
 		<!-- IF !posts.index -->
-		<li class="post-bar" data-index="{posts.index}">
+			<div class="post-bar" data-index="{posts.index}">
 			<!-- IMPORT partials/post_bar.tpl -->
-		</li>
+			</div>
 		<!-- ENDIF !posts.index -->
 		<!-- END posts -->
 	</ul>

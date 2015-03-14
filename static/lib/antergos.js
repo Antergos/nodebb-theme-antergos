@@ -22,32 +22,34 @@ function checkWidgetHeight() {
 }
 
 function fixHomeGrid() {
-	$('.parent-cat').each(function (index) {
-		var $pcat = $(this),
-			pcatId = 'pcat_' + index;
+	if ($('.categories').length) {
+		$('.parent-cat').each(function (index) {
+			var $pcat = $(this),
+				pcatId = 'pcat_' + index;
 
-		$pcat.addClass(pcatId);
+			$pcat.addClass(pcatId);
 
-		if (!$pcat.find('.child_row.row').length) {
+			if (!$pcat.find('.child_row.row').length) {
 
-			childRows = Math.ceil($pcat.children().length / 3);
-			//console.log('childRows: ' + childRows);
-			for (var i = 0, len = childRows; i < len; i++) {
-				var $ccats = $pcat.children('.category-item:lt(3)');
-				var ccatsLen = $ccats.length;
-				$ccats.each(function (index) {
-					var childRowClass = '.child_row_' + i;
-					var $childRow = $(this).siblings(childRowClass);
-					$(this).appendTo($childRow);
-					if (index == ccatsLen - 1) {
-						$childRow.addClass('row').css('display', 'block');
-					}
+				childRows = Math.ceil($pcat.children().length / 3);
+				//console.log('childRows: ' + childRows);
+				for (var i = 0, len = childRows; i < len; i++) {
+					var $ccats = $pcat.children('.category-item:lt(3)');
+					var ccatsLen = $ccats.length;
+					$ccats.each(function (index) {
+						var childRowClass = '.child_row_' + i;
+						var $childRow = $(this).siblings(childRowClass);
+						$(this).appendTo($childRow);
+						if (index == ccatsLen - 1) {
+							$childRow.addClass('row').css('display', 'block');
+						}
 
-				});
+					});
+				}
 			}
-		}
 
-	});
+		});
+	}
 }
 
 function doWaypoints() {
@@ -108,7 +110,7 @@ $('document').ready(function () {
 
 	fixHomeGrid();
 
-	if (passwdNotice !== 'True' && isLoggedIn !== 'true' && isLoggedIn !== true) {
+	if (passwdNotice !== 'True' && isLoggedIn !== 'true' && isLoggedIn !== true && $('.login').length) {
 		//noinspection JSUnusedGlobalSymbols
 		app.alert({
 			title: 'Attention Existing Users:',
@@ -143,10 +145,6 @@ $(window).load(function () {
 $(window).on('action:ajaxify.end', function (ev, data) {
 	var url = data.url,
 		tpl = data['tpl_url'];
-	reload_js('/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js');
-	setTimeout(function () {
-		doWaypoints();
-	}, 500);
 	console.log(tpl);
 	if (tpl === 'categories') {
 		fixHomeGrid();
@@ -165,6 +163,13 @@ $(window).on('action:ajaxify.end', function (ev, data) {
 	if (tpl === 'category') {
 		doSlick();
 	}
+});
+
+$(window).on('action:ajaxify.contentLoaded', function (ev, data) {
+	reload_js('/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js');
+	setTimeout(function () {
+		doWaypoints();
+	}, 300);
 });
 
 (function () {
