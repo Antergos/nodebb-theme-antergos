@@ -5,7 +5,7 @@
 
 		
 				<div id="footer-bottom">
-					<div class="et-container clearfix">
+	<div class="hide tpl-500">
 				<ul class="et-social-icons">
 
 	<li class="et-social-icon et-social-facebook">
@@ -36,7 +36,9 @@
 			</footer>
 </div>
 	<!-- IMPORT partials/modals/upload_picture_modal.tpl -->
-
+<div class="hide tpl-500">
+	<!-- IMPORT 500.tpl -->
+	</div>
 	<div class="topic-search hidden">
 		<div class="btn-group">
 			<button type="button" class="btn btn-default count"></button>

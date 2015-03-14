@@ -20,7 +20,9 @@
 	<script>
 		var RELATIVE_PATH = "{relative_path}";
 		var config = JSON.parse('{configJSON}');
-		var app = {};
+		var app = {
+			template: "{template.name}"
+		};
 		app.user = JSON.parse('{userJSON}');
 	</script>
 	<script src="{relative_path}/nodebb.min.js?{script-buster}"></script>
@@ -85,8 +87,8 @@
 		.et-container {
 			margin: 0 auto;
 			position: relative;
-			padding-left: 28px;
-			padding-right: 39px
+			padding-left: 35px;
+			padding-right: 43px
 		}
 
 		#top-menu li.current-menu-ancestor > a, #top-menu li.current-menu-item > a, .bottom-nav li.current-menu-item > a {

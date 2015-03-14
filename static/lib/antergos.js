@@ -144,7 +144,9 @@ $(window).load(function () {
 
 $(window).on('action:ajaxify.end', function (ev, data) {
 	var url = data.url,
-		tpl = data['tpl_url'];
+		tpl = app.template,
+		height = $(window).scrollTop();
+
 	console.log(tpl);
 	if (tpl === 'categories') {
 		fixHomeGrid();
@@ -163,6 +165,11 @@ $(window).on('action:ajaxify.end', function (ev, data) {
 	if (tpl === 'category') {
 		doSlick();
 	}
+	 if(height < 25) {
+	    $('#header-menu').removeClass('ant-fixed-header');
+	    $('#top-header').addClass('ant-fixed-header');
+    }
+
 });
 
 $(window).on('action:ajaxify.contentLoaded', function (ev, data) {

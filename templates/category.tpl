@@ -40,10 +40,12 @@
 			<span class="pull-right">
 				<!-- IF loggedIn -->
 				<button type="button" class="btn btn-default btn-success watch <!-- IF !isIgnored -->hidden<!-- ENDIF !isIgnored -->">
-					<i class="fa fa-eye"></i> [[topic:watch]]
+					<i class="fa fa-eye"></i>
+					<span class="visible-sm-inline visible-md-inline visible-lg-inline">[[topic:watch]]</span>
 				</button>
 				<button type="button" class="btn btn-default btn-warning ignore <!-- IF isIgnored -->hidden<!-- ENDIF isIgnored -->">
-					<i class="fa fa-eye-slash"></i> [[category:ignore]]
+					<i class="fa fa-eye-slash"></i>
+					<span class="visible-sm-inline visible-md-inline visible-lg-inline">[[category:ignore]]</span>
 				</button>
 				<!-- ENDIF loggedIn -->
 
@@ -53,7 +55,9 @@
 
 				<div class="dropdown share-dropdown inline-block">
 					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-						[[topic:share]] <span class="caret"></span>
+						<span class="visible-sm-inline visible-md-inline visible-lg-inline">[[topic:share]]</span>
+						<span class="visible-xs-inline"><i class="fa fa-fw fa-share-alt"></i></span>
+						<span class="caret"></span>
 					</button>
 
 					<!-- IMPORT partials/share_dropdown.tpl -->
@@ -90,17 +94,14 @@
 								</a>
 							</div>
 							<div class="category-text">
-								<p>
-									<strong><i class="fa fa-thumb-tack<!-- IF !topics.pinned --> hide<!-- ENDIF !topics.pinned -->"></i>
-										<i class="fa fa-lock<!-- IF !topics.locked --> hide<!-- ENDIF !topics.locked -->"></i></strong>
+								<p><strong><i class="fa fa-thumb-tack<!-- IF !topics.pinned --> hide<!-- ENDIF !topics.pinned -->"></i> <i class="fa fa-lock<!-- IF !topics.locked --> hide<!-- ENDIF !topics.locked -->"></i></strong>
 									<a href="{relative_path}/topic/{topics.slug}" itemprop="url" class="topic-title">{topics.title}</a><br/>
 									<small>
 										[[global:posted_ago, <span class="timeago" title="{topics.relativeTime}"></span>]]
 										<!-- IF !topics.unreplied -->
 									<span class="hidden-md hidden-lg">
 									<br/>
-									<a href="{relative_path}/topic/{topics.slug}/{topics.teaser.index}">[[global:replied_ago,
-										<span class="timeago" title="{topics.teaser.timestamp}"></span>]]</a>
+									<a href="{relative_path}/topic/{topics.slug}/{topics.teaser.index}">[[global:replied_ago, <span class="timeago" title="{topics.teaser.timestamp}"></span>]]</a>
 									</span>
 										<!-- ENDIF !topics.unreplied -->
 										<br/>
