@@ -7,8 +7,7 @@
 	<!-- END metaTags -->
 	<link rel="stylesheet" type="text/css" href="{relative_path}/stylesheet.css?{css-buster}"/>
 	<!-- BEGIN linkTags -->
-	<link<!-- IF linkTags.link --> link="{linkTags.link}"<!-- ENDIF linkTags.link --><!-- IF linkTags.rel --> rel="{linkTags.rel}"<!-- ENDIF linkTags.rel --><!-- IF linkTags.type --> type="{linkTags.type}"<!-- ENDIF linkTags.type --><!-- IF linkTags.href --> href="{linkTags.href}"<!-- ENDIF linkTags.href --> />
-	<!-- END linkTags -->
+	<link<!-- IF linkTags.link --> link="{linkTags.link}"<!-- ENDIF linkTags.link --><!-- IF linkTags.rel -->rel="{linkTags.rel}"<!-- ENDIF linkTags.rel --><!-- IF linkTags.type --> type="{linkTags.type}"<!-- ENDIF linkTags.type --><!-- IF linkTags.href --> href="{linkTags.href}"<!-- ENDIF linkTags.href --> /><!-- END linkTags -->
 
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js"></script>
@@ -40,16 +39,10 @@
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
 
 
+	<link rel="stylesheet" id="et-gf-raleway-css" href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900&amp;subset=latin" type="text/css" media="all">
+	<link rel="stylesheet" id="et-gf-lato-css" href="http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic&amp;subset=latin" type="text/css" media="all">
 
-	<link rel="stylesheet" id="et-gf-raleway-css"
-	      href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900&amp;subset=latin"
-	      type="text/css" media="all">
-	<link rel="stylesheet" id="et-gf-lato-css"
-	      href="http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic&amp;subset=latin"
-	      type="text/css" media="all">
-
-	<link rel="stylesheet" id="divi-style-css"
-	      href="/plugins/nodebb-theme-antergos/vendor/style.css" type="text/css" media="all">
+	<link rel="stylesheet" id="divi-style-css" href="/plugins/nodebb-theme-antergos/vendor/style.css" type="text/css" media="all">
 
 	<style>
 		a {
@@ -107,7 +100,9 @@
 	{customJS}
 	<!-- ENDIF useCustomJS -->
 	<!-- IF useCustomCSS -->
-	<style type="text/css">{customCSS}</style>
+	<style type="text/css">{
+		customCSS
+	}</style>
 	<!-- ENDIF useCustomCSS -->
 
 </head>
@@ -182,15 +177,15 @@
 					</ul>
 				</div>
 				<ul id="et-secondary-nav" class="menu">
-					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1343"><a
-							href="//antergos.com">Main</a></li>
+					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1343">
+						<a href="//antergos.com">Main</a></li>
 					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1344">
 						<a href="//antergos.com/wiki">Wiki</a>
 					</li>
-					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1345"><a
-							href="//build.antergos.com">Packages</a></li>
-					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1346"><a
-							href="//github.com/antergos">Bugs</a></li>
+					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1345">
+						<a href="//build.antergos.com">Packages</a></li>
+					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1346">
+						<a href="//github.com/antergos">Bugs</a></li>
 				</ul>
 			</div>
 			<!-- #et-secondary-menu -->
