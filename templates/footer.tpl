@@ -1,4 +1,4 @@
-</div><!--END content -->
+</div><!--END container -->
 <footer id="main-footer">
 
 
@@ -32,7 +32,7 @@
 			<a href="http://www.nodebb.org">NodeBB.</a></p>
 	</div>
 </footer>
-</div>
+</div> <!-- .wrap.container -->
 <!-- IMPORT partials/modals/upload_picture_modal.tpl -->
 <div class="hide tpl-500">
 	<!-- IMPORT 500.tpl -->
