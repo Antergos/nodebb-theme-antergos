@@ -3,33 +3,35 @@
 
 
 	<div id="footer-bottom">
-		<ul class="et-social-icons">
+		<div class="et-container clearfix">
+			<ul class="et-social-icons">
 
-			<li class="et-social-icon et-social-facebook">
-				<a href="//www.facebook.com/pages/Antergos/649575488393114" class="icon">
-					<span>Facebook</span>
-				</a>
-			</li>
-			<li class="et-social-icon et-social-twitter">
-				<a href="//www.twitter.com/antergos" class="icon">
-					<span>Twitter</span>
-				</a>
-			</li>
-			<li class="et-social-icon et-social-google-plus">
-				<a href="//plus.google.com/communities/116626481503903480477" class="icon">
-					<span>Google</span>
-				</a>
-			</li>
-			<li class="et-social-icon et-social-rss">
-				<a href="/recent.rss" class="icon">
-					<span>RSS</span>
-				</a>
-			</li>
+				<li class="et-social-icon et-social-facebook">
+					<a href="//www.facebook.com/pages/Antergos/649575488393114" class="icon">
+						<span>Facebook</span>
+					</a>
+				</li>
+				<li class="et-social-icon et-social-twitter">
+					<a href="//www.twitter.com/antergos" class="icon">
+						<span>Twitter</span>
+					</a>
+				</li>
+				<li class="et-social-icon et-social-google-plus">
+					<a href="//plus.google.com/communities/116626481503903480477" class="icon">
+						<span>Google</span>
+					</a>
+				</li>
+				<li class="et-social-icon et-social-rss">
+					<a href="/recent.rss" class="icon">
+						<span>RSS</span>
+					</a>
+				</li>
 
-		</ul>
-		<p id="footer-info">Copyright &copy; 2015
-			<a href="http://antergos.org" title="Antergos">Antergos</a> | Forum powered by
-			<a href="http://www.nodebb.org">NodeBB.</a></p>
+			</ul>
+			<p id="footer-info">Copyright &copy; 2015
+				<a href="http://antergos.org" title="Antergos">Antergos</a> | Forum powered by
+				<a href="http://www.nodebb.org">NodeBB.</a></p>
+		</div>
 	</div>
 </footer>
 </div> <!-- .wrap.container -->

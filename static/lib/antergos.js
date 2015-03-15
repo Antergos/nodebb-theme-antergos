@@ -106,6 +106,23 @@ function reload_js(src) {
         $('<script>').attr('src', src).appendTo('head');
     }
 
+function makeFooterToBottom() {
+	if (! $('.footer-size-started').length && ! $('.footer-size-ended').length) {
+		$('footer').addClass('footer-size-started');
+		var wheight = $(window).height() -12,
+			pheight = $('body').height(),
+			fheight = $('footer').height(),
+			diff;
+		if (pheight < wheight) {
+			diff = (wheight - pheight);
+			diff = (diff > fheight) ? (diff - fheight) : diff;
+			console.log('w ' + wheight + ' p ' + pheight + ' d ' + diff);
+			$('footer').css('margin-top', diff + 'px');
+		}
+		$('footer').addClass('footer-size-ended');
+	}
+}
+
 $('document').ready(function () {
 
 	fixHomeGrid();
@@ -134,6 +151,7 @@ $('document').ready(function () {
 $(window).load(function () {
 	setTimeout(function () {
 		doWaypoints();
+		makeFooterToBottom();
 	}, 500);
 	var $tpl = $('.category-page').length;
 	if ($tpl === 'category') {
@@ -176,6 +194,7 @@ $(window).on('action:ajaxify.contentLoaded', function (ev, data) {
 	reload_js('/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js');
 	setTimeout(function () {
 		doWaypoints();
+		makeFooterToBottom();
 	}, 300);
 });
 
