@@ -112,7 +112,7 @@
 				},
 				offset: function () {
 					checkWidgetHeight();
-					var tpl = 'checkWaypoints:' + app.template,
+					var tpl = 'checkWaypoints:' + app.template + ':' + $(window).width(),
 						theOffset;
 					theOffset = Number(getLS(tpl, 'wpWidgetHeight')) - 80;
 					console.log(-theOffset);
