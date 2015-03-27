@@ -26,18 +26,10 @@
 		app.user = JSON.parse('{userJSON}');
 	</script>
 	<script src="{relative_path}/nodebb.min.js?{script-buster}"></script>
-	<script>
-		require.config({
-			baseUrl: "{relative_path}/src/modules",
-			waitSeconds: 3,
-			urlArgs: "{cache-buster}",
-			paths: {
-				'forum': '../forum',
-				'vendor': '../../vendor'
-			}
-		});
-	</script>
+	<!-- IMPORT partials/requirejs-config.tpl -->
+
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
+	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.cookie.js"></script>
 
 
 	<link rel="stylesheet" id="et-gf-raleway-css" href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900&amp;subset=latin" type="text/css" media="all">
@@ -108,7 +100,7 @@
 
 <body>
 <input id="isLoggedIn" type="hidden" template-variable="loggedIn" value="{loggedIn}"/>
-<input id="currentTpl" type="hidden" template-variable="currentTpl" value="{template}"/>
+<input id="currentTpl" type="hidden" template-variable="currentTpl" value="{app.template}"/>
 
 
 <div id="wrap" class="container">

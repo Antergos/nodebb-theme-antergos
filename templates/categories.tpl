@@ -1,5 +1,5 @@
 <div class="row categories" itemscope itemtype="http://www.schema.org/ItemList">
-	<div class="col-lg-8 col-sm-12 left-side" no-widget-class="col-lg-12 col-sm-12" no-widget-target="sidebar">
+	<div class="col-lg-9 col-sm-12 left-side" no-widget-class="col-lg-12 col-sm-12" no-widget-target="sidebar">
 		<!-- BEGIN categories -->
 		<div class="row">
 			<div class="<!-- IF categories.class -->col-md-12 col-sm-12 col-xs-12<!-- ELSE -->col-md-12 col-sm-12 col-xs-12<!-- ENDIF categories.class -->" data-cid="{categories.cid}" data-numRecentReplies="{categories.numRecentReplies}">
@@ -16,10 +16,10 @@
 			</div>
 		</div>
 		<div class="row parent-cat">
-<div class="child_row child_row_0" style="display: none;"></div>
-<div class="child_row child_row_1" style="display: none;"></div>
-<div class="child_row child_row_2" style="display: none;"></div>
-<div class="child_row child_row_3" style="display: none;"></div>
+			<div class="child_row child_row_0" style="display: none;"></div>
+			<div class="child_row child_row_1" style="display: none;"></div>
+			<div class="child_row child_row_2" style="display: none;"></div>
+			<div class="child_row child_row_3" style="display: none;"></div>
 
 
 			<!-- BEGIN children -->
@@ -31,26 +31,15 @@
 					<!-- IF categories.children.link -->
 					<a style="color: {categories.children.color};" href="{categories.children.link}" itemprop="url" target="_blank">
 						<!-- ELSE -->
-						<a style="color: {categories.children.color};"
-						   href="{relative_path}/category/{categories.children.slug}" itemprop="url">
+						<a style="color: {categories.children.color};" href="{relative_path}/category/{categories.children.slug}" itemprop="url">
 							<!-- ENDIF categories.children.link -->
-							<div
-									id="category-{categories.children.cid}"
-									class="category-header category-header-image-{categories.children.imageClass}"
-									style="
+							<div id="category-{categories.children.cid}" class="category-header category-header-image-{categories.children.imageClass}" style="
 								<!-- IF categories.children.backgroundImage -->background-image: url({categories.children.backgroundImage});<!-- ENDIF categories.children.backgroundImage -->
 								<!-- IF categories.children.bgColor -->background-color: {categories.children.bgColor};<!-- ENDIF categories.children.bgColor -->
 								color: {categories.children.color};
-							"
-									>
+							">
 								<!-- IF !categories.children.link -->
-									<span class="badge {categories.children.unread-class}"><i class="fa fa-book"
-									                                                          data-toggle="tooltip"
-									                                                          title="[[global:topics]]"></i> <span
-											class="human-readable-number" title="{categories.children.topic_count}">{categories.children.topic_count}</span>&nbsp; <i
-											class="fa fa-pencil" data-toggle="tooltip"
-											title="[[global:posts]]"></i> <span class="human-readable-number"
-									                                            title="{categories.children.post_count}">{categories.children.post_count}</span></span>
+									<span class="badge {categories.children.unread-class}"><i class="fa fa-book" data-toggle="tooltip" title="[[global:topics]]"></i> <span class="human-readable-number" title="{categories.children.topic_count}">{categories.children.topic_count}</span>&nbsp; <i class="fa fa-pencil" data-toggle="tooltip" title="[[global:posts]]"></i> <span class="human-readable-number" title="{categories.children.post_count}">{categories.children.post_count}</span></span>
 								<!-- ENDIF !categories.children.link -->
 
 								<!-- IF categories.children.icon -->
@@ -66,9 +55,8 @@
 									<!-- ELSE -->
 									<a href="{relative_path}/category/{categories.children.slug}" itemprop="url">
 										<!-- ENDIF categories.children.link-->
-										<h4><!-- IF categories.children.icon --><i
-												class="fa {categories.children.icon} visible-xs-inline"></i>
-										    <!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
+										<h4><!-- IF categories.children.icon --><i class="fa {categories.children.icon} visible-xs-inline"></i>
+											<!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
 									</a>
 
 									<div class="description" itemprop="description">
@@ -81,11 +69,8 @@
 								<div class="post-preview-content">
 									<strong><a href="{relative_path}/topic/{categories.children.posts.topic.slug}">{categories.children.posts.topic.title}</a></strong>
 									<hr/>
-									<a style="color: {categories.children.color};"
-									   href="<!-- IF categories.children.posts.user.userslug -->{relative_path}/user/{categories.children.posts.user.userslug}<!-- ELSE -->#<!-- ENDIF categories.children.posts.user.userslug-->">
-										<img src="{categories.children.posts.user.picture}"
-										     title="{categories.children.posts.user.username}"
-										     class="pull-left user-img"/>
+									<a style="color: {categories.children.color};" href="<!-- IF categories.children.posts.user.userslug -->{relative_path}/user/{categories.children.posts.user.userslug}<!-- ELSE -->#<!-- ENDIF categories.children.posts.user.userslug-->">
+										<img src="{categories.children.posts.user.picture}" title="{categories.children.posts.user.username}" class="pull-left user-img"/>
 									</a>
 
 									<div class="content">
@@ -110,5 +95,5 @@
 
 		<!-- END categories -->
 	</div>
-	<div widget-area="sidebar" class="col-lg-3 col-lg-offset-1 col-sm-12 hm-sidebar sidebar"></div>
+	<div widget-area="sidebar" class="col-lg-3 col-sm-12 hm-sidebar sidebar"></div>
 </div>

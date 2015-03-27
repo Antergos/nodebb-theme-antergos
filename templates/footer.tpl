@@ -35,10 +35,12 @@
 	</div>
 </footer>
 </div> <!-- .wrap.container -->
-<!-- IMPORT partials/modals/upload_picture_modal.tpl -->
 <div class="hide tpl-500">
 	<!-- IMPORT 500.tpl -->
 </div>
+	<!-- IMPORT partials/modals/upload_picture_modal.tpl -->
+
+
 <div class="topic-search hidden">
 	<div class="btn-group">
 		<button type="button" class="btn btn-default count"></button>
