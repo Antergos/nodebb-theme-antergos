@@ -30,7 +30,7 @@
 		</div>
 		<div class="header category-tools clearfix">
 			<!-- IF privileges.topics:create -->
-			<button id="new_post" class="btn btn-primary">[[category:new_topic_button]]</button>
+			<button id="new_topic" class="btn btn-primary">[[category:new_topic_button]]</button>
 			<!-- ELSE -->
 			<!-- IF !loggedIn -->
 			<a href="/login?next=category/{slug}" class="btn btn-primary">[[category:guest-login-post]]</a>
@@ -41,7 +41,7 @@
 				<!-- IF loggedIn -->
 				<button type="button" class="btn btn-default btn-success watch <!-- IF !isIgnored -->hidden<!-- ENDIF !isIgnored -->">
 					<i class="fa fa-eye"></i>
-					<span class="visible-sm-inline visible-md-inline visible-lg-inline">[[topic:watch]]</span>
+					<span class="visible-sm-inline visible-md-inline visible-lg-inline">[[category:watch]]</span>
 				</button>
 				<button type="button" class="btn btn-default btn-warning ignore <!-- IF isIgnored -->hidden<!-- ENDIF isIgnored -->">
 					<i class="fa fa-eye-slash"></i>
