@@ -6,7 +6,7 @@
 			$secLast,
 			$lastWidget,
 			lastWidgetHeight,
-			passwdNotice = localStorage.getItem('passwdNotice'),
+			avatarNotice = localStorage.getItem('avatarNotice'),
 			isLoggedIn = $('#isLoggedIn').val(),
 			allWidgets,
 			enoughWidgets,
@@ -26,18 +26,19 @@
 		}
 
 		function checkWidgetHeight() {
-			var template = 'checkWaypoints:' + app.template + ':' + $(window).width(),
-				checkedWidgets = $.cookie(template);
+			var template = 'checkWaypoints_' + app.template + '_' + $(window).width(),
+				checkedWidgets = $.cookie(template),
+				$visible = $('.sidebar .panel').filter(':visible').not('.panel-footer');
 			if (!checkedWidgets) {
-				$wpWidget = $('.sidebar .panel:nth-last-child(3)').not('.panel-footer');
+				$wpWidget = $visible.eq(-3);
 				setLocalStorage(template, 'wpWidgetHeight', $wpWidget.height());
 				setLocalStorage(template, 'wpWidgetWidth', $wpWidget.width() + 'px');
-				$secLast = $('.sidebar .panel:nth-last-child(2)').not('.panel-footer');
+				$secLast = $visible.eq(-2);
 				setLocalStorage(template, 'secLastHeight', $secLast.height() + 100 + 'px');
-				$lastWidget = $('.sidebar .panel:last-child').not('.panel-footer');
+				$lastWidget = $visible.eq(-1);
 				setLocalStorage(template, 'lastWidgetHeight', $lastWidget.height());
-				allWidgets = $('[widget-area="sidebar"]').children().length;
-				enoughWidgets = ((allWidgets >= 3) && ($secLast.height() + $lastWidget.height()) < $(window).height()) ? 'true' : 'false';
+				allWidgets = $visible.length;
+				enoughWidgets = ((allWidgets >= 3) && (($secLast.height() + $lastWidget.height()) < $(window).height())) ? 'true' : 'false';
 				setLocalStorage(template, 'enoughWidgets', enoughWidgets);
 				$.cookie(template, true, {expires: 1, path: '/'});
 
@@ -77,6 +78,7 @@
 		}
 
 		function doWaypoints() {
+			$('[widget-area="sidebar"]').addClass('sidebar');
 			$('[widget-area="sidebar"]').waypoint({
 				handler: function (direction) {
 					if (direction === "down") {
@@ -88,35 +90,37 @@
 					}
 				}
 			});
-			$('.panel:nth-last-child(3)').waypoint({
+			var $visible = $('.sidebar .panel').filter(':visible').not('.panel-footer'),
+				$wp = $visible.eq(-3);
+			$wp.waypoint({
 				handler: function (direction) {
 					checkWidgetHeight();
-					var tpl = 'checkWaypoints:' + app.template + ':' + $(window).width();
+					var tpl = 'checkWaypoints_' + app.template + '_' + $(window).width();
 					if (getLS(tpl, 'enoughWidgets') === 'true') {
 						if (direction === "down") {
 							//console.log('waypoint fired down - 2last');
-							$('.panel:nth-last-child(2)').not('.panel-footer').css({
+							$visible.eq(-2).css({
 								'top': '80px',
 								'width': getLS(tpl, 'wpWidgetWidth')
 							}).addClass('fixed');
-							$('.panel:nth-last-child(1)').not('.panel-footer').css({
+							$visible.eq(-1).css({
 								'top': getLS(tpl, 'secLastHeight'),
 								'width': getLS(tpl, 'wpWidgetWidth')
 							}).addClass('fixed');
 						} else {
 							//console.log('waypoint fired up - 2last');
-							$('.panel:nth-last-child(1)').removeClass('fixed').css('top', 'inherit');
-							$('.panel:nth-last-child(2)').removeClass('fixed').css('top', 'inherit');
+							$visible.eq(-1).removeClass('fixed').css('top', 'inherit');
+							$visible.eq(-2).removeClass('fixed').css('top', 'inherit');
 						}
 					}
 				},
 				offset: function () {
 					checkWidgetHeight();
-					var tpl = 'checkWaypoints:' + app.template + ':' + $(window).width(),
+					var tpl = 'checkWaypoints_' + app.template + '_' + $(window).width(),
 						theOffset;
-					theOffset = Number(getLS(tpl, 'wpWidgetHeight')) - 80;
-					console.log(-theOffset);
-					return -theOffset;
+					theOffset = Number(getLS(tpl, 'wpWidgetHeight')) > 80 ? Number(getLS(tpl, 'wpWidgetHeight')) - 80 : 80;
+					//console.log(-theOffset);
+					return theOffset > 0 ? -theOffset : theOffset;
 				}
 			});
 		}
@@ -168,9 +172,24 @@
 			}
 		}
 
+		function fix_breadcrumbs() {
+			if (!$('.bcrumb').length || $('bcfixed').length) return;
+			var titles = ["About Antergos", "Technical Issues and Assistance", "Contributions & Discussion",
+				"Antergos in other languages"];
+			$('.bcrumb').each(function () {
+				var theTitle = $(this).attr('title');
+				if ($.inArray(theTitle, titles) > -1) {
+					theTitle = theTitle.split(' ').join('_');
+					$(this).find('a').attr('href', '/#' + theTitle);
+				}
+				$(this).addClass('bcfixed');
+			});
+
+		}
+
 		fixHomeGrid();
 
-		/*if (passwdNotice !== 'True' && isLoggedIn !== 'true' && isLoggedIn !== true && $('.login').length) {
+		/*if (avatarNotice !== 'True' && isLoggedIn === 'true' {
 		 //noinspection JSUnusedGlobalSymbols
 		 app.alert({
 		 title: 'Attention Existing Users:',
@@ -196,6 +215,7 @@
 				doSlick();
 			}
 			makeFooterToBottom();
+			fix_breadcrumbs();
 		});
 
 		$(window).on('action:ajaxify.start', function (ev, data) {
@@ -212,10 +232,26 @@
 				fixHomeGrid();
 			}
 
+
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 				if ($('.categories').length) {
 					$('.category-header .badge i').tooltip();
+					var hash = window.location.hash;
+					hash = hash.replace(' ', '_');
+					if (hash.length) {
+						$('.category-group').each(function () {
+							var theId = $(this).attr('id'),
+								theNewId = theId.split(' ').join('_');
+							$(this).attr('id', theNewId);
+						});
+						var $elem = $(hash);
+						$('html, body').animate({
+							scrollTop: $elem.offset().top - 80
+						}, 1200);
+						window.location.hash = '';
+					}
 				}
+				fix_breadcrumbs();
 			}
 			if (tpl !== 'categories' && tpl !== 'category') {
 				$('.etban-topic').css('display', 'block');
@@ -224,8 +260,15 @@
 			}
 			if (tpl === 'topic' || tpl === 'category' || tpl === 'chats') {
 				$('.active-users').css('display', 'block');
+				$('.thread_active_users.active-users.inline-block').css('display', 'inline-block');
 			} else {
 				$('.active-users').css('display', 'none');
+			}
+			if (tpl === 'topic') {
+				$('#bloom-ban').css('display', 'none');
+			}
+			if (tpl === 'unread' || tpl === 'popular' || tpl === 'recent' || tpl === 'groups' || tpl === 'users' || tpl === 'tags') {
+				$('#welcome').css('display', 'block');
 			}
 			if (tpl === 'category') {
 				doSlick();
@@ -246,31 +289,31 @@
 			}, 500);
 		});
 
-		(function () {
-			// loading animation
-			var refreshTitle = app.refreshTitle;
+		var loadingBar = $('.loading-bar');
 
 			$(window).on('action:ajaxify.start', function (data) {
-				$('.loading-bar').fadeIn(200).removeClass('reset');
+			loadingBar.fadeIn(0).removeClass('reset');
 			});
 
 			$(window).on('action:ajaxify.loadingTemplates', function () {
-				$('.loading-bar').css('width', '90%');
+			loadingBar.css('width', '90%');
 			});
 
-			app.refreshTitle = function (url) {
-				$('.loading-bar').css('width', '100%');
+		$(window).on('action:ajaxify.contentLoaded', function () {
+			loadingBar.css('width', '100%');
 				setTimeout(function () {
-					$('.loading-bar').fadeOut(250);
+				loadingBar.fadeOut(250);
 
 					setTimeout(function () {
-						$('.loading-bar').addClass('reset').css('width', '0%');
+					loadingBar.addClass('reset').css('width', '0%');
 					}, 250);
-
 				}, 750);
+		});
 
-				return refreshTitle(url);
-			};
-		}());
+		$(window).on('action:ajaxify.start', function () {
+			if ($('.navbar .navbar-collapse').hasClass('in')) {
+				$('.navbar-header button').click();
+			}
+		});
 	});
 })(jQuery);
