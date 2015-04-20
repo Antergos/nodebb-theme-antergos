@@ -62,7 +62,7 @@
 
 							<div class="description" itemprop="description">{categories.children.description}</div>
 
-						<!-- IF !categories.link -->
+						<!-- IF !categories.children.link -->
 							<!-- BEGIN posts -->
 						<div component="category/posts" class="post-preview clearfix">
 									<strong><a href="{relative_path}/topic/{categories.children.posts.topic.slug}">{categories.children.posts.topic.title}</a></strong>
