@@ -1,5 +1,4 @@
-<div class="<!-- IF children.class -->col-md-3 col-sm-6 col-xs-12 child-cat<!-- ELSE -->col-md-3 col-sm-6 col-xs-12<!-- ENDIF children.class --> category-item"
-     data-cid="{children.cid}" data-numRecentReplies="{children.numRecentReplies}">
+			<div class="<!-- IF children.class -->{children.class}<!-- ELSE -->col-md-3 col-sm-6 col-xs-12<!-- ENDIF children.class --> category-item" data-cid="{children.cid}" data-numRecentReplies="{children.numRecentReplies}">
     <meta itemprop="name" content="{children.name}">
 
     <div class="category-icon">
