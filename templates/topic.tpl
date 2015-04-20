@@ -72,7 +72,7 @@
 
 									<span component="post/editor" class="<!-- IF !posts.editor.username --> hidden<!-- ENDIF !posts.editor.username -->">, [[global:last_edited_by_ago, <strong><a href="{relative_path}/user/{posts.editor.userslug}">{posts.editor.username}</a></strong>, <span class="timeago" title="{posts.relativeEditTime}"></span>]]</span>
 
-							</small>
+								</small>
 
 								<div class="dropdown moderator-tools" component="post/tools">
 									<a href="#" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i></a>
