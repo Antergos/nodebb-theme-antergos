@@ -59,8 +59,9 @@
 										<h4><!-- IF categories.children.icon --><i class="fa {categories.children.icon} visible-xs-inline"></i>
 											<!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
 									</a>
+
 							<div class="description" itemprop="description">{categories.children.description}</div>
-									</div>
+
 						<!-- IF !categories.link -->
 							<!-- BEGIN posts -->
 						<div component="category/posts" class="post-preview clearfix">
