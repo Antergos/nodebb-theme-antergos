@@ -1,6 +1,8 @@
 <div class="topic">
 	<!-- IMPORT partials/breadcrumbs.tpl -->
 
+	<div component="topic/deleted/message" class="alert alert-warning<!-- IF !deleted --> hidden<!-- ENDIF !deleted -->">[[topic:deleted_message]]</div>
+
 	<ul component="topic" id="post-container" class="posts" data-tid="{tid}">
 		<!-- BEGIN posts -->
 			<li component="post" class="post-row <!-- IF posts.deleted -->deleted<!-- ENDIF posts.deleted -->" <!-- IMPORT partials/data/topic.tpl -->>
@@ -38,7 +40,7 @@
 							<div class="topic-text">
 								<!-- IF @first -->
 								<h3 class="topic-title">
-										<p component="post/header" class="topic-title" itemprop="name"><i class="fa fa-thumb-tack hide"></i> <i class="fa fa-lock hide"></i> {title}</p>
+										<p component="post/header" class="topic-title" itemprop="name"><i class="fa fa-thumb-tack <!-- IF !pinned -->hidden<!-- ENDIF !pinned -->"></i> <i class="fa fa-lock <!-- IF !locked -->hidden<!-- ENDIF !locked -->"></i> <span component="topic/title">{title}</span></p>
 									<hr>
 								</h3>
 								<!-- ENDIF @first -->
@@ -56,9 +58,9 @@
 							<small class="pull-right">
 									<span>
 										<!-- IF posts.user.userslug -->
-										<i class="fa fa-circle status {posts.user.status}" title='[[global:{posts.user.status}]]'></i>
+										<i component="user/status" class="fa fa-circle status {posts.user.status}" title='[[global:{posts.user.status}]]'></i>
 										<!-- ENDIF posts.user.userslug -->
-										<span class="username-field" data-username="{posts.user.username}" data-uid="{posts.user.uid}">
+										<span data-username="{posts.user.username}" data-uid="{posts.user.uid}">
 											<!-- IF posts.user.userslug -->
 											[[global:user_posted_ago, <strong><a href="{relative_path}/user/{posts.user.userslug}" itemprop="author">{posts.user.username}</a></strong>, <span class="timeago" title="{posts.relativeTime}"></span>]]
 											<!-- ELSE -->
@@ -72,57 +74,21 @@
 								<!-- ENDIF posts.editor.username -->
 							</small>
 
-							<div class="dropdown share-dropdown">
-									<a href="#" class="dropdown-toggle postMenu favourite-tooltip" id="postMenu_{posts.pid}" data-toggle="dropdown">
-									<i class="fa fa-heart"></i>
-								</a>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="postMenu_{posts.pid}">
-									<li role="presentation">
-										<!-- IF !posts.index -->
-										<!-- IF isFollowing -->
-											<a component="topic/follow" href="#" role="menuitem" tabindex="-1" class="follow" title="[[topic:unwatch.title]]"><span>[[topic:unwatch]]</span> <i class="fa fa-eye-slash"></i></a>
-										<!-- ELSE -->
-											<a component="topic/follow" href="#" role="menuitem" tabindex="-1" class="follow" title="[[topic:watch.title]]"><span>[[topic:watch]]</span> <i class="fa fa-eye"></i></a>
-										<!-- ENDIF isFollowing -->
-										<!-- ENDIF !posts.index -->
-									</li>
-									<li role="presentation">
-											<a component="post/favourite" role="menuitem" tabindex="-1" data-favourited="{posts.favourited}" class="favourite">
-											<span class="favourite-text">[[topic:favourite]]</span>
-												<span component="post/favourite-count" class="favouriteCount" data-favourites="{posts.reputation}">{posts.reputation}</span>&nbsp;
-											<!-- IF posts.favourited -->
-											<i class="fa fa-heart"></i>
-											<!-- ELSE -->
-											<i class="fa fa-heart-o"></i>
-											<!-- ENDIF posts.favourited -->
-										</a>
-									</li>
-									<!-- IF !config.disableSocialButtons -->
-									<li role="presentation" class="divider"></li>
-									<li role="presentation" class="dropdown-header">[[topic:share_this_post]]</li>
-									<li role="presentation">
-											<a role="menuitem" class="facebook-share" tabindex="-1" href="#"><span class="menu-icon"><i class="fa fa-facebook"></i></span> Facebook</a>
-									</li>
-									<li role="presentation">
-											<a role="menuitem" class="twitter-share" tabindex="-1" href="#"><span class="menu-icon"><i class="fa fa-twitter"></i></span> Twitter</a>
-									</li>
-									<li role="presentation">
-											<a role="menuitem" class="google-share" tabindex="-1" href="#"><span class="menu-icon"><i class="fa fa-google-plus"></i></span> Google+</a>
-									</li>
-									<!-- ENDIF !config.disableSocialButtons -->
-									<li class="text-center">
-											<input type="text" id="post_{posts.pid}_link" value="" class="form-control post-link inline-block"></input>
-									</li>
+								<div class="dropdown moderator-tools" component="post/tools">
+									<a href="#" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i></a>
+									<ul class="dropdown-menu" role="menu">
+										<!-- IMPORT partials/topic/post-menu.tpl -->
 								</ul>
 							</div>
+
 							<!-- IF !reputation:disabled -->
 							&bull;
-								<a component="post/upvote" href="#" class="upvote <!-- IF posts.upvoted --> upvoted btn-primary <!-- ENDIF posts.upvoted -->">
+								<a component="post/upvote" href="#" class="upvote<!-- IF posts.upvoted --> upvoted<!-- ENDIF posts.upvoted -->">
 								<i class="fa fa-chevron-up"></i>
 							</a>
 								<span component="post/vote-count" class="votes" data-votes="{posts.votes}">{posts.votes}</span>
 							<!-- IF !downvote:disabled -->
-								<a component="post/downvote" href="#" class="downvote <!-- IF posts.downvoted --> downvoted btn-primary <!-- ENDIF posts.downvoted -->">
+								<a component="post/downvote" href="#" class="downvote<!-- IF posts.downvoted --> downvoted<!-- ENDIF posts.downvoted -->">
 								<i class="fa fa-chevron-down"></i>
 							</a>
 							<!-- ENDIF !downvote:disabled -->
@@ -143,23 +109,9 @@
 									<!-- ENDIF loggedIn -->
 									<!-- ENDIF posts.user.userslug -->
 									<!-- ENDIF !posts.selfPost -->
-									<!-- IF privileges.topics:reply -->
-									<button component="post/quote" class="btn btn-sm btn-link quote" type="button" title="[[topic:quote]]"><i class="fa fa-quote-left"></i><span class="hidden-xs-inline"> [[topic:quote]]</span></button>
-									<button component="post/reply" class="btn btn-sm btn-link post_reply" type="button"><i class="fa fa-reply"></i><span class="hidden-xs-inline"> [[topic:reply]]</span></button>
-									<!-- ENDIF privileges.topics:reply -->
-									<!-- IF !posts.selfPost -->
-									<!-- IF loggedIn -->
-									<button component="post/flag" class="btn btn-sm btn-link flag" type="button" title="[[topic:flag_title]]"><i class="fa fa-flag-o"></i><span class="hidden-xs-inline"> [[topic:flag]]</span></button>
-									<!-- ENDIF loggedIn -->
-									<!-- ENDIF !posts.selfPost -->
-									<!-- IF posts.display_moderator_tools -->
-										<button component="post/edit" class="btn btn-sm btn-link edit" type="button" title="[[topic:edit]]"><i class="fa fa-pencil"></i><span class="hidden-xs-inline"> [[topic:edit]]</span></button>
-										<button component="post/delete" class="btn btn-sm btn-link delete" type="button" title="[[topic:delete]]"><i class="fa fa-trash-o"></i><span class="hidden-xs-inline"> [[topic:delete]]</span></button>
-										<button component="post/purge" class="btn btn-sm btn-link purge <!-- IF !posts.deleted -->hidden<!-- ENDIF !posts.deleted -->" type="button" title="[[topic:purge]]"><i class="fa fa-eraser"></i><span class="hidden-xs-inline"> [[topic:purge]]</span></button>
-										<!-- IF posts.display_move_tools -->
-											<button component="post/move" class="btn btn-sm btn-link move" type="button" title="[[topic:move]]"><i class="fa fa-arrows"></i><span class="hidden-xs-inline"> [[topic:move]]</span></button>
-										<!-- ENDIF posts.display_move_tools -->
-									<!-- ENDIF posts.display_moderator_tools -->
+
+									<button component="post/quote" class="btn btn-sm btn-link <!-- IF !privileges.topics:reply -->hidden<!--ENDIF !privileges.topics:reply -->" type="button" title="[[topic:quote]]"><i class="fa fa-quote-left"></i><span class="hidden-xs-inline"> [[topic:quote]]</span></button>
+									<button component="post/reply" class="btn btn-sm btn-link <!-- IF !privileges.topics:reply -->hidden<!--ENDIF !privileges.topics:reply -->" type="button"><i class="fa fa-reply"></i><span class="hidden-xs-inline"> [[topic:reply]]</span></button>
 								</span>
 						</div>
 					</div>
@@ -175,7 +127,7 @@
 		<!-- END posts -->
 	</ul>
 
-	<div class="post-bar col-xs-12 <!-- IF unreplied -->hide<!-- ENDIF unreplied --> bottom-post-bar">
+	<div class="post-bar col-xs-12 <!-- IF unreplied -->hidden<!-- ENDIF unreplied --> bottom-post-bar">
 		<!-- IMPORT partials/post_bar.tpl -->
 	</div>
 

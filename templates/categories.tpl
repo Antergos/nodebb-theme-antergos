@@ -23,7 +23,7 @@
 
 
 			<!-- BEGIN children -->
-			<div class="<!-- IF categories.children.class -->col-md-4 col-sm-6 col-xs-12<!-- ELSE -->col-md-4 col-sm-6 col-xs-12<!-- ENDIF categories.children.class --> category-item" data-cid="{categories.children.cid}" data-numRecentReplies="{categories.children.numRecentReplies}">
+			<div component="categories/category" class="<!-- IF categories.children.class -->col-md-4 col-sm-6 col-xs-12<!-- ELSE -->col-md-4 col-sm-6 col-xs-12<!-- ENDIF categories.children.class --> category-item" data-cid="{categories.children.cid}" data-numRecentReplies="{categories.children.numRecentReplies}">
 				<meta itemprop="name" content="{categories.children.name}">
 
 				<div class="category-icon">
@@ -58,20 +58,17 @@
 										<h4><!-- IF categories.children.icon --><i class="fa {categories.children.icon} visible-xs-inline"></i>
 											<!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
 									</a>
-
-									<div class="description" itemprop="description">
-										{categories.children.description}
+							<div class="description" itemprop="description">{categories.children.description}</div>
 									</div>
-							</div>
-							<!-- IF !categories.children.link -->
+						<!-- IF !categories.link -->
 							<!-- BEGIN posts -->
-							<div class="post-preview clearfix">
-								<div class="post-preview-content">
+						<div component="category/posts" class="post-preview clearfix">
 									<strong><a href="{relative_path}/topic/{categories.children.posts.topic.slug}">{categories.children.posts.topic.title}</a></strong>
 									<hr/>
 									<a style="color: {categories.children.color};" href="<!-- IF categories.children.posts.user.userslug -->{relative_path}/user/{categories.children.posts.user.userslug}<!-- ELSE -->#<!-- ENDIF categories.children.posts.user.userslug-->">
 										<img src="{categories.children.posts.user.picture}" title="{categories.children.posts.user.username}" class="pull-left user-img"/>
 									</a>
+							<div class="post-preview-content">
 
 									<div class="content">
 										{categories.children.posts.content}
