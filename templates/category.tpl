@@ -28,6 +28,7 @@
 			<!-- IMPORT partials/category_child.tpl -->
 			<!-- END children -->
 		</div>
+
 		<div class="header category-tools clearfix">
 			<!-- IF privileges.topics:create -->
 			<button id="new_topic" class="btn btn-primary">[[category:new_topic_button]]</button>

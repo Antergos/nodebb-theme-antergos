@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
 	$(document).ready(function () {
 		var secLastHeight,
 			$wpWidget,
@@ -173,9 +173,10 @@
 		}
 
 		function fix_breadcrumbs() {
-			if (!$('.bcrumb').length || $('bcfixed').length) return;
+			if (!$('.bcrumb').length || $('.bcfixed').length) return;
 			var titles = ["About Antergos", "Technical Issues and Assistance", "Contributions & Discussion",
-				"Antergos in other languages"];
+					"Antergos in other languages"],
+				catName = ajaxify.variables.get('pageCount');
 			$('.bcrumb').each(function () {
 				var theTitle = $(this).attr('title');
 				if ($.inArray(theTitle, titles) > -1) {
@@ -184,6 +185,51 @@
 				}
 				$(this).addClass('bcfixed');
 			});
+			if ($.inArray(catName, titles) > -1) {
+				$('#new_topic').on('click', function () {
+					setTimeout(function () {
+						var qAndA = $('.composer .dropdown-menu .fa-question-circle').parent();
+						qAndA.trigger('click');
+					}, 750);
+				});
+			}
+
+		}
+
+		function fixQandA() {
+			$('[component="topic/reply"]').on('click', function () {
+				setTimeout(function () {
+					var qAndA = $('.composer .dropdown-menu .fa-question-circle').parents('li');
+					qAndA.hide();
+				}, 750);
+			});
+			if (!$('.category-page').length || $('.qafixed').length) return;
+			$('.category-page').addClass('qafixed');
+			var titles = ["Installation", "Newbie Corner", "Applications & Desktop Environments",
+					"Multimedia and Games", "Kernel & Hardware", "Pacman & Package Upgrade Issues", "GNOME", "KDE",
+					"Cinnamon", "Xfce", "LXQT", "MATE", "Openbox"],
+				catName = ajaxify.variables.get('category_name');
+			if ($.inArray(catName, titles) > -1) {
+				//$('#new_topic').on('click', function () {
+				$(window).on('action:composer.loaded', function(err, data) {
+					setTimeout(function () {
+						var qAndA = $('.composer .dropdown-menu .fa-question-circle').parent(),
+							qAndAIcon = qAndA.children('i').clone();
+							qAndALabel = qAndA.text().replace('Ask as Question', 'Submit Question');
+						qAndA.text(qAndALabel);
+						qAndAIcon.prependTo(qAndA);
+						qAndA.trigger('click');
+					}, 750);
+				});
+			} else {
+				//$('#new_topic').on('click', function () {
+				$(window).on('action:composer.loaded', function(err, data) {
+					setTimeout(function () {
+						var qAndA = $('.composer .dropdown-menu .fa-question-circle').parents('li');
+						qAndA.hide();
+					}, 750);
+				});
+			}
 
 		}
 
@@ -216,11 +262,13 @@
 			}
 			makeFooterToBottom();
 			fix_breadcrumbs();
+			fixQandA()
 		});
 
 		$(window).on('action:ajaxify.start', function (ev, data) {
 			$('footer').hide();
 		});
+
 
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			var url = data.url,
@@ -252,30 +300,32 @@
 					}
 				}
 				fix_breadcrumbs();
-			}
-			if (tpl !== 'categories' && tpl !== 'category') {
-				$('.etban-topic').css('display', 'block');
-			} else {
-				$('.etban-topic').css('display', 'none');
-			}
-			if (tpl === 'topic' || tpl === 'category' || tpl === 'chats') {
-				$('.active-users').css('display', 'block');
-				$('.thread_active_users.active-users.inline-block').css('display', 'inline-block');
-			} else {
-				$('.active-users').css('display', 'none');
-			}
-			if (tpl === 'topic') {
-				$('#bloom-ban').css('display', 'none');
-			}
-			if (tpl === 'unread' || tpl === 'popular' || tpl === 'recent' || tpl === 'groups' || tpl === 'users' || tpl === 'tags') {
-				$('#welcome').css('display', 'block');
-			}
-			if (tpl === 'category') {
-				doSlick();
-			}
-			if (height < 25) {
-				$('#header-menu').removeClass('ant-fixed-header');
-				$('#top-header').addClass('ant-fixed-header');
+
+				if (tpl !== 'categories' && tpl !== 'category') {
+					$('.etban-topic').css('display', 'block');
+				} else {
+					$('.etban-topic').css('display', 'none');
+				}
+				if (tpl === 'topic' || tpl === 'category' || tpl === 'chats') {
+					$('.active-users').css('display', 'block');
+					$('.thread_active_users.active-users.inline-block').css('display', 'inline-block');
+				} else {
+					$('.active-users').css('display', 'none');
+				}
+				if (tpl === 'topic') {
+					$('#bloom-ban').css('display', 'none');
+				}
+				if (tpl === 'unread' || tpl === 'popular' || tpl === 'recent' || tpl === 'groups' || tpl === 'users' || tpl === 'tags') {
+					$('#welcome').css('display', 'block');
+				}
+				if (tpl === 'category') {
+					doSlick();
+					fixQandA();
+				}
+				if (height < 25) {
+					$('#header-menu').removeClass('ant-fixed-header');
+					$('#top-header').addClass('ant-fixed-header');
+				}
 			}
 
 		});
@@ -291,23 +341,23 @@
 
 		var loadingBar = $('.loading-bar');
 
-			$(window).on('action:ajaxify.start', function (data) {
+		$(window).on('action:ajaxify.start', function (data) {
 			loadingBar.fadeIn(0).removeClass('reset');
-			});
+		});
 
-			$(window).on('action:ajaxify.loadingTemplates', function () {
+		$(window).on('action:ajaxify.loadingTemplates', function () {
 			loadingBar.css('width', '90%');
-			});
+		});
 
 		$(window).on('action:ajaxify.contentLoaded', function () {
 			loadingBar.css('width', '100%');
-				setTimeout(function () {
+			setTimeout(function () {
 				loadingBar.fadeOut(250);
 
-					setTimeout(function () {
+				setTimeout(function () {
 					loadingBar.addClass('reset').css('width', '0%');
-					}, 250);
-				}, 750);
+				}, 250);
+			}, 750);
 		});
 
 		$(window).on('action:ajaxify.start', function () {
