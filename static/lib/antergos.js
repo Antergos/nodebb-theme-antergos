@@ -203,7 +203,7 @@
 					qAndA.hide();
 				}, 750);
 			});
-			if (!$('.category-page').length || $('.qafixed').length) return;
+			if ($('.qafixed').length) return;
 			$('.category-page').addClass('qafixed');
 			var titles = ["Installation", "Newbie Corner", "Applications & Desktop Environments",
 					"Multimedia and Games", "Kernel & Hardware", "Pacman & Package Upgrade Issues", "GNOME", "KDE",
@@ -257,12 +257,12 @@
 
 		$(window).load(function () {
 			var $tpl = $('.category-page').length;
-			if ($tpl === 'category') {
+			if ($tpl) {
 				doSlick();
 			}
 			makeFooterToBottom();
 			fix_breadcrumbs();
-			fixQandA()
+			fixQandA();
 		});
 
 		$(window).on('action:ajaxify.start', function (ev, data) {
