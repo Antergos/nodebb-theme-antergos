@@ -18,7 +18,7 @@
 	<![endif]-->
 
 	<script>
-		var RELATIVE_PATH = "{relative_path}";
+		var RELATIVE_PATH = "{config.relative_path}";
 		var config = JSON.parse('{{configJSON}}');
 		var app = {
 			template: "{template.name}",
@@ -187,11 +187,6 @@
 	<!-- this detects when the masthead should fix -->
 	<div id="header-menu-detector"></div>
 
-	<!-- Here's their old navbar -->
-	<!--
-<div class="navbar navbar-default navbar-fixed-top header" role="navigation" id="header-menu">
-	-->
-	<!-- Here's Po's new navbar styling -->
 	<div class="navbar navbar-inverse navbar-fixed-top header" role="navigation" id="header-menu">
 		<div class="container">
 			<!-- IMPORT partials/menu.tpl -->

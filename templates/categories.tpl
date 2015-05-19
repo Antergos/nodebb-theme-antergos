@@ -32,7 +32,7 @@
 					<!-- IF categories.children.link -->
 					<a style="color: {categories.children.color};" href="{categories.children.link}" itemprop="url" target="_blank">
 						<!-- ELSE -->
-						<a style="color: {categories.children.color};" href="{relative_path}/category/{categories.children.slug}" itemprop="url">
+						<a style="color: {categories.children.color};" href="{config.relative_path}/category/{categories.children.slug}" itemprop="url">
 							<!-- ENDIF categories.children.link -->
 							<div id="category-{categories.children.cid}" class="category-header category-header-image-{categories.children.imageClass}" style="
 								<!-- IF categories.children.backgroundImage -->background-image: url({categories.children.backgroundImage});<!-- ENDIF categories.children.backgroundImage -->
@@ -40,7 +40,7 @@
 								color: {categories.children.color};
 							">
 								<!-- IF !categories.children.link -->
-									<span class="badge {categories.children.unread-class}"><i class="fa fa-book" data-toggle="tooltip" title="[[global:topics]]"></i> <span class="human-readable-number" title="{categories.children.topic_count}">{categories.children.topic_count}</span>&nbsp; <i class="fa fa-pencil" data-toggle="tooltip" title="[[global:posts]]"></i> <span class="human-readable-number" title="{categories.children.post_count}">{categories.children.post_count}</span></span>
+									<span class="badge {categories.children.unread-class}"><i class="fa fa-book" data-toggle="tooltip" title="[[global:topics]]"></i> <span class="human-readable-number" title="{categories.children.totalTopicCount}">{categories.children.totalTopicCount}</span>&nbsp; <i class="fa fa-pencil" data-toggle="tooltip" title="[[global:posts]]"></i> <span class="human-readable-number" title="{categories.children.totalPostCount}">{categories.children.totalPostCount}</span></span>
 								<!-- ENDIF !categories.children.link -->
 
 								<!-- IF categories.children.icon -->
@@ -54,7 +54,7 @@
 								<!-- IF categories.children.link -->
 								<a href="{categories.children.link}" itemprop="url" target="_blank">
 									<!-- ELSE -->
-									<a href="{relative_path}/category/{categories.children.slug}" itemprop="url">
+									<a href="{config.relative_path}/category/{categories.children.slug}" itemprop="url">
 										<!-- ENDIF categories.children.link-->
 										<h4><!-- IF categories.children.icon --><i class="fa {categories.children.icon} visible-xs-inline"></i>
 											<!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
@@ -80,7 +80,7 @@
 
 							<span class="pull-right post-preview-footer">
 								<span class="timeago" title="{categories.children.posts.relativeTime}"></span> &bull;
-								<a href="{relative_path}/topic/{categories.children.posts.topic.slug}<!-- IF categories.children.posts.index -->/{categories.children.posts.index}<!-- ENDIF categories.children.posts.index -->">[[global:read_more]]</a>
+								<a href="{config.relative_path}/topic/{categories.children.posts.topic.slug}<!-- IF categories.children.posts.index -->/{categories.children.posts.index}<!-- ENDIF categories.children.posts.index -->">[[global:read_more]]</a>
 							</span>
 							</div>
 							<!-- END posts -->
