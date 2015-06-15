@@ -3,12 +3,10 @@
 	<div class="composer-container">
 		<nav class="navbar navbar-fixed-top mobile-navbar visible-xs visible-sm">
 			<span class="pull-left">
-				<button class="btn btn-primary composer-discard" data-action="discard" tabindex="-1">
-					<i class="fa fa-times"></i></button>
+				<button class="btn btn-primary composer-discard" data-action="discard" tabindex="-1"><i class="fa fa-times"></i></button>
 			</span>
 			<span class="pull-right">
-				<button class="btn btn-primary composer-submit" data-action="post" tabindex="-1">
-					<i class="fa fa-chevron-right"></i></button>
+				<button class="btn btn-primary composer-submit" data-action="post" tabindex="-1"><i class="fa fa-chevron-right"></i></button>
 			</span>
 		</nav>
 		<div class="title-container row">
@@ -65,11 +63,9 @@
 					<span class="btn btn-link" tabindex="-1">
 						<i class="fa fa-th-large topic-thumb-btn topic-thumb-toggle-btn hide" title="[[topic:composer.thumb_title]]"></i>
 					</span>
-
 					<div class="topic-thumb-container center-block hide">
 						<form id="thumbForm" method="post" class="topic-thumb-form form-inline" enctype="multipart/form-data">
 							<img class="topic-thumb-preview"></img>
-
 							<div class="form-group">
 								<label for="topic-thumb-url">[[topic:composer.thumb_url_label]]</label>
 								<input type="text" id="topic-thumb-url" class="form-control" placeholder="[[topic:composer.thumb_url_placeholder]]"/>
@@ -97,31 +93,21 @@
 				</div>
 
 				<div class="btn-group pull-right action-bar hidden-sm hidden-xs">
-					<button class="btn btn-default composer-discard" data-action="discard" tabindex="-1">
-						<i class="fa fa-times"></i> [[topic:composer.discard]]
-					</button>
+					<button class="btn btn-default composer-discard" data-action="discard" tabindex="-1"><i class="fa fa-times"></i> [[topic:composer.discard]]</button>
 
-					<button class="btn btn-primary composer-submit" data-action="post" tabindex="6">
-						<i class="fa fa-check"></i> [[topic:composer.submit]]
-					</button>
-
+					<button class="btn btn-primary composer-submit" data-action="post" tabindex="6"><i class="fa fa-check"></i> [[topic:composer.submit]]</button>
+					<!-- IF !isEditing -->
 					<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
 						<span class="caret"></span>
 						<span class="sr-only">[[modules:composer.toggle_dropdown]]</span>
 					</button>
 					<ul class="dropdown-menu pull-right" role="menu">
-						<li>
-							<a href="#" data-switch-action="post"><i class="fa fa-fw fa-check"></i> [[topic:composer.submit]]</a>
-						</li>
-						<!-- IF !isEditing -->
+						<li><a href="#" data-switch-action="post"><i class="fa fa-fw fa-check"></i> [[topic:composer.submit]]</a></li>
 						<!-- IF isAdminOrMod -->
-						<li>
-							<a href="#" data-switch-action="post-lock"><i class="fa fa-fw fa-lock"></i> [[modules:composer.submit_and_lock]]</a>
-						</li>
+						<li><a href="#" data-switch-action="post-lock"><i class="fa fa-fw fa-lock"></i> [[modules:composer.submit_and_lock]]</a></li>
 						<!-- ENDIF isAdminOrMod -->
-						<!-- ENDIF !isEditing -->
 					</ul>
-
+					<!-- ENDIF !isEditing -->
 				</div>
 
 				<!-- IF isTopicOrMain -->
@@ -148,12 +134,8 @@
 			</div>
 		</div>
 
-		<div class="imagedrop">
-			<div>[[topic:composer.drag_and_drop_images]]</div>
-		</div>
+		<div class="imagedrop"><div>[[topic:composer.drag_and_drop_images]]</div></div>
 
-		<div class="resizer">
-			<div class="trigger text-center"><i class="fa"></i></div>
-		</div>
+		<div class="resizer"><div class="trigger text-center"><i class="fa"></i></div></div>
 	</div>
 </div>
