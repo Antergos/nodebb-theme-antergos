@@ -1,6 +1,6 @@
 {
   "name": "nodebb-theme-antergos",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "NodeBB theme based on Lavender. Created for the Antergos Forum.",
   "main": "theme.less",
   "repository": {
@@ -21,8 +21,5 @@
   "license": "GPL",
   "bugs": {
     "url": "https://github.com/lots0logs/nodebb-theme-antergos/issues"
-  },
-  "peerDependencies": {
-    "nodebb-theme-vanilla": "^1.0.0"
   }
 }
