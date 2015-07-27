@@ -60,7 +60,7 @@
 											<!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
 									</a>
 
-							<div class="description" itemprop="description">{categories.children.description}</div>
+							<div class="description" itemprop="description">{categories.children.descriptionParsed}</div>
 
 						<!-- IF !categories.children.link -->
 							<!-- BEGIN posts -->
