@@ -4,6 +4,9 @@
 	"hooks": [
 		{
 			"hook": "filter:widgets.getAreas", "method": "defineWidgetAreas", "callbacked": true
+		},
+		{
+			"hook": "static:app.preload", "method": "preinit"
 		}
 	],
 	"staticDirs": {
