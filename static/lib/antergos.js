@@ -211,11 +211,11 @@
 				catName = ajaxify.variables.get('category_name');
 			if ($.inArray(catName, titles) > -1) {
 				//$('#new_topic').on('click', function () {
-				$(window).on('action:composer.loaded', function(err, data) {
+				$(window).on('action:composer.loaded', function (err, data) {
 					setTimeout(function () {
 						var qAndA = $('.composer .dropdown-menu .fa-question-circle').parent(),
 							qAndAIcon = qAndA.children('i').clone();
-							qAndALabel = qAndA.text().replace('Ask as Question', 'Submit Question');
+						qAndALabel = qAndA.text().replace('Ask as Question', 'Submit Question');
 						qAndA.text(qAndALabel);
 						qAndAIcon.prependTo(qAndA);
 						qAndA.trigger('click');
@@ -223,7 +223,7 @@
 				});
 			} else {
 				//$('#new_topic').on('click', function () {
-				$(window).on('action:composer.loaded', function(err, data) {
+				$(window).on('action:composer.loaded', function (err, data) {
 					setTimeout(function () {
 						var qAndA = $('.composer .dropdown-menu .fa-question-circle').parents('li');
 						qAndA.hide();
@@ -339,26 +339,32 @@
 			}, 500);
 		});
 
-		var loadingBar = $('.loading-bar');
+		(function () {
+			// loading animation
+			var refreshTitle = app.refreshTitle,
+				loadingBar = $('.loading-bar');
 
-		$(window).on('action:ajaxify.start', function (data) {
-			loadingBar.fadeIn(0).removeClass('reset');
-		});
+			$(window).on('action:ajaxify.start', function (data) {
+				loadingBar.fadeIn(0).removeClass('reset');
+			});
 
-		$(window).on('action:ajaxify.loadingTemplates', function () {
-			loadingBar.css('width', '90%');
-		});
+			$(window).on('action:ajaxify.loadingTemplates', function () {
+				loadingBar.css('width', '90%');
+			});
 
-		$(window).on('action:ajaxify.contentLoaded', function () {
-			loadingBar.css('width', '100%');
-			setTimeout(function () {
-				loadingBar.fadeOut(250);
-
+			app.refreshTitle = function (url) {
+				loadingBar.css('width', '100%');
 				setTimeout(function () {
-					loadingBar.addClass('reset').css('width', '0%');
-				}, 250);
-			}, 750);
-		});
+					loadingBar.fadeOut(250);
+
+					setTimeout(function () {
+						loadingBar.addClass('reset').css('width', '0%');
+					}, 250);
+				}, 750);
+
+				return refreshTitle(url);
+			};
+		}());
 
 		$(window).on('action:ajaxify.start', function () {
 			if ($('.navbar .navbar-collapse').hasClass('in')) {
