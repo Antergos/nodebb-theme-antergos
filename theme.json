@@ -3,5 +3,6 @@
     "name": "Antergos NodeBB Theme",
     "description": "NodeBB theme based on Lavender. Created for the Antergos Forum.",
     "url": "https://github.com/lots0logs/nodebb-theme-antergos",
-    "screenshot": "screenshot.png"
+    "screenshot": "screenshot.png",
+    "baseTheme": "nodebb-theme-vanilla"
 }
