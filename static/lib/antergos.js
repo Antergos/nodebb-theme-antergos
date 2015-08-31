@@ -196,6 +196,35 @@
 
 		}
 
+		function fix_widgets(tpl) {
+			var chosenValue = Math.random() < 0.5 ? '.etban-topic' : '.etban-bloom';
+			if (tpl !== 'categories') {
+				if ('.etban-topic' === chosenValue) {
+					$(chosenValue).css('display', 'block');
+					$('.etban-bloom').css('display', 'none');
+				} else {
+					$(chosenValue).css('display', 'block');
+					$('.etban-topic').css('display', 'none');
+				}
+			} else {
+				$('.etban-topic').css('display', 'none');
+				$('.etban-bloom').css('display', 'none');
+			}
+
+			if (tpl === 'topic' || tpl === 'category' || tpl === 'chats') {
+				$('.active-users').css('display', 'block');
+				$('.thread_active_users.active-users.inline-block').css('display', 'inline-block');
+			} else {
+				$('.active-users').css('display', 'none');
+			}
+			if (tpl === 'topic') {
+				$('#bloom-ban').css('display', 'none');
+			}
+			if (tpl === 'unread' || tpl === 'popular' || tpl === 'recent' || tpl === 'groups' || tpl === 'users' || tpl === 'tags') {
+				$('#welcome').css('display', 'block');
+			}
+		}
+
 		function fixQandA() {
 			$('[component="topic/reply"]').on('click', function () {
 				setTimeout(function () {
@@ -256,13 +285,15 @@
 		 }*/
 
 		$(window).load(function () {
-			var $tpl = $('.category-page').length;
+			var $tpl = $('.category-page').length,
+					tpl = app.template;
 			if ($tpl) {
 				doSlick();
 			}
 			makeFooterToBottom();
 			fix_breadcrumbs();
 			fixQandA();
+			fix_widgets(tpl);
 		});
 
 		$(window).on('action:ajaxify.start', function (ev, data) {
@@ -275,10 +306,11 @@
 				tpl = app.template,
 				height = $(window).scrollTop();
 
-			console.log(tpl);
 			if (tpl === 'categories') {
 				fixHomeGrid();
 			}
+
+			console.log(tpl);
 
 
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -300,24 +332,7 @@
 					}
 				}
 				fix_breadcrumbs();
-
-				if (tpl !== 'categories' && tpl !== 'category') {
-					$('.etban-topic').css('display', 'block');
-				} else {
-					$('.etban-topic').css('display', 'none');
-				}
-				if (tpl === 'topic' || tpl === 'category' || tpl === 'chats') {
-					$('.active-users').css('display', 'block');
-					$('.thread_active_users.active-users.inline-block').css('display', 'inline-block');
-				} else {
-					$('.active-users').css('display', 'none');
-				}
-				if (tpl === 'topic') {
-					$('#bloom-ban').css('display', 'none');
-				}
-				if (tpl === 'unread' || tpl === 'popular' || tpl === 'recent' || tpl === 'groups' || tpl === 'users' || tpl === 'tags') {
-					$('#welcome').css('display', 'block');
-				}
+				fix_widgets(tpl);
 				if (tpl === 'category') {
 					doSlick();
 					fixQandA();
