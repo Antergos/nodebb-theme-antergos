@@ -6,7 +6,7 @@
 			$secLast,
 			$lastWidget,
 			lastWidgetHeight,
-			avatarNotice = localStorage.getItem('avatarNotice'),
+			globalAlertDismissed = $.cookie('globalAlertDismissed'),
 			isLoggedIn = $('#isLoggedIn').val(),
 			allWidgets,
 			enoughWidgets,
@@ -264,29 +264,30 @@
 
 		fixHomeGrid();
 
-		/*if (avatarNotice !== 'True' && isLoggedIn === 'true' {
-		 //noinspection JSUnusedGlobalSymbols
-		 app.alert({
-		 title: 'Attention Existing Users:',
-		 message: 'All user accounts were imported from the old forum. For security reasons, passwords were' +
-		 ' not imported. In order to activate your account on the new forum, you must reset your password' +
-		 ' Click this message to <strong>reset your password now</strong>.',
-		 location: 'right-top',
-		 type: 'info',
-		 image: '//antergos.org/info.png',
-		 closefn: function passwdNoticeClosed() {
-		 localStorage.setItem('passwdNotice', 'True');
-		 },
-		 clickfn: function passwdNoticeClicked() {
-		 localStorage.setItem('passwdNotice', 'True');
-		 window.location = '/reset';
-		 }
-		 });
-		 }*/
+		function maybeDisplayGlobalALert() {
+			globalAlertDismissed = $.cookie('globalAlertDismissed');
+
+			if ($('.globalAlertFlag').length && globalAlertDismissed !== 'True') {
+
+				app.alert({
+					title: $('#globalALertSubject').val(),
+					message: $('#globalAlertMsg').val(),
+					location: 'right-top',
+					type: 'info',
+					image: '//antergos.org/info.png',
+					closefn: function () {
+						$.cookie('globalAlertDismissed', 'True', {expires: 1 / 24, path: '/'});
+					},
+					clickfn: function () {
+						$.cookie('globalAlertDismissed', 'True', {expires: 1 / 24, path: '/'});
+					}
+				});
+			}
+		}
 
 		$(window).load(function () {
 			var $tpl = $('.category-page').length,
-					tpl = app.template;
+				tpl = app.template;
 			if ($tpl) {
 				doSlick();
 			}
