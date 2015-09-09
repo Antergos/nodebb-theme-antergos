@@ -6,7 +6,7 @@
 			$secLast,
 			$lastWidget,
 			lastWidgetHeight,
-			globalAlertDismissed = $.cookie('globalAlertDismissed'),
+			globalAlertDismissed,
 			isLoggedIn = $('#isLoggedIn').val(),
 			allWidgets,
 			enoughWidgets,
