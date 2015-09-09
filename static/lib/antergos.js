@@ -306,6 +306,9 @@
 			var url = data.url,
 				tpl = app.template,
 				height = $(window).scrollTop();
+			if (!/^admin\//.test(data.url) {
+				maybeDisplayGlobalALert();
+			}
 
 			if (tpl === 'categories') {
 				fixHomeGrid();
