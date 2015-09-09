@@ -206,7 +206,7 @@
 					chosenValue = get_random(banners);
 				$(chosenValue).css('display', 'block');
 				for (var i = 0; i < banners.length; i++) {
-					var banner = $wpWidget[i];
+					var banner = banners[i];
 					if (banner !== chosenValue) {
 						$(banner).css('display', 'none');
 					}
@@ -244,7 +244,7 @@
 			var titles = ["Installation", "Newbie Corner", "Applications & Desktop Environments",
 					"Multimedia and Games", "Kernel & Hardware", "Pacman & Package Upgrade Issues", "GNOME", "KDE",
 					"Cinnamon", "Xfce", "LXQT", "MATE", "Openbox"],
-				catName = ajaxify.variables.get('category_name');
+				catName = ajaxify.data.name;
 			if ($.inArray(catName, titles) > -1) {
 				//$('#new_topic').on('click', function () {
 				$(window).on('action:composer.loaded', function (err, data) {
