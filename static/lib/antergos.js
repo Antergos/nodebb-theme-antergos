@@ -196,19 +196,26 @@
 
 		}
 
+		function get_random(list) {
+			return list[Math.floor((Math.random() * list.length))];
+		}
+
 		function fix_widgets(tpl) {
-			var chosenValue = Math.random() < 0.5 ? '.etban-topic' : '.etban-bloom';
 			if (tpl !== 'categories') {
-				if ('.etban-topic' === chosenValue) {
-					$(chosenValue).css('display', 'block');
-					$('.etban-bloom').css('display', 'none');
-				} else {
-					$(chosenValue).css('display', 'block');
-					$('.etban-topic').css('display', 'none');
+				var banners = ['.etban-topic', '.etban-bloom', '.etban-divi'],
+					chosenValue = get_random(banners);
+				$(chosenValue).css('display', 'block');
+				for (var i = 0; i < banners.length; i++) {
+					var banner = $wpWidget[i];
+					if (banner !== chosenValue) {
+						$(banner).css('display', 'none');
+					}
+
 				}
 			} else {
 				$('.etban-topic').css('display', 'none');
 				$('.etban-bloom').css('display', 'none');
+				$('.etban-divi').css('display', 'none');
 			}
 
 			if (tpl === 'topic' || tpl === 'category' || tpl === 'chats') {
