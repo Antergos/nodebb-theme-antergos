@@ -5,7 +5,7 @@
 	<!-- BEGIN metaTags -->
 	{function.buildMetaTag}
 	<!-- END metaTags -->
-	<link rel="stylesheet" type="text/css" href="{relative_path}/stylesheet.css?{config.css-buster}" />
+	<link rel="stylesheet" type="text/css" href="{relative_path}/stylesheet.css?{config.cache-buster}" />
 	<!-- BEGIN linkTags -->
 	{function.buildLinkTag}
 	<!-- END linkTags -->
@@ -25,7 +25,7 @@
 			user: JSON.parse('{{userJSON}}')
 		};
 	</script>
-	<script src="{relative_path}/nodebb.min.js?{config.script-buster}"></script>
+	<script src="{relative_path}/nodebb.min.js?{config.cache-buster}"></script>
 	<!-- IMPORT partials/requirejs-config.tpl -->
 
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
