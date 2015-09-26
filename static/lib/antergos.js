@@ -176,7 +176,7 @@
 			if (!$('.bcrumb').length || $('.bcfixed').length) return;
 			var titles = ["About Antergos", "Technical Issues and Assistance", "Contributions & Discussion",
 					"Antergos in other languages"],
-				catName = ajaxify.variables.get('pageCount');
+				catName = ajaxify.pageCount;
 			$('.bcrumb').each(function () {
 				var theTitle = $(this).attr('title');
 				if ($.inArray(theTitle, titles) > -1) {
