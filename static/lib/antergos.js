@@ -176,7 +176,7 @@
 			if (!$('.bcrumb').length || $('.bcfixed').length) return;
 			var titles = ["About Antergos", "Technical Issues and Assistance", "Contributions & Discussion",
 					"Antergos in other languages"],
-				catName = ajaxify.pageCount;
+				catName = ajaxify.variables.get('pageCount');
 			$('.bcrumb').each(function () {
 				var theTitle = $(this).attr('title');
 				if ($.inArray(theTitle, titles) > -1) {
@@ -311,7 +311,7 @@
 
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			var url = data.url,
-				tpl = ajaxify.data.template.name,
+				tpl = app.template,
 				height = $(window).scrollTop();
 			if (!/^admin\//.test(data.url)) {
 				maybeDisplayGlobalALert();
