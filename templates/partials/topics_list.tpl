@@ -25,44 +25,42 @@
 									<a itemprop="url" class="topic-title">{topics.title}</a><br />
 									<!-- ENDIF !topics.noAnchor -->
 
-                            <small>
-									[[global:posted_in_ago, <a href="{config.relative_path}/category/{topics.category.slug}"><i class="fa {topics.category.icon}"></i> {topics.category.name}</a>, <span class="timeago" title="{topics.relativeTime}"></span>]]
-                                <!-- IF !topics.unreplied -->
-									<span class="hidden-md hidden-lg">
-									<br/>
-									<a href="{config.relative_path}/topic/{topics.slug}/{topics.teaser.index}">[[global:replied_ago, <span class="timeago" title="{topics.teaser.timestamp}"></span>]]</a>
-									</span>
-                                <!-- ENDIF !topics.unreplied -->
-                                <br/>
-                                <!-- IMPORT partials/category_tags.tpl -->
-                            </small>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xs-1 category-stat hidden-xs">
-                    <strong class="human-readable-number" title="{topics.postcount}">{topics.postcount}</strong><br/>
-                    <small>[[global:posts]]</small>
-                </div>
-                <div class="col-xs-1 category-stat hidden-xs">
-                    <strong class="human-readable-number" title="{topics.viewcount}">{topics.viewcount}</strong><br/>
-                    <small>[[global:views]]</small>
-                </div>
+					<small>
+						<span class="topic-stats">
+							[[global:posts]]
+							<strong class="human-readable-number" title="{topics.postcount}">{topics.postcount}</strong>
+						</span>
+						&bull;
+						<span class="topic-stats">
+							[[global:views]]
+							<strong class="human-readable-number" title="{topics.viewcount}">{topics.viewcount}</strong>
+						</span>
+						<!-- IF !template.category -->
+						&bull;
+						<span>
+							<!-- IF topics.user.userslug -->
+								[[global:posted_in_ago_by, <a href="{config.relative_path}/category/{topics.category.slug}"><i class="fa {topics.category.icon}"></i> {topics.category.name}</a>, <span class="timeago" title="{topics.relativeTime}"></span>, {topics.user.username}]]
+							<!-- ELSE -->
+								[[global:posted_in_ago_by_guest, <a href="{config.relative_path}/category/{topics.category.slug}"><i class="fa {topics.category.icon}"></i> {topics.category.name}</a>, <span class="timeago" title="{topics.relativeTime}"></span>]]
+							<!-- ENDIF topics.user.userslug -->
+						</span>
+						<!-- ENDIF !template.category -->
 
-                <div class="col-xs-2 category-stat replies hidden-sm hidden-xs">
-                    <!-- IF topics.unreplied -->
-							<p class="no-replies"><a href="{config.relative_path}/topic/{topics.slug}" itemprop="url">[[category:no_replies]]</a></p>
-                    <!-- ELSE -->
-
-							<a href="<!-- IF topics.teaser.user.userslug -->{config.relative_path}/user/{topics.teaser.user.userslug}<!-- ELSE -->#<!-- ENDIF topics.teaser.user.userslug -->"><img class="profile-image small user-img" src="{topics.teaser.user.picture}" title="{topics.teaser.user.username}" /></a>
+						<span class="pull-right">
+							<!-- IF topics.unreplied -->
+							<a href="{config.relative_path}/topic/{topics.slug}" itemprop="url">[[category:no_replies]]</a>
+							<!-- ELSE -->
+							<a href="<!-- IF topics.teaser.user.userslug -->{config.relative_path}/user/{topics.teaser.user.userslug}<!-- ELSE -->#<!-- ENDIF topics.teaser.user.userslug -->">
+								<img class="teaser-pic" src="{topics.teaser.user.picture}" title="{topics.teaser.user.username}"/>
+							</a>
 							<a href="{config.relative_path}/topic/{topics.slug}/{topics.teaser.index}">
-                        [[global:replied_ago, <span class="timeago" title="{topics.teaser.timestamp}"></span>]]
-                    </a>
-
-                    <!-- ENDIF topics.unreplied -->
-                </div>
-            </div>
-        </div>
-
-    </li>
-    <!-- END topics -->
-</ul>
+								[[global:replied_ago, <span class="timeago" title="{topics.teaser.timestamp}"></span>]]
+							</a>
+							<!-- ENDIF topics.unreplied -->
+						</span>
+						<!-- IMPORT partials/category_tags.tpl -->
+					</small>
+				</div>
+			</li>
+			<!-- END topics -->
+		</ul>
