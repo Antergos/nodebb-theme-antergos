@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="{function.localeToHTML, defaultLang}">
 <head>
 	<title>{browserTitle}</title>
 	<!-- BEGIN metaTags -->
 	{function.buildMetaTag}
 	<!-- END metaTags -->
 	<link rel="stylesheet" type="text/css" href="{relative_path}/stylesheet.css?{config.cache-buster}" />
+	<!-- IF bootswatchCSS --><link id="bootswatchCSS" href="{bootswatchCSS}" rel="stylesheet" media="screen"><!-- ENDIF bootswatchCSS -->
 	<!-- BEGIN linkTags -->
-	<link<!-- IF linkTags.link --> link="{linkTags.link}"<!-- ENDIF linkTags.link --><!-- IF linkTags.rel --> rel="{linkTags.rel}"<!-- ENDIF linkTags.rel --><!-- IF linkTags.type --> type="{linkTags.type}"<!-- ENDIF linkTags.type --><!-- IF linkTags.href --> href="{linkTags.href}"<!-- ENDIF linkTags.href --> />
+	{function.buildLinkTag}
 	<!-- END linkTags -->
 
 	<!--[if lt IE 9]>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-	<script>__lt_ie_9__ = 1;</script>
+  		<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js"></script>
+  		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+  		<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+  		<script>__lt_ie_9__ = 1;</script>
 	<![endif]-->
 
 	<script>
@@ -95,10 +96,9 @@
 	<!-- IF useCustomCSS -->
 	<style type="text/css">{{customCSS}}</style>
 	<!-- ENDIF useCustomCSS -->
-
 </head>
 
-<body>
+<body class="{bodyClass}">
 <input id="isLoggedIn" type="hidden" template-variable="loggedIn" value="{loggedIn}"/>
 <input id="currentTpl" type="hidden" template-variable="currentTpl" value="{app.template}"/>
 
