@@ -29,7 +29,7 @@
 
 			</ul>
 			<p id="footer-info">Copyright &copy; 2015
-				<a href="http://antergos.org" title="Antergos">Antergos</a> | Forum powered by
+				<a href="https://antergos.com" title="Antergos">Antergos</a> | Forum powered by
 				<a href="http://www.nodebb.org">NodeBB.</a></p>
 		</div>
 	</div>
