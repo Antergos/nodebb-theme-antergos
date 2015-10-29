@@ -55,7 +55,7 @@
 								<a href="{categories.children.link}" itemprop="url" target="_blank">
 									<!-- ELSE -->
 									<a href="{config.relative_path}/category/{categories.children.slug}" itemprop="url">
-										<!-- ENDIF categories.children.link-->
+										<!-- ENDIF categories.children.link -->
 										<h4><!-- IF categories.children.icon --><i class="fa {categories.children.icon} visible-xs-inline"></i>
 											<!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
 									</a>
