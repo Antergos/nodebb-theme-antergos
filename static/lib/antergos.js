@@ -28,7 +28,7 @@
 		function checkWidgetHeight() {
 			var template = 'checkWaypoints_' + app.template + '_' + $(window).width(),
 				checkedWidgets = $.cookie(template),
-				$visible = $('.sidebar .panel').filter(':visible').not('.panel-footer');
+				$visible = $('.sidebar .panel, .sidebar .etban-divi').filter(':visible').not('.panel-footer');
 			if (!checkedWidgets) {
 				$wpWidget = $visible.eq(-3);
 				setLocalStorage(template, 'wpWidgetHeight', $wpWidget.height());
@@ -90,7 +90,7 @@
 					}
 				}
 			});
-			var $visible = $('.sidebar .panel').filter(':visible').not('.panel-footer'),
+			var $visible = $('.sidebar .panel, .sidebar .etban-divi').filter(':visible').not('.panel-footer'),
 				$wp = $visible.eq(-3);
 			$wp.waypoint({
 				handler: function (direction) {
