@@ -67,7 +67,7 @@
 						<div component="category/posts" class="post-preview clearfix">
 									<strong><a href="{config.relative_path}/topic/{categories.children.posts.topic.slug}">{categories.children.posts.topic.title}</a></strong>
 									<hr/>
-									<a style="color: {categories.children.color};" href="<!-- IF categories.children.posts.user.userslug -->{relative_path}/user/{categories.children.posts.user.userslug}<!-- ELSE -->#<!-- ENDIF categories.children.posts.user.userslug-->">
+									<a style="color: {categories.children.color};" href="<!-- IF categories.children.posts.user.userslug -->{config.relative_path}/user/{categories.children.posts.user.userslug}<!-- ELSE -->#<!-- ENDIF categories.children.posts.user.userslug-->">
 										<img src="{categories.children.posts.user.picture}" title="{categories.children.posts.user.username}" class="pull-left user-img"/>
 									</a>
 							<div class="post-preview-content">
