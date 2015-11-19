@@ -15,7 +15,7 @@
                     <div class="category-profile-pic">
 								<a href="<!-- IF topics.user.userslug -->{config.relative_path}/user/{topics.user.userslug}<!-- ELSE -->#<!-- ENDIF topics.user.userslug -->">
                                     <!-- IF topics.user.picture -->
-                                    <img src="{topics.user.picture}" alt="{topics.user.username}" class="img-rounded user-img" title="{topics.user.username}">
+                                    <img src="{topics.user.picture}" alt="{topics.user.username}" class="profile-image img-rounded user-img" title="{topics.user.username}">
                                     <!-- ELSE -->
                                     <div class="user-icon" style="background-color: {topics.user.icon:bgColor};" title="{topics.user.username}">{topics.user.icon:text}</div>
                                     <!-- ENDIF topics.user.picture -->

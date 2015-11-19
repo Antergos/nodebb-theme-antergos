@@ -7,7 +7,7 @@
 			<ul class="et-social-icons">
 
 				<li class="et-social-icon et-social-facebook">
-					<a href="//www.facebook.com/pages/Antergos/649575488393114" class="icon">
+					<a href="//www.facebook.com/antergos" class="icon">
 						<span>Facebook</span>
 					</a>
 				</li>
@@ -38,8 +38,6 @@
 <div class="hide">
 	<!-- IMPORT 500-embed.tpl -->
 </div>
-	<!-- IMPORT partials/modals/upload_picture_modal.tpl -->
-
 
 <div class="topic-search hidden">
 	<div class="btn-group">
@@ -48,10 +46,7 @@
 		<button type="button" class="btn btn-default next"><i class="fa fa-fw fa-angle-down"></i></button>
 	</div>
 </div>
-<div class="alert-window alert-left-top"></div>
-<div class="alert-window alert-left-bottom"></div>
-<div class="alert-window alert-right-top"></div>
-<div class="alert-window alert-right-bottom"></div>
+	<div component="toaster/tray" class="alert-window"></div>
 
 <script>
 	require(['forum/footer']);

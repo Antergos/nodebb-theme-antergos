@@ -5,7 +5,7 @@
 	<!-- BEGIN metaTags -->
 	{function.buildMetaTag}
 	<!-- END metaTags -->
-	<link rel="stylesheet" type="text/css" href="{config.relative_path}/stylesheet.css?{config.cache-buster}" />
+	<link rel="stylesheet" type="text/css" href="{relative_path}/stylesheet.css?{config.cache-buster}" />
 	<!-- BEGIN linkTags -->
 	{function.buildLinkTag}
 	<!-- END linkTags -->
@@ -18,14 +18,14 @@
 	<![endif]-->
 
 	<script>
-		var RELATIVE_PATH = "{config.relative_path}";
+		var RELATIVE_PATH = "{relative_path}";
 		var config = JSON.parse('{{configJSON}}');
 		var app = {
 			template: "{template.name}",
 			user: JSON.parse('{{userJSON}}')
 		};
 	</script>
-	<script src="{config.relative_path}/nodebb.min.js?{config.cache-buster}"></script>
+	<script src="{relative_path}/nodebb.min.js?{config.cache-buster}"></script>
 	<!-- IMPORT partials/requirejs-config.tpl -->
 
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
@@ -145,7 +145,7 @@
 					<ul class="et-social-icons">
 
 						<li class="et-social-icon et-social-facebook">
-							<a href="//www.facebook.com/pages/Antergos/649575488393114" class="icon">
+							<a href="//www.facebook.com/antergos" class="icon">
 								<span>Facebook</span>
 							</a>
 						</li>
