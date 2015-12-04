@@ -5,7 +5,7 @@
 
 	<ul component="topic" id="post-container" class="posts" data-tid="{tid}">
 		<!-- BEGIN posts -->
-			<li component="post" class="<!-- IF posts.deleted -->deleted<!-- ENDIF posts.deleted -->" <!-- IMPORT partials/data/topic.tpl -->>
+			<li component="post" class="ant_post<!-- IF posts.deleted --> deleted<!-- ENDIF posts.deleted -->" <!-- IMPORT partials/data/topic.tpl -->>
 				<a component="post/anchor" data-index="{posts.index}" name="{posts.index}"></a>
 				<div class="post-row">
 
@@ -13,7 +13,8 @@
 					<meta itemprop="dateModified" content="{posts.relativeEditTime}">
 
 					<div class="topic-item">
-						<div class="topic-body">
+						<div class="topic-body" style="position: relative;">
+							<!-- IMPORT partials/topic/likes_post.tpl -->
 							<div class="row">
 								<div class="col-md-12">
 									<div class="topic-profile-pic hidden-xs text-center">
@@ -75,19 +76,6 @@
 										<a href="#" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i></a>
 										<ul class="dropdown-menu" role="menu"></ul>
 									</div>
-
-									<!-- IF !reputation:disabled -->
-									&bull;
-									<a component="post/upvote" href="#" class="upvote<!-- IF posts.upvoted --> upvoted<!-- ENDIF posts.upvoted -->">
-										<i class="fa fa-chevron-up"></i>
-									</a>
-									<span component="post/vote-count" class="votes" data-votes="{posts.votes}">{posts.votes}</span>
-									<!-- IF !downvote:disabled -->
-									<a component="post/downvote" href="#" class="downvote<!-- IF posts.downvoted --> downvoted<!-- ENDIF posts.downvoted -->">
-										<i class="fa fa-chevron-down"></i>
-									</a>
-									<!-- ENDIF !downvote:disabled -->
-									<!-- ENDIF !reputation:disabled -->
 
 									<!-- IF posts.user.custom_profile_info.length -->
 										<!-- BEGIN custom_profile_info -->
