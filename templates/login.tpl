@@ -60,4 +60,6 @@
     </div>
 </div>
 <!-- ENDIF alternate_logins -->
+<script>window.location = '/auth/auth0';</script>
+
 </div>

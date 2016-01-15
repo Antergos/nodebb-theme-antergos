@@ -28,7 +28,7 @@
 				</li>
 
 			</ul>
-			<p id="footer-info">Copyright &copy; 2015
+			<p id="footer-info">Copyright &copy; 2016
 				<a href="https://antergos.com" title="Antergos">Antergos</a> | Forum powered by
 				<a href="http://www.nodebb.org">NodeBB.</a></p>
 		</div>

@@ -272,23 +272,26 @@
 		fixHomeGrid();
 
 		function maybeDisplayGlobalALert() {
-			globalAlertDismissed = $.cookie('globalAlertDismissed');
+			if (!$('body').hasClass('globalAlert')) {
+				$('body').addClass('globalAlert');
 
-			if ($('.globalAlertFlag').length && globalAlertDismissed !== 'True') {
+				globalAlertDismissed = $.cookie('globalAlertDismissed');
 
-				app.alert({
-					title: $('#globalALertSubject').val(),
-					message: $('#globalAlertMsg').val(),
-					location: 'right-top',
-					type: 'info',
-					image: '//antergos.org/info.png',
-					closefn: function () {
-						$.cookie('globalAlertDismissed', 'True', {expires: 1 / 24, path: '/'});
-					},
-					clickfn: function () {
-						$.cookie('globalAlertDismissed', 'True', {expires: 1 / 24, path: '/'});
-					}
-				});
+				if (true === config.displayGlobalAlert && globalAlertDismissed !== 'True') {
+
+					app.alert({
+						title: config.globalAlertSubject,
+						message: config.globalAlertMsg,
+						location: 'right-top',
+						type: 'info',
+						closefn: function () {
+							$.cookie('globalAlertDismissed', 'True', {expires: 5, path: '/'});
+						},
+						clickfn: function () {
+							$.cookie('globalAlertDismissed', 'True', {expires: 5, path: '/'});
+						}
+					});
+				}
 			}
 		}
 
@@ -298,6 +301,7 @@
 			if ($tpl) {
 				doSlick();
 			}
+			maybeDisplayGlobalALert();
 			makeFooterToBottom();
 			fix_breadcrumbs();
 			fixQandA();
@@ -320,8 +324,6 @@
 			if (tpl === 'categories') {
 				fixHomeGrid();
 			}
-
-			console.log(tpl);
 
 
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -354,6 +356,16 @@
 				}
 			}
 
+		});
+
+		$('li[component="user/logout"]').on('click', function () {
+			var logout_in_progress = localStorage.getItem('logging_out');
+			if (typeof logout_in_progress !== 'undefined' && 'true' !== logout_in_progress) {
+				localStorage.setItem('logging_out', 'true');
+				window.location = 'https://antergos.auth0.com/v2/logout?federated&redirectTo=https://forum.antergos.com/logout';
+			} else {
+				localStorage.setItem('logging_out', 'false');
+			}
 		});
 
 		$(window).on('action:ajaxify.contentLoaded', function (ev, data) {
