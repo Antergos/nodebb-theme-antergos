@@ -101,7 +101,7 @@
 										<!-- IF !topics.unreplied -->
 									<span class="hidden-md hidden-lg">
 									<br/>
-									<a href="{config.relative_path}/topic/{topics.slug}/{topics.teaser.index}">[[global:replied_ago, <span class="timeago" title="{topics.teaser.timestamp}"></span>]]</a>
+									<a href="{config.relative_path}/topic/{topics.slug}/{topics.teaser.index}"><span class="timeago" title="{topics.teaser.timestamp}"></span></a>
 									</span>
 										<!-- ENDIF !topics.unreplied -->
 										<br/>
@@ -130,7 +130,7 @@
 								<!-- ENDIF topics.teaser.user.picture -->
 							</a>
 							<a href="{config.relative_path}/topic/{topics.slug}/{topics.teaser.index}">
-								[[global:replied_ago, <span class="timeago" title="{topics.teaser.timestamp}"></span>]]
+								<span class="timeago" title="{topics.teaser.timestamp}"></span>
 							</a>
 							<!-- ENDIF topics.unreplied -->
 						</div>
