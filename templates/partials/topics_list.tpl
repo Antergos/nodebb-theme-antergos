@@ -29,9 +29,9 @@
 									<a itemprop="url" class="topic-title">{topics.title}</a><br />
 									<!-- ENDIF !topics.noAnchor -->
 
-                            <small>
-									[[global:posted_in_ago, <a href="{config.relative_path}/category/{topics.category.slug}"><i class="fa {topics.category.icon}"></i> {topics.category.name}</a>, <span class="timeago" title="{topics.relativeTime}"></span>]]
-                                <!-- IF !topics.unreplied -->
+									<small>
+									<a href="{config.relative_path}/category/{topics.category.slug}"><i class="fa {topics.category.icon}"></i> {topics.category.name}</a> &bull; <span class="timeago" title="{topics.relativeTime}"></span>
+									<!-- IF !topics.unreplied -->
 									<span class="hidden-md hidden-lg">
 									<br/>
 									<a href="{config.relative_path}/topic/{topics.slug}/{topics.teaser.index}"><span class="timeago" title="{topics.teaser.timestamp}"></span></a>
