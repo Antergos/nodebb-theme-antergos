@@ -175,17 +175,16 @@
 		function fix_breadcrumbs() {
 			if (!$('.bcrumb').length || $('.bcfixed').length) return;
 			var titles = ["About Antergos", "Technical Issues and Assistance", "Contributions & Discussion",
-					"Antergos in other languages"],
-				catName = ajaxify.pageCount;
+					"Antergos in other languages"];
 			$('.bcrumb').each(function () {
-				var theTitle = $(this).attr('title');
+				var theTitle = $(this).find('span').text();
 				if ($.inArray(theTitle, titles) > -1) {
-					theTitle = theTitle.split(' ').join('_');
+					theTitle = theTitle.split(' ').join('-');
 					$(this).find('a').attr('href', '/#' + theTitle);
 				}
 				$(this).addClass('bcfixed');
 			});
-			if ($.inArray(catName, titles) > -1) {
+			if ($('.page-category').length && $.inArray(ajaxify.data.name, titles) > -1) {
 				$('#new_topic').on('click', function () {
 					setTimeout(function () {
 						var qAndA = $('.composer .dropdown-menu .fa-question-circle').parent();

@@ -1,9 +1,9 @@
 <!-- IMPORT partials/breadcrumbs.tpl -->
 
 <div class="row register">
-	<div class="{register_window:spansize}">
+	<div class="col-md-6 col-lg-6 col-lg-offset-3 col-md-offset-1">
 		<div class="well well-lg">
-			<h4>Forum Registration</h4>
+			<h3 style="text-align: center; margin-bottom: 20px;">Forum Registration</h3>
 			<div class="alert alert-danger" id="register-error-notify" <!-- IF error -->style="display:block"<!-- ELSE -->style="display: none;"<!-- ENDIF error -->>
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				<strong>[[error:registration-error]]</strong>
@@ -93,19 +93,6 @@
 			</form>
 		</div>
 	</div>
-
-	<!-- IF alternate_logins -->
-	<div class="col-md-6">
-		<div class="well well-lg">
-			<h4>[[register:alternative_registration]]</h4>
-			<ul class="alt-logins">
-				<!-- BEGIN authentication -->
-				<li class="{authentication.name}"><a rel="nofollow" target="_top" href="{config.relative_path}{authentication.url}"><i class="fa {authentication.icon} fa-3x"></i></i></a></li>
-				<!-- END authentication -->
-			</ul>
-		</div>
-	</div>
-	<!-- ENDIF alternate_logins -->
 <script>
 	$(document).ready(function(){
 		setTimeout(function() {

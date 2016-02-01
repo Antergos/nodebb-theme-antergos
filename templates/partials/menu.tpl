@@ -138,7 +138,7 @@
 				<ul id="logged-out-menu" class="nav navbar-nav navbar-right pull-right">
 					<!-- IF allowRegistration -->
 					<li>
-						<a href="/login">
+						<a href="/register">
 							<i class="fa fa-pencil visible-xs-inline"></i>
 							<span>[[global:register]]</span>
 						</a>

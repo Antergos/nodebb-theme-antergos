@@ -29,7 +29,7 @@
 
 			</ul>
 			<p id="footer-info">Copyright &copy; 2016
-				<a href="https://antergos.com" title="Antergos" rel="nofollow">Antergos</a> | Forum powered by
+				<a href="https://antergos.com" title="Antergos">Antergos</a> | Forum powered by
 				<a href="http://www.nodebb.org" rel="nofollow">NodeBB.</a>
 				<a class="etdevs-signup" href="https://falgout.us/determination.php">Sign Up</a></p>
 		</div>
