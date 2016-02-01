@@ -68,7 +68,7 @@
 										</span>
 
 
-										<span component="post/editor" class="<!-- IF !posts.editor.username --> hidden<!-- ENDIF !posts.editor.username -->">, <strong><a href="{config.relative_path}/user/{posts.editor.userslug}">{posts.editor.username}</a></strong>, <span class="timeago" title="{posts.relativeEditTime}"></span></span>
+										<span component="post/editor" class="hidden<!-- IF !posts.editor.username --> hidden<!-- ENDIF !posts.editor.username -->">, <strong><a href="{config.relative_path}/user/{posts.editor.userslug}">[[global:last_edited_by, {posts.editor.username}]]</a></strong> | <span class="timeago" title="{posts.relativeEditTime}"></span></span>
 
 									</small>
 
