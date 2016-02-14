@@ -3,19 +3,29 @@
 	"library": "./lib/theme.js",
 	"hooks": [
 		{
-			"hook": "filter:widgets.getAreas", "method": "defineWidgetAreas", "callbacked": true
+			"hook": "filter:widgets.getAreas",
+			"method": "defineWidgetAreas",
+			"callbacked": true
 		},
 		{
-			"hook": "static:app.load", "method": "init"
+			"hook": "static:app.load",
+			"method": "init"
 		},
 		{
-			"hook": "static:app.preload", "method": "preinit"
+			"hook": "static:app.preload",
+			"method": "preinit"
 		},
 		{
-			"hook": "filter:admin.header.build", "method": "addAdminNavigation"
+			"hook": "filter:admin.header.build",
+			"method": "addAdminNavigation"
 		},
 		{
-			"hook": "filter:config.get", "method": "getConfig"
+			"hook": "filter:config.get",
+			"method": "getConfig"
+		},
+		{
+			"hook": "filter:register.complete",
+			"method": "noLoginAfterRegister"
 		}
 	],
 	"staticDirs": {
