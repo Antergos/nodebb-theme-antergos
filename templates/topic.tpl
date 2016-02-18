@@ -44,7 +44,7 @@
 											<!-- IF thumb -->
 											<img itemprop="image" src="{thumb}" class="img-thumbnail" />
 											<!-- ENDIF thumb -->
-											<p component="post/header" class="topic-title" itemprop="headline"><i class="fa fa-thumb-tack <!-- IF !pinned -->hidden<!-- ENDIF !pinned -->"></i> <i class="fa fa-lock <!-- IF !locked -->hidden<!-- ENDIF !locked -->"></i> <span component="topic/title">{title}</span></p>
+											<p component="post/header" class="topic-title" itemprop="headline"><i class="fa fa-thumb-tack <!-- IF !pinned -->hidden<!-- ENDIF !pinned -->"></i> <i class="fa fa-lock <!-- IF !locked -->hidden<!-- ENDIF !locked -->"></i> <span component="topic/title">{titleEscaped}</span></p>
 											<hr>
 										</h1>
 										<!-- ENDIF @first -->
