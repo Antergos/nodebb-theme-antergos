@@ -22,10 +22,6 @@
 		{
 			"hook": "filter:config.get",
 			"method": "getConfig"
-		},
-		{
-			"hook": "filter:register.complete",
-			"method": "noLoginAfterRegister"
 		}
 	],
 	"staticDirs": {
