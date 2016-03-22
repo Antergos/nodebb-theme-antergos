@@ -81,7 +81,7 @@
 					<div class="row">
 						<div class="col-md-8 col-sm-9">
 							<!-- IF privileges.editable -->
-							<i class="fa fa-fw fa-square-o pull-left select pointer"></i>
+							<i component="topic/select" class="fa fa-fw fa-square-o pull-left select pointer"></i>
 							<!-- ENDIF privileges.editable -->
 
 							<div class="category-profile-pic">
@@ -104,7 +104,6 @@
 									<a href="{config.relative_path}/topic/{topics.slug}/{topics.teaser.index}"><span class="timeago" title="{topics.teaser.timestamp}"></span></a>
 									</span>
 										<!-- ENDIF !topics.unreplied -->
-										<br/>
 										<!-- IMPORT partials/category_tags.tpl -->
 									</small>
 								</p>

@@ -33,7 +33,7 @@
 
 
 	<link rel="stylesheet" id="et-gf-raleway-css" href="https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900&amp;subset=latin" type="text/css" media="all">
-	<link rel="stylesheet" id="et-gf-lato-css" href="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic&amp;subset=latin" type="text/css" media="all">
+	<link rel="stylesheet" id="et-gf-lato-css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic&amp;subset=latin" type="text/css" media="all">
 
 	<link rel="stylesheet" id="divi-style-css" href="/plugins/nodebb-theme-antergos/vendor/style.css" type="text/css" media="all">
 
@@ -86,7 +86,7 @@
 		}
 
 		body, input, textarea, select {
-			font-family: 'Lato', Helvetica, Arial, Lucida, sans-serif !important;
+			font-family: 'Open Sans', Helvetica, Arial, Lucida, sans-serif !important;
 		}
 	</style>
 	<!-- IF useCustomJS -->

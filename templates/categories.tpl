@@ -11,7 +11,7 @@
 
 						<p><em>{categories.description}</em></p>
 					</div>
-					<hr class="et_pb_space et_pb_divider" style="border-color: #dddddd;">
+					<hr class="et_pb_space et_pb_divider">
 				</div>
 			</div>
 		</div>
@@ -82,10 +82,11 @@
 									</div>
 									<p class="fade-out"></p>
 								</div>
-
+								<span class="pull-left" style="margin-top: 18px;">
+									<span class="timeago" title="{categories.children.posts.timestamp}"></span>
+								</span>
 							<span class="pull-right post-preview-footer">
-								<span class="timeago" title="{categories.posts.timestamp}"></span> &bull;
-								<a href="{config.relative_path}/topic/{categories.children.posts.topic.slug}<!-- IF categories.children.posts.index -->/{categories.children.posts.index}<!-- ENDIF categories.children.posts.index -->">[[global:read_more]]</a>
+								<a href="{config.relative_path}/topic/{categories.children.posts.topic.slug}<!-- IF categories.children.posts.index -->/{categories.children.posts.index}<!-- ENDIF categories.children.posts.index -->" class="readmore">[[global:read_more]]</a>
 							</span>
 							</div>
 							<!-- END posts -->

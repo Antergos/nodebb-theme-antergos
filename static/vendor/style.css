@@ -11,7 +11,7 @@
 /*------------------------------------------------*/
 /*-----------------[BASIC STYLES]-----------------*/
 /*------------------------------------------------*/
-body { font-family: 'Lato', Arial, sans-serif; font-size: 14px; color: #666; background-color: #fff; line-height: 1.7em; font-weight: 500; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: 'Open Sans', Arial, sans-serif; font-size: 14px; color: #666; background-color: #fff; line-height: 1.7em; font-weight: 500; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body.et_fixed_nav.et_boxed_layout #page-container { padding-top: 80px; }
 body.page-template-page-template-blank-php #page-container { padding-top: 0 !important; }
 body.et_cover_background { -moz-background-size: cover !important; -webkit-background-size: cover !important; background-size: cover !important; background-position: top center !important; background-repeat: no-repeat !important; background-attachment: fixed; }
