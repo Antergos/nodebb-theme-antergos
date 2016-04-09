@@ -38,7 +38,6 @@
 									<a href="{config.relative_path}/topic/{topics.slug}/{topics.teaser.index}"><span class="timeago" title="{topics.teaser.timestampISO}"></span></a>
 									</span>
 									<!-- ENDIF !topics.unreplied -->
-									<br/>
 									<!-- IMPORT partials/category_tags.tpl -->
 									</small>
 								</p>

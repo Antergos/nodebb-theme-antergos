@@ -3,21 +3,24 @@
 
 	<div component="topic/deleted/message" class="alert alert-warning<!-- IF !deleted --> hidden<!-- ENDIF !deleted -->">[[topic:deleted_message]]</div>
 
-	<ul component="topic" id="post-container" class="posts" data-tid="{tid}">
+	<ul itemscope itemtype="http://schema.org/DiscussionForumPosting" component="topic" id="post-container" class="posts" data-tid="{tid}">
 		<!-- BEGIN posts -->
-			<li component="post" class="ant_post<!-- IF posts.deleted --> deleted<!-- ENDIF posts.deleted -->" <!-- IMPORT partials/data/topic.tpl -->>
+			<li component="post" class="ant_post<!-- IF posts.deleted --> deleted<!-- ENDIF posts.deleted -->" <!-- IF @first -->data-index="{posts.index}" data-pid="{posts.pid}" data-uid="{posts.uid}" data-username="{posts.user.username}" data-userslug="{posts.user.userslug}"<!-- ELSE --> <!-- IMPORT partials/data/topic.tpl --><!-- ENDIF @first -->>
 				<a component="post/anchor" data-index="{posts.index}" name="{posts.index}"></a>
 				<div class="post-row">
 
 					<meta itemprop="datePublished" content="{posts.timestampISO}">
 					<meta itemprop="dateModified" content="{posts.editedISO}">
+					<!-- IF thumb -->
+					<meta itemprop="image" content="{thumb}">
+					<!-- ENDIF thumb -->
 
 					<div class="topic-item">
 						<div class="topic-body" style="position: relative;">
 							<!-- IMPORT partials/topic/likes_post.tpl -->
 							<div class="row">
 								<div class="col-md-12">
-									<div class="topic-profile-pic hidden-xs text-center">
+									<div itemprop="author" itemscope itemtype="http://schema.org/Person" class="topic-profile-pic hidden-xs text-center">
 										<a href="<!-- IF posts.user.userslug -->{config.relative_path}/user/{posts.user.userslug}<!-- ELSE -->#<!-- ENDIF posts.user.userslug -->">
 											<!-- IF posts.user.picture -->
 											<img itemprop="image" component="user/picture" data-uid="{posts.user.uid}" src="{posts.user.picture}" align="left" class="img-thumbnail" />
@@ -25,7 +28,7 @@
 											<div class="user-icon" style="background-color: {posts.user.icon:bgColor};">{posts.user.icon:text}</div>
 											<!-- ENDIF posts.user.picture -->
 										</a>
-										<small class="username" title="{posts.user.username}"><a href="<!-- IF posts.user.userslug -->{config.relative_path}/user/{posts.user.userslug}<!-- ELSE -->#<!-- ENDIF posts.user.userslug -->">{posts.user.username}</a></small>
+										<small itemprop="name" class="username" title="{posts.user.username}"><a href="<!-- IF posts.user.userslug -->{config.relative_path}/user/{posts.user.userslug}<!-- ELSE -->#<!-- ENDIF posts.user.userslug -->">{posts.user.username}</a></small>
 
 										<!-- IF posts.user.banned -->
 										<div class="text-center">
@@ -38,7 +41,10 @@
 									<div class="topic-text">
 										<!-- IF @first -->
 										<h1 class="topic-title">
-											<p component="post/header" class="topic-title" itemprop="name"><i class="fa fa-thumb-tack <!-- IF !pinned -->hidden<!-- ENDIF !pinned -->"></i> <i class="fa fa-lock <!-- IF !locked -->hidden<!-- ENDIF !locked -->"></i> <span component="topic/title">{title}</span></p>
+											<!-- IF thumb -->
+											<img itemprop="image" src="{thumb}" class="img-thumbnail" />
+											<!-- ENDIF thumb -->
+											<p component="post/header" class="topic-title" itemprop="headline"><i class="fa fa-thumb-tack <!-- IF !pinned -->hidden<!-- ENDIF !pinned -->"></i> <i class="fa fa-lock <!-- IF !locked -->hidden<!-- ENDIF !locked -->"></i> <span component="topic/title">{title}</span></p>
 											<hr>
 										</h1>
 										<!-- ENDIF @first -->
