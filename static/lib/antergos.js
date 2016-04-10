@@ -303,6 +303,7 @@
 			maybeDisplayGlobalALert();
 			makeFooterToBottom();
 			fix_breadcrumbs();
+			doWaypoints();
 			fixQandA();
 			fix_widgets(tpl);
 		});
