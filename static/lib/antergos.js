@@ -13,7 +13,7 @@
 			childRows,
 			wpWidgetWidth;
 
-		function setLocalStorage(tpl, key, value) {
+		function setLS(tpl, key, value) {
 			key = tpl + ':' + key;
 			localStorage.setItem(key, value)
 		}
@@ -29,21 +29,20 @@
 			var template = 'checkWaypoints_' + app.template + '_' + $(window).width(),
 				checkedWidgets = $.cookie(template),
 				$visible = $('.sidebar .panel, .sidebar .etban-divi').filter(':visible').not('.panel-footer');
+
 			if (!checkedWidgets) {
 				$wpWidget = $visible.eq(-3);
-				setLocalStorage(template, 'wpWidgetHeight', $wpWidget.height());
-				setLocalStorage(template, 'wpWidgetWidth', $wpWidget.width() + 'px');
+				setLS(template, 'wpWidgetHeight', $wpWidget.height());
+				setLS(template, 'wpWidgetWidth', $wpWidget.width() + 'px');
 				$secLast = $visible.eq(-2);
-				setLocalStorage(template, 'secLastHeight', $secLast.height() + 100 + 'px');
+				setLS(template, 'secLastHeight', $secLast.height() + 100 + 'px');
 				$lastWidget = $visible.eq(-1);
-				setLocalStorage(template, 'lastWidgetHeight', $lastWidget.height());
+				setLS(template, 'lastWidgetHeight', $lastWidget.height());
 				allWidgets = $visible.length;
 				enoughWidgets = ((allWidgets >= 3) && (($secLast.height() + $lastWidget.height()) < $(window).height())) ? 'true' : 'false';
-				setLocalStorage(template, 'enoughWidgets', enoughWidgets);
+				setLS(template, 'enoughWidgets', enoughWidgets);
 				$.cookie(template, true, {expires: 1, path: '/'});
-
 			}
-
 		}
 
 		function fixHomeGrid() {
@@ -177,7 +176,7 @@
 			var titles = ["About Antergos", "Technical Issues and Assistance", "Contributions & Discussion",
 					"Antergos in other languages"];
 			$('.bcrumb').each(function () {
-				var theTitle = $(this).find('span').text();
+				var theTitle = $(this).find('span').text().trim();
 				if ($.inArray(theTitle, titles) > -1) {
 					theTitle = theTitle.split(' ').join('-');
 					$(this).find('a').attr('href', '/#' + theTitle);
@@ -243,7 +242,7 @@
 			var titles = ["Installation", "Newbie Corner", "Applications & Desktop Environments",
 					"Multimedia and Games", "Kernel & Hardware", "Pacman & Package Upgrade Issues", "GNOME", "KDE",
 					"Cinnamon", "Xfce", "LXQT", "MATE", "Openbox"],
-				catName = ajaxify.data.name;
+				catName = ajaxify.data.category.name;
 			if ($.inArray(catName, titles) > -1) {
 				//$('#new_topic').on('click', function () {
 				$(window).on('action:composer.loaded', function (err, data) {
@@ -294,6 +293,48 @@
 			}
 		}
 
+		function maybe_add_click_handler_on_external_links() {
+			var $content = $('#content');
+
+			if ($content.hasClass('external_link_prompt_check_done_all')) {
+				return;
+			}
+
+			$content.find( 'a' ).each( function() {
+				if ( $( this ).hasClass( 'external_link_prompt_check_done' ) ) {
+					return true;
+				}
+
+				if ( this.host !== window.location.host && this.host.indexOf( 'bbs.archlinux.org' ) > - 1 ) {
+					$( this ).on( 'click', function( event ) {
+						event.stopPropagation();
+						event.preventDefault();
+
+						var $target = $(event.target);
+
+						bootbox.dialog( {
+							message: "<p>You clicked a link to a page on the Arch Linux Forum. Please be advised that the Arch Linux Forum is not the proper channel through which Antergos users should obtain support. We ask that you utilize the Arch Linux Forum as a <strong><em>READ ONLY</em></strong> resource.</p><p>Please direct any and all questions regarding content found on the Arch Linux Forum right here on the Antergos Forum. Be sure to include a reference link to the related Arch Linux Forum post.</p><p>Thanks for your cooperation!</p><p>-Antergos Developers</p>",
+							title: "A Note Regarding The Arch Linux Forum...",
+							buttons: {
+								main: {
+									label: "Okay, I understand.",
+									className: "btn-primary",
+									callback: function() {
+										window.open($target.attr('href'));
+									}
+								}
+							}
+						} );
+					} );
+				}
+
+				$(this).addClass('external_link_prompt_check_done');
+
+			});
+
+			$content.addClass('external_link_prompt_check_done_all');
+		}
+
 		$(window).load(function () {
 			var $tpl = $('.category-page').length,
 				tpl = app.template;
@@ -306,6 +347,7 @@
 			doWaypoints();
 			fixQandA();
 			fix_widgets(tpl);
+			maybe_add_click_handler_on_external_links();
 		});
 
 		$(window).on('action:ajaxify.start', function (ev, data) {
@@ -319,6 +361,7 @@
 				height = $(window).scrollTop();
 			if (!/^admin\//.test(data.url)) {
 				maybeDisplayGlobalALert();
+				maybe_add_click_handler_on_external_links();
 			}
 
 			if (tpl === 'categories') {
