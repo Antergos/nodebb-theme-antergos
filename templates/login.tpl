@@ -14,13 +14,13 @@
             <div class="form-group">
 					<label for="username" class="col-lg-2 control-label">{allowLoginWith}</label>
                 <div class="col-lg-10">
-						<input class="form-control" type="text" placeholder="{allowLoginWith}" name="username" id="username" autocorrect="off" autocapitalize="off" />
+						<input class="form-control" type="text" placeholder="{allowLoginWith}" name="username" id="username" autocorrect="off" autocapitalize="off" value="{username}" <!-- IF username -->readonly<!-- ENDIF username -->/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="password" class="col-lg-2 control-label">[[user:password]]</label>
                 <div class="col-lg-10">
-						<input class="form-control" type="password" placeholder="[[user:password]]" name="password" id="password" />
+						<input class="form-control" type="password" placeholder="[[user:password]]" name="password" id="password" <!-- IF username -->autocomplete="off"<!-- ENDIF username -->/>
                 </div>
             </div>
             <div class="form-group">
