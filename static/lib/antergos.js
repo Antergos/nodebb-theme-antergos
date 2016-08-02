@@ -242,8 +242,8 @@
 			var titles = ["Installation", "Newbie Corner", "Applications & Desktop Environments",
 					"Multimedia and Games", "Kernel & Hardware", "Pacman & Package Upgrade Issues", "GNOME", "KDE",
 					"Cinnamon", "Xfce", "LXQT", "MATE", "Openbox"],
-				catName = ajaxify.data.category.name;
-			if ($.inArray(catName, titles) > -1) {
+				catName = ajaxify.data.template.category ? ajaxify.data.name : null;
+			if (null !== catName && $.inArray(catName, titles) > -1) {
 				//$('#new_topic').on('click', function () {
 				$(window).on('action:composer.loaded', function (err, data) {
 					setTimeout(function () {
