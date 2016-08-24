@@ -230,43 +230,6 @@
 			}
 		}
 
-		function fixQandA() {
-			$('[component="topic/reply"]').on('click', function () {
-				setTimeout(function () {
-					var qAndA = $('.composer .dropdown-menu .fa-question-circle').parents('li');
-					qAndA.hide();
-				}, 750);
-			});
-			if ($('.qafixed').length) return;
-			$('.category-page').addClass('qafixed');
-			var titles = ["Installation", "Newbie Corner", "Applications & Desktop Environments",
-					"Multimedia and Games", "Kernel & Hardware", "Pacman & Package Upgrade Issues", "GNOME", "KDE",
-					"Cinnamon", "Xfce", "LXQT", "MATE", "Openbox"],
-				catName = ajaxify.data.template.category ? ajaxify.data.name : null;
-			if (null !== catName && $.inArray(catName, titles) > -1) {
-				//$('#new_topic').on('click', function () {
-				$(window).on('action:composer.loaded', function (err, data) {
-					setTimeout(function () {
-						var qAndA = $('.composer .dropdown-menu .fa-question-circle').parent(),
-							qAndAIcon = qAndA.children('i').clone();
-						qAndALabel = qAndA.text().replace('Ask as Question', 'Submit Question');
-						qAndA.text(qAndALabel);
-						qAndAIcon.prependTo(qAndA);
-						qAndA.trigger('click');
-					}, 750);
-				});
-			} else {
-				//$('#new_topic').on('click', function () {
-				$(window).on('action:composer.loaded', function (err, data) {
-					setTimeout(function () {
-						var qAndA = $('.composer .dropdown-menu .fa-question-circle').parents('li');
-						qAndA.hide();
-					}, 750);
-				});
-			}
-
-		}
-
 		fixHomeGrid();
 
 		function maybeDisplayGlobalALert() {
@@ -345,7 +308,6 @@
 			makeFooterToBottom();
 			fix_breadcrumbs();
 			doWaypoints();
-			fixQandA();
 			fix_widgets(tpl);
 			maybe_add_click_handler_on_external_links();
 		});
@@ -381,9 +343,11 @@
 							$(this).attr('id', theNewId);
 						});
 						var $elem = $(hash);
-						$('html, body').animate({
-							scrollTop: $elem.offset().top - 80
-						}, 1200);
+						if ( 'undefined' !== typeof $elem.offset() ) {
+							$('html, body').animate({
+								scrollTop: $elem.offset().top - 80
+							}, 1200);
+						}
 						window.location.hash = '';
 					}
 				}
@@ -391,7 +355,6 @@
 				fix_widgets(tpl);
 				if (tpl === 'category') {
 					doSlick();
-					fixQandA();
 				}
 				if (height < 25) {
 					$('#header-menu').removeClass('ant-fixed-header');

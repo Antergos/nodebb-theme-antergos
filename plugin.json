@@ -22,6 +22,10 @@
 		{
 			"hook": "filter:config.get",
 			"method": "getConfig"
+		},
+		{
+			"hook": "filter:parse.post",
+			"method": "filter_post_content"
 		}
 	],
 	"staticDirs": {
