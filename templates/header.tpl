@@ -26,7 +26,6 @@
 		};
 	</script>
 	<script src="{relative_path}/nodebb.min.js?{config.cache-buster}"></script>
-	<!-- IMPORT partials/requirejs-config.tpl -->
 
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
 	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.cookie.js"></script>
