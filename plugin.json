@@ -26,6 +26,11 @@
 		{
 			"hook": "filter:parse.post",
 			"method": "filter_post_content"
+		},
+		{
+			"hook": "filter:teasers.get",
+			"method": "filter_topic_teasers",
+			"priority": 1
 		}
 	],
 	"staticDirs": {
