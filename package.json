@@ -23,6 +23,6 @@
     "url": "https://github.com/lots0logs/nodebb-theme-antergos/issues"
   },
   "nbbpm": {
-    "compatibility": "^1.0.0"
+    "compatibility": "^1.4.4"
   }
 }
