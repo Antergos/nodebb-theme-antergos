@@ -10,13 +10,6 @@
 	{function.buildLinkTag}
 	<!-- END linkTags -->
 
-	<!--[if lt IE 9]>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js"></script>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-  		<script>__lt_ie_9__ = 1;</script>
-	<![endif]-->
-
 	<script>
 		var RELATIVE_PATH = "{config.relative_path}";
 		var config = JSON.parse('{{configJSON}}');
@@ -27,8 +20,8 @@
 	</script>
 	<script src="{relative_path}/assets/nodebb.min.js?{config.cache-buster}"></script>
 
-	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js"></script>
-	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.cookie.js"></script>
+	<script src="//cdn.jsdelivr.net/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+	<script src="//cdn.jsdelivr.net/js-cookie/1.5.1/js.cookie.js"></script>
 
 
 	<link rel="stylesheet" id="et-gf-raleway-css" href="https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900&amp;subset=latin" type="text/css" media="all">
