@@ -1,4 +1,4 @@
-(function ($) {
+(function($) {
 	$(document).ready(function () {
 		var secLastHeight,
 			$wpWidget,
@@ -298,7 +298,7 @@
 			$content.addClass('external_link_prompt_check_done_all');
 		}
 
-		$(window).load(function () {
+		$(window).on( 'load', function() {
 			var $tpl = $('.category-page').length,
 				tpl = app.template;
 			if ($tpl) {
