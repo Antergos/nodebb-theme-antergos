@@ -1,64 +1,70 @@
 <div class="row categories" itemscope itemtype="http://www.schema.org/ItemList">
 	<div class="col-lg-9 col-sm-12" no-widget-class="col-lg-12 col-sm-12" no-widget-target="sidebar">
 		<!-- BEGIN categories -->
-		<!-- IF !categories.disabled -->
-		<div itemprop="itemListElement" itemscope itemtype="http://www.schema.org/ListItem">
-			<!-- IMPORT partials/category_header.tpl -->
-			<div class="row parent-cat" itemscope itemtype="http://www.schema.org/ItemList">
-				<!-- BEGIN children -->
-				<!-- IF !categories.children.disabled -->
-				<div component="categories/category" class="col-md-4 col-sm-6 col-xs-12 category-item" data-cid="{categories.children.cid}" data-numRecentReplies="{categories.children.numRecentReplies}" itemprop="itemListElement" itemscope itemtype="http://www.schema.org/ListItem">
-					<div id="category-{categories.children.cid}" class="category-module">
-						<div class="module-head">
-							<a style="color: {categories.children.color};" href="{config.relative_path}/category/{categories.children.slug}" itemprop="url">
-								<h1 style="color: {categories.children.color};" itemprop="name">{categories.children.name}</h1>
-								<meta itemprop="description" content="{categories.children.description}"/>
-							</a>
+		<div class="row">
+			<div class="<!-- IF categories.class -->col-md-12 col-sm-12 col-xs-12<!-- ELSE -->col-md-12 col-sm-12 col-xs-12<!-- ENDIF categories.class -->" data-cid="{categories.cid}" data-numRecentReplies="{categories.numRecentReplies}">
+				<meta itemprop="name" content="{categories.name}">
+				<div class="et_pb_column et_pb_column_4_4">
+					<div class="et_pb_text et_pb_bg_layout_light et_pb_text_align_left">
+
+						<h2 id="{categories.name}" class="category-group">{categories.name}</h2>
+
+						<p><em>{categories.description}</em></p>
+					</div>
+					<hr class="et_pb_space et_pb_divider">
+				</div>
+			</div>
+		</div>
+		<div class="row parent-cat">
+			<div class="child_row child_row_0" style="display: none;"></div>
+			<div class="child_row child_row_1" style="display: none;"></div>
+			<div class="child_row child_row_2" style="display: none;"></div>
+			<div class="child_row child_row_3" style="display: none;"></div>
+
+
+			<!-- BEGIN children -->
+			<div component="categories/category" class="<!-- IF categories.children.class -->col-md-4 col-sm-6 col-xs-12<!-- ELSE -->col-md-4 col-sm-6 col-xs-12<!-- ENDIF categories.children.class --> category-item" data-cid="{categories.children.cid}" data-numRecentReplies="{categories.children.numRecentReplies}">
+				<meta itemprop="name" content="{categories.children.name}">
+
+				<div class="category-icon">
+
+					<!-- IF categories.children.link -->
+					<a style="color: {categories.children.color};" href="{categories.children.link}" itemprop="url" target="_blank">
+					<!-- ELSE -->
+					<a style="color: {categories.children.color};" href="{config.relative_path}/category/{categories.children.slug}" itemprop="url">
+					<!-- ENDIF categories.children.link -->
+						<div id="category-{categories.children.cid}" class="category-header category-header-image-{categories.children.imageClass}" style="
+								<!-- IF categories.children.backgroundImage -->background-image: url({categories.children.backgroundImage});<!-- ENDIF categories.children.backgroundImage -->
+								<!-- IF categories.children.bgColor -->background-color: {categories.children.bgColor};<!-- ENDIF categories.children.bgColor -->
+								color: {categories.children.color};
+							">
+						<!-- IF !categories.children.link -->
+							<span class="badge {categories.children.unread-class}"><i class="fa fa-book" data-toggle="tooltip" title="[[global:topics]]"></i> <span class="human-readable-number" title="{categories.children.totalTopicCount}">{categories.children.totalTopicCount}</span>&nbsp; <i class="fa fa-pencil" data-toggle="tooltip" title="[[global:posts]]"></i> <span class="human-readable-number" title="{categories.children.totalPostCount}">{categories.children.totalPostCount}</span></span>
+						<!-- ENDIF !categories.children.link -->
+						<!-- IF categories.children.icon -->
+							<div><i class="fa {categories.children.icon} fa-4x"></i></div>
+						<!-- ENDIF categories.children.icon -->
 						</div>
-						<div itemscope itemtype="http://www.schema.org/ItemList">
+					</a>
+
+						<div class="category-box">
+							<div class="category-info">
+								<!-- IF categories.children.link -->
+								<a href="{categories.children.link}" itemprop="url" target="_blank">
+									<!-- ELSE -->
+									<a href="{config.relative_path}/category/{categories.children.slug}" itemprop="url">
+										<!-- ENDIF categories.children.link -->
+										<h4><!-- IF categories.children.icon --><i class="fa {categories.children.icon} visible-xs-inline"></i>
+											<!-- ENDIF categories.children.icon -->{categories.children.name}</h4>
+									</a>
+									<div class="description" itemprop="description">
+										{categories.children.descriptionParsed}
+									</div>
+
+							<!-- IF !categories.children.link -->
 							<!-- BEGIN posts -->
-							<!-- IF @first -->
-							<div class="latest-post">
-								<article component="category/posts">
-									<div class="category-header category-header-image-{categories.children.imageClass}" style="<!-- IF categories.children.backgroundImage -->background-image: url({categories.children.backgroundImage});<!-- ENDIF categories.children.backgroundImage --><!-- IF categories.children.bgColor -->background-color: {categories.children.bgColor};<!-- ENDIF categories.children.bgColor -->color: {categories.children.color};">
-										<div class="badge {categories.children.unread-class}" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-											<meta itemprop="interactionType" content="http://schema.org/CommentAction" />
-											<i class="fa fa-book" data-toggle="tooltip" title="[[global:topics]]"></i> <span class="human-readable-number" title="{categories.children.totalTopicCount}">{categories.children.totalTopicCount}</span>&nbsp; <i class="fa fa-pencil" data-toggle="tooltip" title="[[global:posts]]"></i> <span class="human-readable-number" title="{categories.children.totalPostCount}" itemprop="userInteractionCount">{categories.children.totalPostCount}</span>
-										</div>
-										<!-- IF categories.children.icon -->
-										<div><i class="fa {categories.children.icon} fa-4x"></i></div>
-										<!-- ENDIF categories.children.icon -->
-									</div>
-									<div class="post-content" itemprop="itemListElement" itemscope itemtype="http://www.schema.org/DiscussionForumPosting">
-										<h2 class="post-title" itemprop="headline">
-											<a href="{config.relative_path}/topic/{categories.children.posts.topic.slug}" itemprop="discussionUrl">{categories.children.posts.topic.title}</a>
-										</h2>
-										<div class="post-meta-vcard">
-											<div>
-												<time class="updated timeago" title="{categories.children.posts.timestampISO}" itemprop="dateModified" datetime="{categories.children.posts.timestampISO}"></time> |
-											</div>
-											<div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-												<meta itemprop="interactionType" content="http://schema.org/ReplyAction" />
-												<span itemprop="userInteractionCount">{categories.children.posts.postCount}</span> <i class="fa fa-comments-o"></i> |
-											</div>
-											<div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-												<meta itemprop="interactionType" content="http://schema.org/LikeAction" />
-												<span itemprop="userInteractionCount">{categories.children.posts.likesCount}</span> <i class="fa fa-heart"></i>
-											</div>
-										</div>
-										<div class="excerpt entry-summary" itemprop="description">
-
-											<!-- STOPPED HERE -->
-
-										</div>
-									</div>
-
-								</article>
-							</div>
-							<!-- ENDIF @first -->
-
-							<div  class="post-preview clearfix">
-								<strong></strong>
+							<div component="category/posts" class="post-preview clearfix">
+								<strong><a href="{config.relative_path}/topic/{categories.children.posts.topic.slug}">{categories.children.posts.topic.title}</a></strong>
 								<hr/>
 								<a style="color: {categories.children.color};" href="<!-- IF categories.children.posts.user.userslug -->{config.relative_path}/user/{categories.children.posts.user.userslug}<!-- ELSE -->#<!-- ENDIF categories.children.posts.user.userslug -->">
 									<!-- IF categories.children.posts.user.picture -->
@@ -95,5 +101,4 @@
 
 	<!-- END categories -->
 </div>
-<div widget-area="sidebar" class="col-lg-3 col-sm-12 hm-sidebar sidebar"></div>
-</div>
+<div widget-area="sidebar" class="col-lg-3 col-sm-12 hm-sidebar sidebar"></div></div>
