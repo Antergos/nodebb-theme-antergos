@@ -375,8 +375,8 @@
 		});
 
 		$(window).on('action:ajaxify.contentLoaded', function (ev, data) {
-			reload_js('/plugins/nodebb-theme-antergos/vendor/jquery.waypoints.min.js');
-			reload_js('/plugins/nodebb-theme-antergos/vendor/jquery.cookie.js');
+			reload_js('/plugins/nodebb-theme-antergos/vendor/jquery.waypoints-4.0.1.min.js');
+			reload_js('/plugins/nodebb-theme-antergos/vendor/js.cookie-1.5.1.min.js');
 			setTimeout(function () {
 				doWaypoints();
 				makeFooterToBottom();
