@@ -20,8 +20,8 @@
 	</script>
 	<script src="{relative_path}/assets/nodebb.min.js?{config.cache-buster}"></script>
 
-	<script src="//cdn.jsdelivr.net/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-	<script src="//cdn.jsdelivr.net/js-cookie/1.5.1/js.cookie.js"></script>
+	<script src="/plugins/nodebb-theme-antergos/vendor/jquery.waypoints-4.0.1.min.js"></script>
+	<script src="/plugins/nodebb-theme-antergos/vendor/js.cookie-1.5.1.min.js"></script>
 
 
 	<link rel="stylesheet" id="et-gf-raleway-css" href="https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900&amp;subset=latin" type="text/css" media="all">
