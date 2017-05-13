@@ -27,7 +27,7 @@
 
 		function checkWidgetHeight() {
 			var template = 'checkWaypoints_' + app.template + '_' + $(window).width(),
-				checkedWidgets = $.cookie(template),
+				checkedWidgets = Cookies.get(template),
 				$visible = $('.sidebar .panel, .sidebar .etban-divi').filter(':visible').not('.panel-footer');
 
 			if (!checkedWidgets) {
@@ -41,7 +41,7 @@
 				allWidgets = $visible.length;
 				enoughWidgets = ((allWidgets >= 3) && (($secLast.height() + $lastWidget.height()) < $(window).height())) ? 'true' : 'false';
 				setLS(template, 'enoughWidgets', enoughWidgets);
-				$.cookie(template, true, {expires: 1, path: '/'});
+				Cookies.set(template, true, {expires: 1, path: '/'});
 			}
 		}
 
@@ -236,7 +236,7 @@
 			if (!$('body').hasClass('globalAlert')) {
 				$('body').addClass('globalAlert');
 
-				globalAlertDismissed = $.cookie('globalAlertDismissed');
+				globalAlertDismissed = Cookies.get('globalAlertDismissed');
 
 				if (true === config.displayGlobalAlert && globalAlertDismissed !== 'True') {
 
@@ -246,10 +246,10 @@
 						location: 'right-top',
 						type: 'info',
 						closefn: function () {
-							$.cookie('globalAlertDismissed', 'True', {expires: 5, path: '/'});
+							Cookies.set('globalAlertDismissed', 'True', {expires: 5, path: '/'});
 						},
 						clickfn: function () {
-							$.cookie('globalAlertDismissed', 'True', {expires: 5, path: '/'});
+							Cookies.set('globalAlertDismissed', 'True', {expires: 5, path: '/'});
 						}
 					});
 				}
