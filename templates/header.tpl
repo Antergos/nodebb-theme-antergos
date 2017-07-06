@@ -81,6 +81,11 @@
 			font-family: 'Open Sans', Helvetica, Arial, Lucida, sans-serif !important;
 		}
 	</style>
+
+	<!-- BEGIN scripts -->
+	<script type="text/javascript" src="{scripts.src}"></script>
+	<!-- END scripts -->
+
 	<!-- IF useCustomJS -->
 	{{customJS}}
 	<!-- ENDIF useCustomJS -->
