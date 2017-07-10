@@ -2,7 +2,7 @@
 
 <div class="row login">
     <!-- IF allowLocalLogin -->
-    <div class="<!-- IF alternate_logins -->col-md-6<!-- ELSE -->col-md-12<!-- ENDIF alternate_logins -->">
+    <div class="<!-- IF alternate_logins.length -->col-md-6<!-- ELSE -->col-md-12<!-- ENDIF alternate_logins.length -->">
         <div class="well well-lg">
 			<div class="alert alert-danger" id="login-error-notify" <!-- IF error -->style="display:block"<!-- ELSE -->style="display: none;"<!-- ENDIF error -->>
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -48,7 +48,7 @@
 </div>
 <!-- ENDIF allowLocalLogin -->
 
-<!-- IF alternate_logins -->
+<!-- IF alternate_logins.length -->
 <div class="<!-- IF allowLocalLogin -->col-md-6<!-- ELSE -->col-md-12<!-- ENDIF allowLocalLogin -->">
     <div class="well well-lg">
         <h4>[[login:alternative_logins]]</h4>
@@ -59,7 +59,6 @@
         </ul>
     </div>
 </div>
-<!-- ENDIF alternate_logins -->
+<!-- ENDIF alternate_logins.length -->
 <script>window.location = '/auth/auth0';</script>
-
 </div>
