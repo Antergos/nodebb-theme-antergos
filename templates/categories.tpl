@@ -1,5 +1,5 @@
 <div class="row categories" itemscope itemtype="http://www.schema.org/ItemList">
-	<div class="col-lg-9 col-sm-12" no-widget-class="col-lg-12 col-sm-12" no-widget-target="sidebar">
+	<div class="<!-- IF widgets.sidebar.length -->col-lg-9 col-sm-12<!-- ELSE -->col-lg-12<!-- ENDIF widgets.sidebar.length -->">
 		<!-- BEGIN categories -->
 		<div class="row">
 			<div class="<!-- IF categories.class -->col-md-12 col-sm-12 col-xs-12<!-- ELSE -->col-md-12 col-sm-12 col-xs-12<!-- ENDIF categories.class -->" data-cid="{categories.cid}" data-numRecentReplies="{categories.numRecentReplies}">
@@ -101,4 +101,9 @@
 
 	<!-- END categories -->
 </div>
-<div widget-area="sidebar" class="col-lg-3 col-sm-12 hm-sidebar sidebar"></div></div>
+<div widget-area="sidebar" class="col-lg-3 col-sm-12 <!-- IF !widgets.sidebar.length -->hidden<!-- ENDIF !widgets.sidebar.length -->">
+	<!-- BEGIN widgets.sidebar -->
+	{{widgets.sidebar.html}}
+	<!-- END widgets.sidebar -->
+</div>
+</div>
