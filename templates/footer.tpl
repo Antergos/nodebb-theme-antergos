@@ -49,8 +49,20 @@
 </div>
 	<div component="toaster/tray" class="alert-window"></div>
 
-<script>
-	require(['forum/footer']);
-</script>
+	<script src="{relative_path}/assets/nodebb.min.js?{config.cache-buster}"></script>
+
+	<!-- BEGIN scripts -->
+	<script type="text/javascript" src="{scripts.src}"></script>
+	<!-- END scripts -->
+
+	<script>
+		window.addEventListener('load', function () {
+			require(['forum/footer']);
+		});
+	</script>
+
+	<div class="hide">
+	<!-- IMPORT 500-embed.tpl -->
+	</div>
 </body>
 </html>
