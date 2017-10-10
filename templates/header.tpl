@@ -18,6 +18,11 @@
 			user: JSON.parse('{{userJSON}}')
 		};
 	</script>
+	<script src="{relative_path}/assets/nodebb.min.js?{config.cache-buster}"></script>
+
+	<!-- BEGIN scripts -->
+	<script type="text/javascript" src="{scripts.src}"></script>
+	<!-- END scripts -->
 
 	<script src="{relative_path}/assets/plugins/nodebb-theme-antergos/vendor/jquery.waypoints-4.0.1.min.js"></script>
 	<script src="{relative_path}/assets/plugins/nodebb-theme-antergos/vendor/js.cookie-1.5.1.min.js"></script>
