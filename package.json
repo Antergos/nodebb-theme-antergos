@@ -1,6 +1,6 @@
 {
   "name": "nodebb-theme-antergos",
-  "version": "0.3.19",
+  "version": "0.3.20",
   "description": "NodeBB theme based on Lavender. Created for the Antergos Forum.",
   "main": "theme.less",
   "repository": {
