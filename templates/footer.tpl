@@ -55,18 +55,23 @@
 
 	<script defer src="{relative_path}/assets/nodebb.min.js?{config.cache-buster}"></script>
 
+	<script defer src="{relative_path}/assets/plugins/nodebb-theme-antergos/vendor/jquery.waypoints-4.0.1.min.js"></script>
+	<script defer src="{relative_path}/assets/plugins/nodebb-theme-antergos/vendor/js.cookie-1.5.1.min.js"></script>
+
+	<!-- IF
+
 	<!-- BEGIN scripts -->
 	<script defer type="text/javascript" src="{scripts.src}"></script>
 	<!-- END scripts -->
 
 	<script>
-		window.addEventListener('load', function () {
+		window.addEventListener( 'load', function() {
 			require(['forum/footer']);
 
 			<!-- IF useCustomJS -->
 			{{customJS}}
 			<!-- END -->
-		});
+		} );
 	</script>
 
 	<div class="hide">

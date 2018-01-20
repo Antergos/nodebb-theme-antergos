@@ -4,10 +4,9 @@
 <input type="hidden" template-variable="topic_count" value="{topic_count}"/>
 <input type="hidden" template-variable="currentPage" value="{currentPage}"/>
 <input type="hidden" template-variable="pageCount" value="{pageCount}"/>
-<script src="{relative_path}/assets/plugins/nodebb-theme-antergos/vendor/slick-1.6.0.min.js"></script>
+<div class="category-page" style="position:absolute;left:-9999px;"></div>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
-<div class="category-page" style="position:absolute;left:-9999px;"></div>
 
 
 <div class="category row">
@@ -78,3 +77,6 @@
 	<!-- IMPORT partials/paginator.tpl -->
 </noscript>
 <!-- ENDIF !config.usePagination -->
+
+<script defer src="{relative_path}/assets/plugins/nodebb-theme-antergos/vendor/slick-1.6.0.min.js"></script>
+
