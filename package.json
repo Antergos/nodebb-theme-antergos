@@ -18,6 +18,9 @@
     "name": "Antergos Developers",
     "email": "dev@antergos.com"
   },
+  "dependencies": {
+    "async": "2.6.0",
+  },
   "license": "GPL",
   "bugs": {
     "url": "https://github.com/lots0logs/nodebb-theme-antergos/issues"
