@@ -11,7 +11,7 @@
 	<!-- END linkTags -->
 
 	<script>
-		var RELATIVE_PATH = "{config.relative_path}";
+		var RELATIVE_PATH = "{relative_path}";
 		var config = JSON.parse('{{configJSON}}');
 		var app = {
 			template: "{template.name}",
